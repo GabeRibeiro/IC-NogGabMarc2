@@ -21,28 +21,15 @@ class bitstream : public fstream {
             }
         };
 
-
-    //  bit_stream(char *fname){
-    //         pointer_read = -1;
-    //         pointer_write = 7;
-    //         pointer = 7;
-    //         filename = fname;
-    //         byteCount = 0;
-    //         inputfile = ifstream(fname, ios::binary);
-    //         outputfile = ofstream(fname, ios::binary);
-    //         byte = '0';
-    //         //inputfile.open(fname, fstream::in);
-    //         //outputfile.open(fname, fstream::out);
-
-    //     };
-
         //~bitstream();
-        void writeBit(u_char value);
-        void writeNBits(u_char value, uint n);
-        void writeNBits(u_char* value, uint n);
-        u_char readBit();
-        u_char readNBits(uint n);
-        void readNBits(u_char* value, uint n);
+        void writeBit(uint8_t value);
+        void writeNBits(uint8_t value, uint n);
+        void writeNBits2(uint32_t* value, uint n);
+        uint8_t readBit();
+        //uint32_t readNBits(uint n);
+        char* readNBits(uint n);
+        void readBit(uint8_t* val);
+        //void readNBits2(uint32_t* value, uint n);
         //void addWhiteSpace();
 
     private:
