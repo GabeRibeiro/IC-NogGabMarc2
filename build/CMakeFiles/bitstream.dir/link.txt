@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbitstream.a  CMakeFiles/bitstream.dir/src/BitStream/bitstream.cpp.o
+/usr/bin/ranlib libbitstream.a

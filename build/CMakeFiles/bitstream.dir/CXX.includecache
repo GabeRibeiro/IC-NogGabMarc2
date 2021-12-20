@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/marcoramos/Desktop/IC-NogGabMarc2/src/BitStream/bitstream.cpp
+bitstream.h
+/home/marcoramos/Desktop/IC-NogGabMarc2/src/BitStream/bitstream.h
+iostream
+-
+fstream
+-
+bitset
+-
+cassert
+-
+
+/home/marcoramos/Desktop/IC-NogGabMarc2/src/BitStream/bitstream.h
+iostream
+-
+fstream
+-
+bitset
+-
+cassert
+-
+

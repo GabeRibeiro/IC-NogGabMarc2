@@ -1,0 +1,111 @@
+void Lossless::yuv2rgb(Mat& rgb, Mat& y, Mat& u, Mat& v){
+    int i, j, rw=y.rows, cl=y.cols;
+    double y_, u_, v_, r, b;
+    for(i=0; i<rw; i++){
+        for(j=0; j<cl; j++){
+            y_ = y.at<Vec3b>(i, j)[0];
+            if(i%2==0 && j%2==0){
+                u_ = u.at<Vec3b>(i, j)[0];
+                v_ = v.at<Vec3b>(i, j)[0];
+            } 
+            
+            b = rgb.at<Vec3b>(i, j)[2] = u_/0.492 + y_;
+            r = rgb.at<Vec3b>(i, j)[0] = v_/0.877 + y_;
+            rgb.at<Vec3b>(i, j)[1] = (y_ - 0.299*r - 0.114*b)/0.587;
+        }
+    }
+}
+
+void Lossless::rgb2yuv(Mat& rgb, Mat& y, Mat& u, Mat& v){
+    int i,j,k, rw=rgb.rows, cl=rgb.cols;
+    double r,g,b;
+    for(i=0; i<rw; i+=2){
+        for(j=0; j<cl; j+=2){
+            r = rgb.at<Vec3b>(i, j)[0];
+            g = rgb.at<Vec3b>(i, j)[1];
+            b = rgb.at<Vec3b>(i, j)[2];
+
+            y.at<Vec3b>(i, j) = 0.299*r + 0.587*g + 0.114*b;
+            if(i%2==0 && j%2==0){
+                u.at<Vec3b>(i/2, j/2) = -0.147*r - 0.289*g + 0.436*b;
+                v.at<Vec3b>(i/2, j/2) = 0.615*r - 0.515*g - 0.100*b;
+            }
+        }
+    }
+}
+
+
+vector<int> Lossless::predictive_coding(Mat& yuv){
+    int i, j, rw=yuv.rows, cl=yuv.cols, x,px,a,b,c;
+    vector<int> r;
+    for(i=0; i<rw; i++){
+        for(j=0; j<cl; j++){
+            x = yuv.at<Vec3b>(i, j)[0];
+            a = j==0? 0 : yuv.at<Vec3b>(i, j-1)[0];
+            b = i==0? 0 : yuv.at<Vec3b>(i-1, j)[0];
+            c = i==0 && j==0? 0 : yuv.at<Vec3b>(i-1, j-1)[0];
+
+            px = this->function(a,b,c);
+            r.push_back(x-px);
+        }
+    }
+    return r;
+}
+
+void Lossless::predictive_decoding(Mat& yuv, int* yuv_){
+    int i, j, rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;
+    for(i=0; i<rw; i++){
+        for(j=0; j<cl; j++){
+            r = yuv_[i*cl+j+1];
+            a = j==0? 0 : yuv_(i, j-1)[i*cl+j];
+            b = i==0? 0 : yuv_(i-1, j)[(i-1)*cl+j+1];
+            c = i==0 && j==0? 0 : yuv_(i-1, j-1)[(i-1)*cl+j];
+
+            px = this->function(a,b,c);
+            yuv_[i*cl+j+1] = px;
+            yuv.at<Vec3b>(i, j)[0] = px + r;
+        }
+    }
+}
+
+void Lossless::encode(string img, string fname){
+    Mat rgb = cv::imread(img);
+    Mat y(rgb.rows, rgb.cols, rgb.type());
+    Mat u(rgb.rows/2, rgb.cols/2, rgb.type());
+    Mat v(rgb.rows/2, rgb.cols/2, rgb.type());
+    yuv420(rgb, y, u, v);
+    int *y_ = predictive_coding(y);
+    int *u_ = predictive_coding(u);
+    int *v_ = predictive_coding(v);
+
+    /*
+    int mean=0;
+    for() mean += ;   meter do lado do golomb
+    mean/=;
+    golomb = new Golomb((int)ceil(-1/log2(mean/(mean+1))));
+    golomb.write_code(fname, vector<int>);
+    */
+}
+
+void Lossless::decode(string fname){
+    int* gol_rd = golomb.read_code(fname);
+    int rows, cols;
+    Mat y(rows, cols, CV_8UC1);
+    Mat u(rows/2, cols/2, CV_8UC1);
+    Mat v(rows/2, cols/2, CV_8UC1);
+    int* y_ = ;
+    int* u_ = ;
+    int* v_ = ;
+    predictive_decoding(y, y_);
+    predictive_decoding(u, u_);
+    predictive_decoding(v, v_);
+    Mat rgb(rows, cols, CV_8UC1);
+    rgb(rgb, y, u, v);
+
+}
+
+
+
+
+
+//#include "../Golomb/Golomb.h"
