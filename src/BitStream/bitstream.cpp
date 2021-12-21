@@ -76,12 +76,16 @@ char* bitstream::readNBits(uint n)
     {
         //n = n&0xFFFF; // para uint_32
         char* value = (char*)malloc((uint) n/8 + 1);
-        for(int j = 0; j*8 < n; j++){
+        /*for(int j = 0; j*8 < n; j++){
             for (uint i = 0; i < 8; i++) {
                 value[j] = value[j] << 1 | readBit();
             }
-        }
-        return value;
+        }*/
+		for(uint i=0; i<n; i++){
+			value[i/8] = value[i/8] << 1 | readBit();
+			if(i==n-1) value[i/8] <<= (8-n%8);
+		}
+		return value;
     }
 
 // char* bitstream::readNBits(uint n) {

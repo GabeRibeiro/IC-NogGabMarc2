@@ -90,13 +90,14 @@ void Golomb::write(string fname, vector<int> v){
 vector<int> Golomb::read(string fname){
     vector<int> rd;
     bitstream bs((char*) fname.data(), std::ios::binary|std::ios::in);
-    int i;�
+    int i;
+
     while(1){
         i = 0;
         string q(1, bs.readBit());
         while(q[i]!='0') q[i++] = bs.readBit();
         string r = bs.readNBits(this->b-1);
-        i = signed_decode(q+r+ (decimal(r) < pow(2,this->b)-this->m? "" : bs.readBit()) );
+        i = signed_decode(q+r+ (decimal(r)<pow(2,this->b)-this->m? "" : string(1,bs.readBit())) );
         rd.push_back(i);
     }
 }

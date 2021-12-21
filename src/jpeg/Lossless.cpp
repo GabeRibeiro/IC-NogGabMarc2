@@ -14,13 +14,13 @@ using namespace std;
 using namespace cv;
 
 
-int Lossless::linear_jpeg_mode1(int a, int b, int c){return a;}
-int Lossless::linear_jpeg_mode2(int a, int b, int c){return b;}
-int Lossless::linear_jpeg_mode3(int a, int b, int c){return c;}
+int Lossless::linear_jpeg_mode1(int a){return a;}
+int Lossless::linear_jpeg_mode2(int b){return b;}
+int Lossless::linear_jpeg_mode3(int c){return c;}
 int Lossless::linear_jpeg_mode4(int a, int b, int c){return a+b-c;}
 int Lossless::linear_jpeg_mode5(int a, int b, int c){return a+(b-c)/2;}
 int Lossless::linear_jpeg_mode6(int a, int b, int c){return b+(a-c)/2;}
-int Lossless::linear_jpeg_mode7(int a, int b, int c){return (a+b)/2;}
+int Lossless::linear_jpeg_mode7(int a, int b){return (a+b)/2;}
 int Lossless::non_linear_jpegls(int a, int b, int c){
     if(c >= max(a,b)) return min(a,b);
     else if(c <= min(a,b) ) return max(a,b);
@@ -48,7 +48,7 @@ void Lossless::yuv2rgb(Mat& rgb, Mat& y, Mat& u, Mat& v){
 }
 
 void Lossless::rgb2yuv(Mat& rgb, Mat& y, Mat& u, Mat& v){
-    int i,j,k, rw=rgb.rows, cl=rgb.cols;
+    int i,j, rw=rgb.rows, cl=rgb.cols;
     double r,g,b;
     for(i=0; i<rw; i++){
         for(j=0; j<cl; j++){
@@ -78,13 +78,13 @@ vector<int> Lossless::predictive_coding(Mat& yuv){
             
             switch(this->function){
                 case 0: px = non_linear_jpegls(a,b,c); break;
-                case 1: px = linear_jpeg_mode1(a,b,c); break;
-                case 2: px = linear_jpeg_mode2(a,b,c); break;
-                case 3: px = linear_jpeg_mode3(a,b,c); break;
+                case 1: px = linear_jpeg_mode1(a); break;
+                case 2: px = linear_jpeg_mode2(b); break;
+                case 3: px = linear_jpeg_mode3(c); break;
                 case 4: px = linear_jpeg_mode4(a,b,c); break;
                 case 5: px = linear_jpeg_mode5(a,b,c); break;
                 case 6: px = linear_jpeg_mode6(a,b,c); break;
-                case 7: px = linear_jpeg_mode7(a,b,c); break;
+                case 7: px = linear_jpeg_mode7(a,b); break;
             }
             r.push_back(x-px);
         }
@@ -132,13 +132,13 @@ void Lossless::predictive_decoding(Mat& yuv, vector<int> yuv_){
 
             switch(this->function){
                 case 0: px = non_linear_jpegls(a,b,c); break;
-                case 1: px = linear_jpeg_mode1(a,b,c); break;
-                case 2: px = linear_jpeg_mode2(a,b,c); break;
-                case 3: px = linear_jpeg_mode3(a,b,c); break;
+                case 1: px = linear_jpeg_mode1(a); break;
+                case 2: px = linear_jpeg_mode2(b); break;
+                case 3: px = linear_jpeg_mode3(c); break;
                 case 4: px = linear_jpeg_mode4(a,b,c); break;
                 case 5: px = linear_jpeg_mode5(a,b,c); break;
                 case 6: px = linear_jpeg_mode6(a,b,c); break;
-                case 7: px = linear_jpeg_mode7(a,b,c); break;
+                case 7: px = linear_jpeg_mode7(a,b); break;
             }
             yuv_[i*cl+j] = px;
             yuv.at<Vec3b>(i, j)[0] = px + r;
