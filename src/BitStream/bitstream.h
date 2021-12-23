@@ -5,7 +5,9 @@
 #include <fstream>
 #include <bitset>
 #include <cassert>
+#include <string>
 
+using namespace std;
 using std::fstream;
 
 
@@ -31,8 +33,9 @@ class bitstream : public fstream {
         void readBit(uint8_t* val);
         //void readNBits2(uint32_t* value, uint n);
         void padding();
+        string toString(char* c, int n);
 
-    private:
+    //private:
         u_char byte = 0;
         int pointer;
         int byteCount;

@@ -36,9 +36,9 @@ void Lossless::yuv2rgb(Mat& rgb, Mat& y, Mat& u, Mat& v){
     double y_, u_, v_, r, b;
     for(i=0; i<rw; i++){
         for(j=0; j<cl; j++){
-            y_ = y.at<Vec3b>(i, j)[0];
-            u_ = u.at<Vec3b>(i/2, j/2)[0];
-            v_ = v.at<Vec3b>(i/2, j/2)[0];
+            y_ = y.at<uchar>(i, j);
+            u_ = u.at<uchar>(i/2, j/2);
+            v_ = v.at<uchar>(i/2, j/2);
 
             r = rgb.at<Vec3b>(i, j)[0] = v_/0.877 + y_;
             b = rgb.at<Vec3b>(i, j)[2] = u_/0.492 + y_;
@@ -56,24 +56,24 @@ void Lossless::rgb2yuv(Mat& rgb, Mat& y, Mat& u, Mat& v){
             g = rgb.at<Vec3b>(i, j)[1];
             b = rgb.at<Vec3b>(i, j)[2];
 
-            y.at<Vec3b>(i, j) = 0.299*r + 0.587*g + 0.114*b;
+            y.at<uchar>(i, j) = 0.299*r + 0.587*g + 0.114*b;
             if(i%2==0 && j%2==0){
-                u.at<Vec3b>(i/2, j/2) = -0.147*r - 0.289*g + 0.436*b;
-                v.at<Vec3b>(i/2, j/2) = 0.615*r - 0.515*g - 0.100*b;
+                u.at<uchar>(i/2, j/2) = -0.147*r - 0.289*g + 0.436*b;
+                v.at<uchar>(i/2, j/2) = 0.615*r - 0.515*g - 0.100*b;
             }
         }
     }
 }
 
 vector<int> Lossless::predictive_coding(Mat& yuv){
-    int i, j, rw=yuv.rows, cl=yuv.cols, x,px,a,b,c;
+    int i, j, rw=yuv.rows, cl=yuv.cols, x, px,a,b,c;
     vector<int> r;
     for(i=0; i<rw; i++){
         for(j=0; j<cl; j++){
-            x = yuv.at<Vec3b>(i, j)[0];
-            a = j==0? 0 : yuv.at<Vec3b>(i, j-1)[0];
-            b = i==0? 0 : yuv.at<Vec3b>(i-1, j)[0];
-            c = j==0? 0 : yuv.at<Vec3b>(i-1, j-1)[0];
+            x = yuv.at<uchar>(i, j);
+            a = j==0? 0 : yuv.at<uchar>(i, j-1);
+            b = i==0? 0 : yuv.at<uchar>(i-1, j);
+            c = j==0? 0 : yuv.at<uchar>(i-1, j-1);
 
             
             switch(this->function){

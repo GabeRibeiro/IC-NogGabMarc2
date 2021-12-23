@@ -12,14 +12,14 @@
 using namespace std;
 
 class Golomb{
-    private:
+    public:
         int m;
         int b;
         string unary(int q);
         string binary(int x, int n);
         int decimal(string a);
 
-    public:
+    //public:
         Golomb(int m);
         string encode(signed int n);
         int decode(string str);

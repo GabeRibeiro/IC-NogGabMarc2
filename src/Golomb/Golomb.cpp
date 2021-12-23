@@ -74,14 +74,14 @@ int Golomb::get_m(void){return this->m;}
 
 void Golomb::write(string fname, vector<int> v){
     bitstream bs((char*) fname.data(), std::ios::binary|std::ios::out);
-    int i, j;
+    int i, j, sz = int(v.size());
     string golb;
-    for(i=0; i<int(v.size()); i++){
-        golb = signed_encode(v[i]);
-        for(j=0; j<int(golb.size()); j++){
-            cout << golb[j] << endl;
+    v.insert(v.begin(), this->m);
+    v.insert(v.begin(), sz);
+    for(i=0; i<sz+2; i++){
+        golb = (i<2? binary(v[i], 16) : signed_encode(v[i]));
+        for(j=0; j<int(golb.size()); j++)
             bs.writeBit(  (golb[j]=='0'? 0 : 1)   );
-        } 
     }
     bs.padding();
 }
@@ -92,12 +92,20 @@ vector<int> Golomb::read(string fname){
     bitstream bs((char*) fname.data(), std::ios::binary|std::ios::in);
     int i;
 
-    while(1){
+    //header em bin:(n_elems, m)
+    int elems = decimal(bs.toString(bs.readNBits(16),16));
+    this->m = decimal(bs.toString(bs.readNBits(16),16));
+    //rd.push_back(elems);
+    //rd.push_back(m);
+
+    //ler golomb
+    for(int j=0; j<elems; j++){
         i = 0;
-        string q(1, bs.readBit());
-        while(q[i]!='0') q[i++] = bs.readBit();
-        string r = bs.readNBits(this->b-1);
-        i = signed_decode(q+r+ (decimal(r)<pow(2,this->b)-this->m? "" : string(1,bs.readBit())) );
-        rd.push_back(i);
+        string q(1, bs.readBit()==0? '0':'1' );
+        while(q[i++]!='0') q += (bs.readBit()==0? "0":"1");
+        string r = bs.toString(bs.readNBits(this->b-1), this->b-1);
+        string rl = (decimal(r)<pow(2,this->b)-this->m? "" : (bs.readBit()==0? "0":"1"));
+        rd.push_back( signed_decode(q+r+rl) );
     }
+    return rd;
 }

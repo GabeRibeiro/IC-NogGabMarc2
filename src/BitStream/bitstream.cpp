@@ -1,5 +1,6 @@
 #include "bitstream.h"
 
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <bitset>
@@ -9,12 +10,10 @@ using namespace std;
 void bitstream::writeBit(uint8_t value){
 
     byte |= (value & 0x01) << pointer;
-
     if (pointer > 0){
         pointer--;
 		return;
 	}
-
     write((char*)&byte, 1);
     pointer = 7;
     byte = 0;
@@ -63,51 +62,21 @@ void bitstream::readBit(uint8_t* bit) {
 	pointer--;
 }
 
-// uint32_t bitstream::readNBits(uint n) {
-// 	assert(n <= 32);
-// 	uint32_t value = 0;
-// 	for (uint i = 0; i < n; i++) {
-// 		value = value << 1 | readBit();
-// 	}
-// 	return value;
-// }
+char* bitstream::readNBits(uint n){
+	char* value = (char*)malloc((uint) n/8 + 1);
+	for(uint i=0; i<n; i++){
+		value[i/8] = value[i/8] << 1 | readBit();
+		if(i==n-1 && n%8!=0) value[i/8] <<= (8-n%8);
+	}
+	return value;
+}
 
-char* bitstream::readNBits(uint n)
-    {
-        //n = n&0xFFFF; // para uint_32
-        char* value = (char*)malloc((uint) n/8 + 1);
-        /*for(int j = 0; j*8 < n; j++){
-            for (uint i = 0; i < 8; i++) {
-                value[j] = value[j] << 1 | readBit();
-            }
-        }*/
-		for(uint i=0; i<n; i++){
-			value[i/8] = value[i/8] << 1 | readBit();
-			if(i==n-1) value[i/8] <<= (8-n%8);
-		}
-		return value;
-    }
-
-// char* bitstream::readNBits(uint n) {
-// 	assert(n <= 32);
-// 	char* value = (char*)malloc(sizeof(char) * (uint) n/8 + 1);
-// 	for(int j = 0; j*8 < n; j++){
-// 		for (uint i = 0; i < 8; i++) {
-// 			value[j] = value[j] << 1 | readBit();
-// 		}
-// 	}
-// 	return value;
-// }
-
-// void bitstream::readNBits2(uint32_t* value, uint n){
-
-// 	for (uint i = 0; i < n/32.0; i++){
-// 		if (i == n/32)
-// 			value[i] = readNBits(n%32);
-// 		else
-// 			value[i] = readNBits(32);
-// 	}
-// }
+string bitstream::toString(char* c, int n){
+	string val;
+	for(int i=0; i<n; i++)
+		val+= ((int)((c[i/8] >> (7-i%8))&(0x01))==0? "0":"1");
+	return val;
+}
 
 void bitstream::padding(){
 	for(int i = 0; i < 7-pointer; i++){
