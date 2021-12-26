@@ -8,7 +8,6 @@
 using namespace std;
 
 void bitstream::writeBit(uint8_t value){
-
     byte |= (value & 0x01) << pointer;
     if (pointer > 0){
         pointer--;

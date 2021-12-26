@@ -3,12 +3,14 @@
 #include <string.h>
 #include <cmath>
 #include <vector>
-
+#include <bits/stdc++.h>
 #include "Golomb.h"
 #include "../BitStream/bitstream.h"
 
 
 using namespace std;
+
+
 
 string Golomb::unary(int q){
     std::string unr(q, '1');
@@ -70,42 +72,55 @@ void Golomb::set_m(int m){
     this->b = ceil(log2(m));
 }
 int Golomb::get_m(void){return this->m;}
-        
 
-void Golomb::write(string fname, vector<int> v){
-    bitstream bs((char*) fname.data(), std::ios::binary|std::ios::out);
-    int i, j, sz = int(v.size());
+void Golomb::write(vector<int> v, bitstream &b){
+    int i, j;
     string golb;
-    v.insert(v.begin(), this->m);
-    v.insert(v.begin(), sz);
-    for(i=0; i<sz+2; i++){
-        golb = (i<2? binary(v[i], 16) : signed_encode(v[i]));
+    for(i=0; i<int(v.size()); i++){
+        golb = signed_encode(v[i]);
         for(j=0; j<int(golb.size()); j++)
-            bs.writeBit(  (golb[j]=='0'? 0 : 1)   );
+            b.writeBit(  (golb[j]=='0'? 0 : 1)   );
     }
-    bs.padding();
+    b.padding();
 }
  
+void Golomb::writeHdr(vector<int> v, bitstream &b){
+    int unr = log2(*max_element(v.begin(), v.end())) +1;
+    string hdr;
+    for(int i=0; i<=(int)v.size(); i++){
+        hdr = (i? binary(v[i-1], unr): unary(unr));
+        for(int j=0; j<int(hdr.size()); j++)
+             b.writeBit(  (hdr[j]=='0'? 0 : 1)   );  
+    }
+}
 
-vector<int> Golomb::read(string fname){
+
+vector<int> Golomb::read(int elems, bitstream &bi){
     vector<int> rd;
-    bitstream bs((char*) fname.data(), std::ios::binary|std::ios::in);
     int i;
-
-    //header em bin:(n_elems, m)
-    int elems = decimal(bs.toString(bs.readNBits(16),16));
-    this->m = decimal(bs.toString(bs.readNBits(16),16));
-    //rd.push_back(elems);
-    //rd.push_back(m);
-
-    //ler golomb
     for(int j=0; j<elems; j++){
         i = 0;
-        string q(1, bs.readBit()==0? '0':'1' );
-        while(q[i++]!='0') q += (bs.readBit()==0? "0":"1");
-        string r = bs.toString(bs.readNBits(this->b-1), this->b-1);
-        string rl = (decimal(r)<pow(2,this->b)-this->m? "" : (bs.readBit()==0? "0":"1"));
+        string q(1, bi.readBit()==0? '0':'1' );
+        while(q[i++]!='0') q += (bi.readBit()==0? "0":"1");
+        string r = bi.toString(bi.readNBits(this->b-1), this->b-1);
+        string rl = (decimal(r)<pow(2,this->b)-this->m? "" : (bi.readBit()==0? "0":"1"));
         rd.push_back( signed_decode(q+r+rl) );
     }
+    return rd;
+}
+
+//type -> DEFINE nº de elems no hdr
+vector<int> Golomb::readHdr(int type, bitstream &bi){
+    vector<int> rd;
+    int bin=0;
+    string u(1, bi.readBit()==0? '0':'1' );
+    while(u[bin]!='0'){
+        u += (bi.readBit()==0? "0":"1");
+        bin++;
+    } 
+    cout << "int bin  " << bin << endl;
+    for(int i=0; i<type; i++){
+        rd.push_back( decimal( bi.toString( bi.readNBits(bin ), bin ) ) );
+    } 
     return rd;
 }

@@ -13,8 +13,7 @@ using namespace std;
 
 class Golomb{
     public:
-        int m;
-        int b;
+        int m, b;
         string unary(int q);
         string binary(int x, int n);
         int decimal(string a);
@@ -27,8 +26,10 @@ class Golomb{
         int signed_decode(string code);
         void set_m(int m);
         int get_m(void);
-        void write(string fname, vector<int> v);
-        vector<int> read(string fname);
+        void write(vector<int> v, bitstream &b);
+        vector<int> read(int elems, bitstream &b);
+        void writeHdr( vector<int> v, bitstream &b);
+        vector<int> readHdr(int type, bitstream &b);
 
 };
 

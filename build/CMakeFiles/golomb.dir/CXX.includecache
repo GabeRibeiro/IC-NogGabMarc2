@@ -29,6 +29,8 @@ cmath
 -
 vector
 -
+bits/stdc++.h
+-
 Golomb.h
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/Golomb/Golomb.h
 ../BitStream/bitstream.h

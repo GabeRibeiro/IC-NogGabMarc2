@@ -15,9 +15,8 @@ using namespace std;
 using namespace cv;
 
 int main(void){
-    string filename = "testfile.bin";
-
     /*
+    string filename = "testfile.bin";
     bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);
     bitstream bs((char*) filename.data(), std::ios::binary|std::ios::in);
     string s[5] = {"01011100", "01001", "110101", "0100111", "1100110"};
@@ -64,7 +63,7 @@ int main(void){
     cv::waitKey(0);
     */
 
-
+   /*
    Golomb g(5);
    vector<int> v, h;
    v.push_back(15);
@@ -78,5 +77,37 @@ int main(void){
 
    h = g.read("testfile.bin");
    for(int i =0; i<(int)h.size(); i++) cout << h[i] <<endl; 
+   */
+
+   /*
+    Lossless l;
+    Mat img = cv::imread("lena.ppm");
+    l.encode("testfile.bin", img);
+    //l.decode("testfile.bin", img);
+    //cv::imshow("new rgb", img);
+    //cv::waitKey(0);
+    */
+
+   
+   Golomb g(5);
+   string filename = "testfile.bin";
+   bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);
+   bitstream bs((char*) filename.data(), std::ios::binary|std::ios::in);
+
+   vector<int> h = {5, 3, 2, 8};
+   g.writeHdr(h, bss);
+   vector<int> v = {12, 1, 4, 32, 21, 6};
+   g.write(v, bss);
+   bss.close();
+   
+   vector<int> h_ = g.readHdr(4, bs);
+   cout << "header linha: " << endl;
+   for(int i=0; i<(int)h_.size(); i++) cout << h_[i] << endl;
+
+   vector<int> v_ = g.read(6, bs);
+   cout << "vector: " << endl;
+   for(int i=0; i<(int)v_.size(); i++) cout << v_[i] << endl; 
+
+   bs.close();
    return 0;
 }

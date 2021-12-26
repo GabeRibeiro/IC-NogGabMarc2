@@ -91,9 +91,8 @@ vector<int> Lossless::predictive_coding(Mat& yuv){
     }
     return r;
 }
-
-void Lossless::encode(string img, string fname){
-    Mat rgb = cv::imread(img);
+/*
+void Lossless::encode(string fname, Mat& rgb){
     Mat y(rgb.size(), rgb.type());
     Mat u(rgb.rows/2, rgb.cols/2, rgb.type());
     Mat v(rgb.rows/2, rgb.cols/2, rgb.type());
@@ -103,24 +102,26 @@ void Lossless::encode(string img, string fname){
     vector<int> v_ = predictive_coding(v);
 
 
+
+    /* //media das diagonais
+    int mean=0;
+    for(int i=0; i< ; i++) mean += ;
+    mean/=;
+    golomb = new Golomb((int)ceil(-1/log2(mean/(mean+1))), fname);
+    
     golomb = new Golomb(40);
     vector<int> header;
+    header.push_back(golomb->get_m());
     header.push_back(rgb.rows);
     header.push_back(rgb.cols);
     header.push_back(function);
-    golomb->write(fname, y_);
-    golomb->write(fname, u_);
-    golomb->write(fname, v_);
-    /*
-    int mean=0;
-    for() mean += ;   meter do lado do golomb
-    mean/=;
-    golomb = new Golomb((int)ceil(-1/log2(mean/(mean+1))));
-    golomb.write_code(fname, vector<int>);
-    */
+    golomb->writeHdr(header);
+    golomb->write(y_);
+    golomb->write(u_);
+    golomb->write(v_);
 }
+*/
 
-/*
 void Lossless::predictive_decoding(Mat& yuv, vector<int> yuv_){
     int i, j, rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;
     for(i=0; i<rw; i++){
@@ -145,27 +146,26 @@ void Lossless::predictive_decoding(Mat& yuv, vector<int> yuv_){
         }
     }
 }
-*/
 
 /*
-Mat Lossless::decode(string fname, int (*function)(int, int, int)){
-    Golomb g(40);
-    vector<int> g_rd = g.read(fname);
-    int rows = g_rd[0], cols = g_rd[1];
-    //set_function(g_rd[2]);
+void Lossless::decode(string fname, Mat&rgb){
+    golomb = new Golomb(10, fname);
+    vector<int> hdr = golomb->readHdr(3);
+    int rows = hdr[0], cols = hdr[1];
+    set_function(hdr[2]);
 
+    vector<int> g_rd = golomb->read(3*rows*cols/2);
+    
     Mat y(rows, cols, CV_8UC1);
     Mat u(rows/2, cols/2, CV_8UC1);
     Mat v(rows/2, cols/2, CV_8UC1);
-    /*vector<int> y_ = ;
-    vector<int> u_ = ;
-    vector<int> v_ = ;
+    vector<int> y_(&g_rd[0], &g_rd[rows*cols-1]);
+    vector<int> u_(&g_rd[rows*cols], &g_rd[5*rows*cols+rows/4-1]);
+    vector<int> v_(&g_rd[5*rows*cols+rows/4], &g_rd[3*rows*cols/2-1]);
 
     predictive_decoding(y, y_);
     predictive_decoding(u, u_);
-    //predictive_decoding(v, v_);
-    Mat rgb(rows, cols, CV_8UC1);
+    predictive_decoding(v, v_);
     yuv2rgb(rgb, y, u, v);
-    return rgb;
 }
 */
