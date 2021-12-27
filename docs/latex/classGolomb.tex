@@ -1,0 +1,371 @@
+\hypertarget{classGolomb}{}\doxysection{Golomb Class Reference}
+\label{classGolomb}\index{Golomb@{Golomb}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classGolomb_afa952808ee9c6c7339e867ff35cd9e63}{unary}} (int q)
+\item 
+string \mbox{\hyperlink{classGolomb_ac8162bf8c14d9d2bbcc371e0f681f60a}{binary}} (int x, int n)
+\item 
+int \mbox{\hyperlink{classGolomb_ad1342ceca6abfe4d96b0ad3dad7cce9e}{decimal}} (string a)
+\item 
+\mbox{\hyperlink{classGolomb_a7a7cb8ac22578329b6fa763b995a6fc0}{Golomb}} (int m)
+\item 
+string \mbox{\hyperlink{classGolomb_adcdf86488fb9ebe1e02a8f20ccacd6c5}{encode}} (signed int n)
+\item 
+int \mbox{\hyperlink{classGolomb_a600681461f50c4060a32288051f457f1}{decode}} (string str)
+\item 
+string \mbox{\hyperlink{classGolomb_a06ffc31d93b7af00496098619cc8ed3f}{signed\+\_\+encode}} (int n)
+\item 
+int \mbox{\hyperlink{classGolomb_a9afc415902c61640941b4132c0a351c4}{signed\+\_\+decode}} (string code)
+\item 
+void \mbox{\hyperlink{classGolomb_aca687704fe682eba7f8ad5fa005c4480}{set\+\_\+m}} (int m)
+\item 
+int \mbox{\hyperlink{classGolomb_a99a8c475e7bc010832599fc957b3ca3f}{get\+\_\+m}} (void)
+\item 
+void \mbox{\hyperlink{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}{write}} (vector$<$ int $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}} (int elems, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
+\item 
+void \mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{write\+Hdr}} (vector$<$ int $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a209d83e20ec1a316544c365b2d5492f1}{read\+Hdr}} (int type, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}{m}}
+\item 
+int \mbox{\hyperlink{classGolomb_a77eef821f302a9708ce0aacc80cf01be}{b}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{Golomb_8h_source_l00014}{14}} of file \mbox{\hyperlink{Golomb_8h_source}{Golomb.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGolomb_a7a7cb8ac22578329b6fa763b995a6fc0}\label{classGolomb_a7a7cb8ac22578329b6fa763b995a6fc0}} 
+\index{Golomb@{Golomb}!Golomb@{Golomb}}
+\index{Golomb@{Golomb}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{Golomb()}{Golomb()}}
+{\footnotesize\ttfamily Golomb\+::\+Golomb (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042                    \{}
+\DoxyCodeLine{00043     this-\/>m = m;}
+\DoxyCodeLine{00044     this-\/>b = ceil(log2(m));}
+\DoxyCodeLine{00045 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGolomb_ac8162bf8c14d9d2bbcc371e0f681f60a}\label{classGolomb_ac8162bf8c14d9d2bbcc371e0f681f60a}} 
+\index{Golomb@{Golomb}!binary@{binary}}
+\index{binary@{binary}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{binary()}{binary()}}
+{\footnotesize\ttfamily string Golomb\+::binary (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                                  \{}
+\DoxyCodeLine{00021     \textcolor{keywordtype}{int} i, q=x;}
+\DoxyCodeLine{00022     \textcolor{keywordtype}{string} b;}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{for}(i=0; i<n; i++)\{}
+\DoxyCodeLine{00024         \textcolor{keywordflow}{if}(q == 0) b = \textcolor{stringliteral}{"{}0"{}} + b;}
+\DoxyCodeLine{00025         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{00026             b = to\_string(q\%2) + b;}
+\DoxyCodeLine{00027             q = q/2;}
+\DoxyCodeLine{00028         \}}
+\DoxyCodeLine{00029     \}}
+\DoxyCodeLine{00030     \textcolor{keywordflow}{return} b;}
+\DoxyCodeLine{00031 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_ad1342ceca6abfe4d96b0ad3dad7cce9e}\label{classGolomb_ad1342ceca6abfe4d96b0ad3dad7cce9e}} 
+\index{Golomb@{Golomb}!decimal@{decimal}}
+\index{decimal@{decimal}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{decimal()}{decimal()}}
+{\footnotesize\ttfamily int Golomb\+::decimal (\begin{DoxyParamCaption}\item[{string}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034                            \{}
+\DoxyCodeLine{00035     \textcolor{keywordtype}{int} i, j=0, res=0;}
+\DoxyCodeLine{00036     \textcolor{keywordflow}{for}(i=a.length()-\/1; i>=0; i-\/-\/)\{}
+\DoxyCodeLine{00037         res += (a[j++]-\/48)*pow(2,i);}
+\DoxyCodeLine{00038     \}}
+\DoxyCodeLine{00039     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{00040 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a600681461f50c4060a32288051f457f1}\label{classGolomb_a600681461f50c4060a32288051f457f1}} 
+\index{Golomb@{Golomb}!decode@{decode}}
+\index{decode@{decode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily int Golomb\+::decode (\begin{DoxyParamCaption}\item[{string}]{str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053                             \{}
+\DoxyCodeLine{00054     \textcolor{keywordtype}{int} a=0, r, rl;}
+\DoxyCodeLine{00055     \textcolor{keywordflow}{while}(str[a]==\textcolor{charliteral}{'1'}) a++;}
+\DoxyCodeLine{00056     r = decimal(str.substr(a+1, this-\/>b-\/1));}
+\DoxyCodeLine{00057     rl = decimal(str.substr(a+1, this-\/>b));}
+\DoxyCodeLine{00058     \textcolor{keywordflow}{return} this-\/>m*a + (r < pow(2,this-\/>b)-\/this-\/>m? r : rl -\/ (pow(2,this-\/>b)-\/this-\/>m));}
+\DoxyCodeLine{00059 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_adcdf86488fb9ebe1e02a8f20ccacd6c5}\label{classGolomb_adcdf86488fb9ebe1e02a8f20ccacd6c5}} 
+\index{Golomb@{Golomb}!encode@{encode}}
+\index{encode@{encode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily string Golomb\+::encode (\begin{DoxyParamCaption}\item[{signed int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00047                                  \{}
+\DoxyCodeLine{00048     \textcolor{keywordtype}{int} q = n/this-\/>m, r = n-\/q*this-\/>m;}
+\DoxyCodeLine{00049     \textcolor{keywordflow}{return} unary(q) + (r < pow(2,this-\/>b)-\/this-\/>m? binary(r,this-\/>b-\/1): binary(r+pow(2,this-\/>b)-\/this-\/>m,this-\/>b));  }
+\DoxyCodeLine{00050 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a99a8c475e7bc010832599fc957b3ca3f}\label{classGolomb_a99a8c475e7bc010832599fc957b3ca3f}} 
+\index{Golomb@{Golomb}!get\_m@{get\_m}}
+\index{get\_m@{get\_m}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{get\_m()}{get\_m()}}
+{\footnotesize\ttfamily int Golomb\+::get\+\_\+m (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074 \{\textcolor{keywordflow}{return} this-\/>m;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a502c126b67a1d6c4058c175060ac2b91}\label{classGolomb_a502c126b67a1d6c4058c175060ac2b91}} 
+\index{Golomb@{Golomb}!read@{read}}
+\index{read@{read}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Golomb\+::read (\begin{DoxyParamCaption}\item[{int}]{elems,  }\item[{\mbox{\hyperlink{classbitstream}{bitstream}} \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098                                                 \{}
+\DoxyCodeLine{00099     vector<int> rd;}
+\DoxyCodeLine{00100     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{00101     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<elems; j++)\{}
+\DoxyCodeLine{00102         i = 0;}
+\DoxyCodeLine{00103         \textcolor{keywordtype}{string} q(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{00104         \textcolor{keywordflow}{while}(q[i++]!=\textcolor{charliteral}{'0'}) q += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00105         \textcolor{keywordtype}{string} r = bi.toString(bi.readNBits(this-\/>b-\/1), this-\/>b-\/1);}
+\DoxyCodeLine{00106         \textcolor{keywordtype}{string} rl = (decimal(r)<pow(2,this-\/>b)-\/this-\/>m? \textcolor{stringliteral}{"{}"{}} : (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}}));}
+\DoxyCodeLine{00107         rd.push\_back( signed\_decode(q+r+rl) );}
+\DoxyCodeLine{00108     \}}
+\DoxyCodeLine{00109     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{00110 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a209d83e20ec1a316544c365b2d5492f1}\label{classGolomb_a209d83e20ec1a316544c365b2d5492f1}} 
+\index{Golomb@{Golomb}!readHdr@{readHdr}}
+\index{readHdr@{readHdr}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{readHdr()}{readHdr()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Golomb\+::read\+Hdr (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{\mbox{\hyperlink{classbitstream}{bitstream}} \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00113                                                   \{}
+\DoxyCodeLine{00114     vector<int> rd;}
+\DoxyCodeLine{00115     \textcolor{keywordtype}{int} bin=0;}
+\DoxyCodeLine{00116     \textcolor{keywordtype}{string} u(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{00117     \textcolor{keywordflow}{while}(u[bin]!=\textcolor{charliteral}{'0'})\{}
+\DoxyCodeLine{00118         u += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00119         bin++;}
+\DoxyCodeLine{00120     \}}
+\DoxyCodeLine{00121     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<type; i++) rd.push\_back(decimal(bi.toString(bi.readNBits(bin), bin)));}
+\DoxyCodeLine{00122     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{00123 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_aca687704fe682eba7f8ad5fa005c4480}\label{classGolomb_aca687704fe682eba7f8ad5fa005c4480}} 
+\index{Golomb@{Golomb}!set\_m@{set\_m}}
+\index{set\_m@{set\_m}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{set\_m()}{set\_m()}}
+{\footnotesize\ttfamily void Golomb\+::set\+\_\+m (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070                        \{}
+\DoxyCodeLine{00071     this-\/>m = m;}
+\DoxyCodeLine{00072     this-\/>b = ceil(log2(m));}
+\DoxyCodeLine{00073 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a9afc415902c61640941b4132c0a351c4}\label{classGolomb_a9afc415902c61640941b4132c0a351c4}} 
+\index{Golomb@{Golomb}!signed\_decode@{signed\_decode}}
+\index{signed\_decode@{signed\_decode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{signed\_decode()}{signed\_decode()}}
+{\footnotesize\ttfamily int Golomb\+::signed\+\_\+decode (\begin{DoxyParamCaption}\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065                                     \{}
+\DoxyCodeLine{00066     uint res=decode(code);}
+\DoxyCodeLine{00067     \textcolor{keywordflow}{return} res\%2 ? ((int)res+1)/-\/2 : res/2;}
+\DoxyCodeLine{00068 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a06ffc31d93b7af00496098619cc8ed3f}\label{classGolomb_a06ffc31d93b7af00496098619cc8ed3f}} 
+\index{Golomb@{Golomb}!signed\_encode@{signed\_encode}}
+\index{signed\_encode@{signed\_encode}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{signed\_encode()}{signed\_encode()}}
+{\footnotesize\ttfamily string Golomb\+::signed\+\_\+encode (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061                                   \{}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{return} encode(n>=0?2*n:-\/2*n-\/1);}
+\DoxyCodeLine{00063 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_afa952808ee9c6c7339e867ff35cd9e63}\label{classGolomb_afa952808ee9c6c7339e867ff35cd9e63}} 
+\index{Golomb@{Golomb}!unary@{unary}}
+\index{unary@{unary}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{unary()}{unary()}}
+{\footnotesize\ttfamily string Golomb\+::unary (\begin{DoxyParamCaption}\item[{int}]{q }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015                          \{}
+\DoxyCodeLine{00016     std::string unr(q, \textcolor{charliteral}{'1'});}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{return} unr+\textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{00018 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}\label{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}} 
+\index{Golomb@{Golomb}!write@{write}}
+\index{write@{write}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Golomb\+::write (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{v,  }\item[{\mbox{\hyperlink{classbitstream}{bitstream}} \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076                                              \{}
+\DoxyCodeLine{00077     \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{00078     \textcolor{keywordtype}{string} golb;}
+\DoxyCodeLine{00079     \textcolor{keywordflow}{for}(i=0; i<int(v.size()); i++)\{}
+\DoxyCodeLine{00080         golb = signed\_encode(v[i]);}
+\DoxyCodeLine{00081         \textcolor{keywordflow}{for}(j=0; j<int(golb.size()); j++)}
+\DoxyCodeLine{00082             b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (golb[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
+\DoxyCodeLine{00083     \}}
+\DoxyCodeLine{00084     b.\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}}();}
+\DoxyCodeLine{00085 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classGolomb_a224d8632ec0d0275a5e74312423041b1}\label{classGolomb_a224d8632ec0d0275a5e74312423041b1}} 
+\index{Golomb@{Golomb}!writeHdr@{writeHdr}}
+\index{writeHdr@{writeHdr}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{writeHdr()}{writeHdr()}}
+{\footnotesize\ttfamily void Golomb\+::write\+Hdr (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{v,  }\item[{\mbox{\hyperlink{classbitstream}{bitstream}} \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087                                                 \{}
+\DoxyCodeLine{00088     \textcolor{keywordtype}{int} unr = log2(*max\_element(v.begin(), v.end())) +1;}
+\DoxyCodeLine{00089     \textcolor{keywordtype}{string} hdr;}
+\DoxyCodeLine{00090     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
+\DoxyCodeLine{00091         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
+\DoxyCodeLine{00092         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
+\DoxyCodeLine{00093              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
+\DoxyCodeLine{00094     \}}
+\DoxyCodeLine{00095 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGolomb_a77eef821f302a9708ce0aacc80cf01be}\label{classGolomb_a77eef821f302a9708ce0aacc80cf01be}} 
+\index{Golomb@{Golomb}!b@{b}}
+\index{b@{b}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily int Golomb\+::b}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8h_source_l00016}{16}} of file \mbox{\hyperlink{Golomb_8h_source}{Golomb.\+h}}.
+
+\mbox{\Hypertarget{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}\label{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}} 
+\index{Golomb@{Golomb}!m@{m}}
+\index{m@{m}!Golomb@{Golomb}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily int Golomb\+::m}
+
+
+
+Definition at line \mbox{\hyperlink{Golomb_8h_source_l00016}{16}} of file \mbox{\hyperlink{Golomb_8h_source}{Golomb.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Golomb/Golomb.\+h\item 
+src/\+Golomb/Golomb.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,50 @@
+\hypertarget{bitstream_8h_source}{}\doxysection{bitstream.\+h}
+\label{bitstream_8h_source}\index{src/BitStream/bitstream.h@{src/BitStream/bitstream.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00001}00001 \textcolor{preprocessor}{\#ifndef H\_BITSTREAM}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00002}00002 \textcolor{preprocessor}{\#define H\_BITSTREAM}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00004}00004 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <bitset>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00010}00010 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00011}00011 \textcolor{keyword}{using} std::fstream;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00016}\mbox{\hyperlink{classbitstream}{00016}} \textcolor{keyword}{class }\mbox{\hyperlink{classbitstream}{bitstream}} : \textcolor{keyword}{public} fstream \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00017}00017     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00018}00018     }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00023}\mbox{\hyperlink{classbitstream_a738f519d094677805cc433f227c2d1c3}{00023}}         \mbox{\hyperlink{classbitstream_a738f519d094677805cc433f227c2d1c3}{bitstream}}(\textcolor{keywordtype}{char} *fname, ios\_base::openmode mode) : fstream(fname, mode) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00024}00024             \textcolor{keywordflow}{if} (mode \& std::ios::out) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00025}00025                 pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00026}00026                 writeMode = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00027}00027             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode \& std::ios::in) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00028}00028                 pointer = -\/1;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00029}00029                 writeMode = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00030}00030             \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00031}00031         \};}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00033}00033         \textcolor{comment}{//\string~bitstream();}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00038}00038 \textcolor{comment}{}        \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(uint8\_t value);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00044}00044         \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(uint8\_t value, uint n);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00045}00045         \textcolor{keywordtype}{void} writeNBits2(uint32\_t* value, uint n);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00049}00049         uint8\_t \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}();}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00050}00050         \textcolor{comment}{//uint32\_t readNBits(uint n);}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00056}00056 \textcolor{comment}{}        \textcolor{keywordtype}{char}* \mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{readNBits}}(uint n);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00057}00057         \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}(uint8\_t* val);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00058}00058         \textcolor{comment}{//void readNBits2(uint32\_t* value, uint n);}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00062}00062 \textcolor{comment}{}        \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}}();}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00063}00063         \textcolor{keywordtype}{string} toString(\textcolor{keywordtype}{char}* c, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00065}00065     \textcolor{comment}{//private:}}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00066}00066         u\_char \textcolor{keywordtype}{byte} = 0;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00067}00067         \textcolor{keywordtype}{int} pointer;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00068}00068         \textcolor{keywordtype}{int} byteCount;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00069}00069         \textcolor{keywordtype}{bool} writeMode;}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00070}00070 \};}
+\DoxyCodeLine{\Hypertarget{bitstream_8h_source_l00071}00071 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,407 @@
+\hypertarget{classImageCodec}{}\doxysection{Image\+Codec Class Reference}
+\label{classImageCodec}\index{ImageCodec@{ImageCodec}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}{yuv2rgb}} (Mat \&rgb, Mat \&y, Mat \&u, Mat \&v)
+\item 
+void \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}} (Mat \&rgb, Mat \&y, Mat \&u, Mat \&v)
+\begin{DoxyCompactList}\small\item\em Dado imagem em RGB faz a conversão para YUV420. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classImageCodec_a127e953b9ab923721cc00961878c0f2e}{non\+\_\+linear\+\_\+jpegls}} (int a, int b, int c)
+\item 
+int \mbox{\hyperlink{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}{linear\+\_\+jpeg\+\_\+mode1}} (int a)
+\item 
+int \mbox{\hyperlink{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}{linear\+\_\+jpeg\+\_\+mode2}} (int b)
+\item 
+int \mbox{\hyperlink{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}{linear\+\_\+jpeg\+\_\+mode3}} (int c)
+\item 
+int \mbox{\hyperlink{classImageCodec_a79615da6e84257a938b84cabf338848b}{linear\+\_\+jpeg\+\_\+mode4}} (int a, int b, int c)
+\item 
+int \mbox{\hyperlink{classImageCodec_a54f87b912c6652528405cfd8f78792a8}{linear\+\_\+jpeg\+\_\+mode5}} (int a, int b, int c)
+\item 
+int \mbox{\hyperlink{classImageCodec_aeffd813de962daae740980a06781a4eb}{linear\+\_\+jpeg\+\_\+mode6}} (int a, int b, int c)
+\item 
+int \mbox{\hyperlink{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}{linear\+\_\+jpeg\+\_\+mode7}} (int a, int b)
+\item 
+vector$<$ int $>$ \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\+\_\+coding}} (Mat \&yuv)
+\item 
+void \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\+\_\+decoding}} (Mat \&yuv, vector$<$ int $>$ yuv\+\_\+)
+\item 
+void \mbox{\hyperlink{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}{set\+\_\+function}} (int f)
+\item 
+void \mbox{\hyperlink{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}{encode}} (string fname, Mat \&img)
+\item 
+\mbox{\Hypertarget{classImageCodec_aa88e4f566be40a128e74570cf5875abf}\label{classImageCodec_aa88e4f566be40a128e74570cf5875abf}} 
+void {\bfseries decode} (string fname, Mat \&img)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classImageCodec_aa7b60e94a85624246e086e8916162aa5}{function}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8h_source_l00023}{23}} of file \mbox{\hyperlink{ImageCodec_8h_source}{Image\+Codec.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}\label{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}} 
+\index{ImageCodec@{ImageCodec}!encode@{encode}}
+\index{encode@{encode}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Image\+Codec\+::encode (\begin{DoxyParamCaption}\item[{string}]{fname,  }\item[{Mat \&}]{img }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099                                              \{}
+\DoxyCodeLine{00100     Mat y(rgb.size(), CV\_8UC1);}
+\DoxyCodeLine{00101     Mat u(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
+\DoxyCodeLine{00102     Mat v(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
+\DoxyCodeLine{00103     \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}}(rgb, y, u, v);}
+\DoxyCodeLine{00104     cv::imshow(\textcolor{stringliteral}{"{}y"{}}, y);}
+\DoxyCodeLine{00105     cv::imshow(\textcolor{stringliteral}{"{}u"{}}, u);}
+\DoxyCodeLine{00106     cv::imshow(\textcolor{stringliteral}{"{}v"{}}, v);}
+\DoxyCodeLine{00107     }
+\DoxyCodeLine{00108     vector<int> y\_ = predictive\_coding(y);}
+\DoxyCodeLine{00109     vector<int> u\_ = predictive\_coding(u);}
+\DoxyCodeLine{00110     vector<int> v\_ = predictive\_coding(v);}
+\DoxyCodeLine{00111     }
+\DoxyCodeLine{00112     vector<int> map;}
+\DoxyCodeLine{00113     transform(y\_.begin(), y\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00114     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});  }
+\DoxyCodeLine{00115     transform(u\_.begin(), u\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00116     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
+\DoxyCodeLine{00117     transform(v\_.begin(), v\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00118     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
+\DoxyCodeLine{00119     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
+\DoxyCodeLine{00120     mean/= 3*rgb.rows*rgb.cols/2 ;}
+\DoxyCodeLine{00121     cout << \textcolor{stringliteral}{"{}Mean = "{}} << mean << \textcolor{stringliteral}{"{}, m = "{}}<< ceil(-\/1/(log2(mean/(mean+1)))) << endl;}
+\DoxyCodeLine{00122     }
+\DoxyCodeLine{00123     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1)))  );}
+\DoxyCodeLine{00124     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     cout << \textcolor{stringliteral}{"{}M = "{}} << gb.get\_m() << endl;}
+\DoxyCodeLine{00127     vector<int> header;}
+\DoxyCodeLine{00128     header.push\_back(gb.get\_m()); \textcolor{comment}{//m de golomb}}
+\DoxyCodeLine{00129     header.push\_back(rgb.rows); \textcolor{comment}{//n rows}}
+\DoxyCodeLine{00130     header.push\_back(rgb.cols); \textcolor{comment}{//n de cols}}
+\DoxyCodeLine{00131     header.push\_back(function); \textcolor{comment}{//predict function usada}}
+\DoxyCodeLine{00132     gb.writeHdr(header, bss);}
+\DoxyCodeLine{00133     }
+\DoxyCodeLine{00134     gb.write(y\_, bss);}
+\DoxyCodeLine{00135     gb.write(u\_, bss);}
+\DoxyCodeLine{00136     gb.write(v\_, bss);}
+\DoxyCodeLine{00137     }
+\DoxyCodeLine{00138     bss.close();}
+\DoxyCodeLine{00139 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}\label{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode1@{linear\_jpeg\_mode1}}
+\index{linear\_jpeg\_mode1@{linear\_jpeg\_mode1}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode1()}{linear\_jpeg\_mode1()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode1 (\begin{DoxyParamCaption}\item[{int}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018 \{\textcolor{keywordflow}{return} a;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}\label{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode2@{linear\_jpeg\_mode2}}
+\index{linear\_jpeg\_mode2@{linear\_jpeg\_mode2}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode2()}{linear\_jpeg\_mode2()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode2 (\begin{DoxyParamCaption}\item[{int}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019 \{\textcolor{keywordflow}{return} b;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}\label{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode3@{linear\_jpeg\_mode3}}
+\index{linear\_jpeg\_mode3@{linear\_jpeg\_mode3}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode3()}{linear\_jpeg\_mode3()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode3 (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020 \{\textcolor{keywordflow}{return} c;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a79615da6e84257a938b84cabf338848b}\label{classImageCodec_a79615da6e84257a938b84cabf338848b}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode4@{linear\_jpeg\_mode4}}
+\index{linear\_jpeg\_mode4@{linear\_jpeg\_mode4}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode4()}{linear\_jpeg\_mode4()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode4 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021 \{\textcolor{keywordflow}{return} a+b-\/c;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a54f87b912c6652528405cfd8f78792a8}\label{classImageCodec_a54f87b912c6652528405cfd8f78792a8}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode5@{linear\_jpeg\_mode5}}
+\index{linear\_jpeg\_mode5@{linear\_jpeg\_mode5}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode5()}{linear\_jpeg\_mode5()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode5 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022 \{\textcolor{keywordflow}{return} a+(b-\/c)/2;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_aeffd813de962daae740980a06781a4eb}\label{classImageCodec_aeffd813de962daae740980a06781a4eb}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode6@{linear\_jpeg\_mode6}}
+\index{linear\_jpeg\_mode6@{linear\_jpeg\_mode6}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode6()}{linear\_jpeg\_mode6()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode6 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023 \{\textcolor{keywordflow}{return} b+(a-\/c)/2;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}\label{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}} 
+\index{ImageCodec@{ImageCodec}!linear\_jpeg\_mode7@{linear\_jpeg\_mode7}}
+\index{linear\_jpeg\_mode7@{linear\_jpeg\_mode7}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{linear\_jpeg\_mode7()}{linear\_jpeg\_mode7()}}
+{\footnotesize\ttfamily int Image\+Codec\+::linear\+\_\+jpeg\+\_\+mode7 (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024 \{\textcolor{keywordflow}{return} (a+b)/2;\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a127e953b9ab923721cc00961878c0f2e}\label{classImageCodec_a127e953b9ab923721cc00961878c0f2e}} 
+\index{ImageCodec@{ImageCodec}!non\_linear\_jpegls@{non\_linear\_jpegls}}
+\index{non\_linear\_jpegls@{non\_linear\_jpegls}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{non\_linear\_jpegls()}{non\_linear\_jpegls()}}
+{\footnotesize\ttfamily int Image\+Codec\+::non\+\_\+linear\+\_\+jpegls (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00025                                                     \{}
+\DoxyCodeLine{00026     \textcolor{keywordflow}{if}(c >= max(a,b)) \textcolor{keywordflow}{return} min(a,b);}
+\DoxyCodeLine{00027     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(c <= min(a,b) ) \textcolor{keywordflow}{return} max(a,b);}
+\DoxyCodeLine{00028     \textcolor{keywordflow}{return} a+b-\/c;}
+\DoxyCodeLine{00029 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_ab25d13565847b2dddb785e35a34a144a}\label{classImageCodec_ab25d13565847b2dddb785e35a34a144a}} 
+\index{ImageCodec@{ImageCodec}!predictive\_coding@{predictive\_coding}}
+\index{predictive\_coding@{predictive\_coding}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{predictive\_coding()}{predictive\_coding()}}
+{\footnotesize\ttfamily vector$<$ int $>$ Image\+Codec\+::predictive\+\_\+coding (\begin{DoxyParamCaption}\item[{Mat \&}]{yuv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072                                                  \{}
+\DoxyCodeLine{00073     \textcolor{keywordtype}{int} rw=yuv.rows, cl=yuv.cols, x, px,a,b,c;}
+\DoxyCodeLine{00074     vector<int> r;}
+\DoxyCodeLine{00075     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<rw; i++)\{}
+\DoxyCodeLine{00076         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<cl; j++)\{}
+\DoxyCodeLine{00077             x = yuv.at<uchar>(i, j);}
+\DoxyCodeLine{00078             a = j==0? 0 : yuv.at<uchar>(i, j-\/1);}
+\DoxyCodeLine{00079             b = i==0? 0 : yuv.at<uchar>(i-\/1, j);}
+\DoxyCodeLine{00080             c = j==0? 0 : yuv.at<uchar>(i-\/1, j-\/1);}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00082             \textcolor{keywordflow}{switch}(this-\/>function)\{}
+\DoxyCodeLine{00083                 \textcolor{keywordflow}{case} 0: px = non\_linear\_jpegls(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084                 \textcolor{keywordflow}{case} 1: px = linear\_jpeg\_mode1(a); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00085                 \textcolor{keywordflow}{case} 2: px = linear\_jpeg\_mode2(b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00086                 \textcolor{keywordflow}{case} 3: px = linear\_jpeg\_mode3(c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00087                 \textcolor{keywordflow}{case} 4: px = linear\_jpeg\_mode4(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00088                 \textcolor{keywordflow}{case} 5: px = linear\_jpeg\_mode5(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00089                 \textcolor{keywordflow}{case} 6: px = linear\_jpeg\_mode6(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090                 \textcolor{keywordflow}{case} 7: px = linear\_jpeg\_mode7(a,b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00091             \}}
+\DoxyCodeLine{00092             r.push\_back(x-\/px);}
+\DoxyCodeLine{00093         \}}
+\DoxyCodeLine{00094     \}}
+\DoxyCodeLine{00095     \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{00096 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}\label{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}} 
+\index{ImageCodec@{ImageCodec}!predictive\_decoding@{predictive\_decoding}}
+\index{predictive\_decoding@{predictive\_decoding}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{predictive\_decoding()}{predictive\_decoding()}}
+{\footnotesize\ttfamily void Image\+Codec\+::predictive\+\_\+decoding (\begin{DoxyParamCaption}\item[{Mat \&}]{yuv,  }\item[{vector$<$ int $>$}]{yuv\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00146}{146}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146                                                               \{}
+\DoxyCodeLine{00147     \textcolor{keywordtype}{int} i, j, rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;}
+\DoxyCodeLine{00148     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
+\DoxyCodeLine{00149         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
+\DoxyCodeLine{00150             r = yuv\_[i*cl+j];}
+\DoxyCodeLine{00151             a = j==0? 0 : yuv\_[i*cl+(j-\/1)];}
+\DoxyCodeLine{00152             b = i==0? 0 : yuv\_[(i-\/1)*cl+j];}
+\DoxyCodeLine{00153             c = j==0? 0 : yuv\_[(i-\/1)*cl+(j-\/1)];}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155             \textcolor{keywordflow}{switch}(this-\/>function)\{}
+\DoxyCodeLine{00156                 \textcolor{keywordflow}{case} 0: px = non\_linear\_jpegls(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00157                 \textcolor{keywordflow}{case} 1: px = linear\_jpeg\_mode1(a); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00158                 \textcolor{keywordflow}{case} 2: px = linear\_jpeg\_mode2(b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00159                 \textcolor{keywordflow}{case} 3: px = linear\_jpeg\_mode3(c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160                 \textcolor{keywordflow}{case} 4: px = linear\_jpeg\_mode4(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00161                 \textcolor{keywordflow}{case} 5: px = linear\_jpeg\_mode5(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00162                 \textcolor{keywordflow}{case} 6: px = linear\_jpeg\_mode6(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163                 \textcolor{keywordflow}{case} 7: px = linear\_jpeg\_mode7(a,b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00164             \}}
+\DoxyCodeLine{00165             yuv\_[i*cl+j] = px;}
+\DoxyCodeLine{00166             yuv.at<Vec3b>(i, j)[0] = px + r;}
+\DoxyCodeLine{00167         \}}
+\DoxyCodeLine{00168     \}}
+\DoxyCodeLine{00169 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}\label{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}} 
+\index{ImageCodec@{ImageCodec}!rgb2yuv@{rgb2yuv}}
+\index{rgb2yuv@{rgb2yuv}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{rgb2yuv()}{rgb2yuv()}}
+{\footnotesize\ttfamily void Image\+Codec\+::rgb2yuv (\begin{DoxyParamCaption}\item[{Mat \&}]{rgb,  }\item[{Mat \&}]{y,  }\item[{Mat \&}]{u,  }\item[{Mat \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Dado imagem em RGB faz a conversão para YUV420. 
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051                                                         \{}
+\DoxyCodeLine{00052     \textcolor{keywordtype}{int} i,j, rw=rgb.rows, cl=rgb.cols;}
+\DoxyCodeLine{00053     \textcolor{keywordtype}{double} r,g,b;}
+\DoxyCodeLine{00054     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
+\DoxyCodeLine{00055         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
+\DoxyCodeLine{00056             r = rgb.at<Vec3b>(i, j)[0];}
+\DoxyCodeLine{00057             g = rgb.at<Vec3b>(i, j)[1];}
+\DoxyCodeLine{00058             b = rgb.at<Vec3b>(i, j)[2];}
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060             y.at<uchar>(i, j) = 0.299*r + 0.587*g + 0.114*b;}
+\DoxyCodeLine{00061             \textcolor{keywordflow}{if}(i\%2==0 \&\& j\%2==0)\{}
+\DoxyCodeLine{00062                 u.at<uchar>(i/2, j/2) = -\/0.147*r -\/ 0.289*g + 0.436*b;}
+\DoxyCodeLine{00063                 v.at<uchar>(i/2, j/2) = 0.615*r -\/ 0.515*g -\/ 0.100*b;}
+\DoxyCodeLine{00064             \}}
+\DoxyCodeLine{00065         \}}
+\DoxyCodeLine{00066     \}}
+\DoxyCodeLine{00067 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}\label{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}} 
+\index{ImageCodec@{ImageCodec}!set\_function@{set\_function}}
+\index{set\_function@{set\_function}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{set\_function()}{set\_function()}}
+{\footnotesize\ttfamily void Image\+Codec\+::set\+\_\+function (\begin{DoxyParamCaption}\item[{int}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031                                   \{}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{if}(f>=0 \&\& f<=7) this-\/>function = f;}
+\DoxyCodeLine{00033 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}\label{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}} 
+\index{ImageCodec@{ImageCodec}!yuv2rgb@{yuv2rgb}}
+\index{yuv2rgb@{yuv2rgb}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{yuv2rgb()}{yuv2rgb()}}
+{\footnotesize\ttfamily void Image\+Codec\+::yuv2rgb (\begin{DoxyParamCaption}\item[{Mat \&}]{rgb,  }\item[{Mat \&}]{y,  }\item[{Mat \&}]{u,  }\item[{Mat \&}]{v }\end{DoxyParamCaption})}
+
+Dados 3 canais faz a conversão para RGB 
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035                                                         \{}
+\DoxyCodeLine{00036     \textcolor{keywordtype}{int} i, j, rw=y.rows, cl=y.cols;}
+\DoxyCodeLine{00037     \textcolor{keywordtype}{double} y\_, u\_, v\_, r, b;}
+\DoxyCodeLine{00038     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
+\DoxyCodeLine{00039         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
+\DoxyCodeLine{00040             y\_ = y.at<uchar>(i, j);}
+\DoxyCodeLine{00041             u\_ = u.at<uchar>(i/2, j/2);}
+\DoxyCodeLine{00042             v\_ = v.at<uchar>(i/2, j/2);}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044             r = rgb.at<Vec3b>(i, j)[0] = v\_/0.877 + y\_;}
+\DoxyCodeLine{00045             b = rgb.at<Vec3b>(i, j)[2] = u\_/0.492 + y\_;}
+\DoxyCodeLine{00046             rgb.at<Vec3b>(i, j)[1] = (y\_ -\/ 0.299*r -\/ 0.114*b)/0.587;}
+\DoxyCodeLine{00047         \}}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classImageCodec_aa7b60e94a85624246e086e8916162aa5}\label{classImageCodec_aa7b60e94a85624246e086e8916162aa5}} 
+\index{ImageCodec@{ImageCodec}!function@{function}}
+\index{function@{function}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{function}{function}}
+{\footnotesize\ttfamily int Image\+Codec\+::function = 0}
+
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8h_source_l00025}{25}} of file \mbox{\hyperlink{ImageCodec_8h_source}{Image\+Codec.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/jpeg/Image\+Codec.\+h\item 
+src/jpeg/Image\+Codec.\+cpp\end{DoxyCompactItemize}

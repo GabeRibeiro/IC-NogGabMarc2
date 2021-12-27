@@ -1,0 +1,96 @@
+\hypertarget{bitstream_8cpp_source}{}\doxysection{bitstream.\+cpp}
+\label{bitstream_8cpp_source}\index{src/BitStream/bitstream.cpp@{src/BitStream/bitstream.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}bitstream.h"{}}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include <bitset>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00008}00008 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00010}\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{00010}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{bitstream::writeBit}}(uint8\_t value)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00011}00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << pointer;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00012}00012     \textcolor{keywordflow}{if} (pointer > 0)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00013}00013         pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00014}00014         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00015}00015     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00016}00016     write((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00017}00017     pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00018}00018     \textcolor{keywordtype}{byte} = 0;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00019}00019 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00021}\mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{00021}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{bitstream::writeNBits}}(uint8\_t val, uint n) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00022}00022     uint bit;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00023}00023     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = n-\/1; i >= 0; i-\/-\/) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00024}00024         bit = (val >> i\%8) \& 0x01;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00025}00025         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(bit);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00027}00027 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00030}00030 \textcolor{keywordtype}{void} bitstream::writeNBits2(uint32\_t* val, uint n) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00031}00031     \textcolor{keywordflow}{for} (uint i = 0; i < n/32.0; i++) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00032}00032         cout << \textcolor{stringliteral}{"{}aa"{}};}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00033}00033         cout << val[i] << endl;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00034}00034         \textcolor{keywordflow}{if} (i == n/8)}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00035}00035             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], n\%32); \textcolor{comment}{// escreve o que sobra do resto da divisão inteira por 8 (ultimo byte)}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00036}00036         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00037}00037             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], 32);       \textcolor{comment}{// escreve as 8 posições do byte}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00039}00039 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00042}\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{00042}} uint8\_t \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{bitstream::readBit}}()\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00043}00043     uint8\_t bit = 0;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00044}00044     \textcolor{keywordflow}{if}(pointer < 0)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00045}00045         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00046}00046         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00047}00047         pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00048}00048     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00049}00049     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00050}00050     bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00051}00051     pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00052}00052     \textcolor{keywordflow}{return} bit;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00053}00053 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00055}00055 \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{bitstream::readBit}}(uint8\_t* bit) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00056}00056     \textcolor{keywordflow}{if} (pointer < 0) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00057}00057         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00058}00058         pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00059}00059     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00060}00060     *bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00061}00061     pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00062}00062 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00064}\mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{00064}} \textcolor{keywordtype}{char}* \mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{bitstream::readNBits}}(uint n)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00065}00065     \textcolor{keywordtype}{char}* value = (\textcolor{keywordtype}{char}*)malloc((uint) n/8 + 1);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00066}00066     \textcolor{keywordflow}{for}(uint i=0; i<n; i++)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00067}00067         value[i/8] = value[i/8] << 1 | \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}();}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00068}00068         \textcolor{keywordflow}{if}(i==n-\/1 \&\& n\%8!=0) value[i/8] <<= (8-\/n\%8);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00069}00069     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00070}00070     \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00071}00071 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00073}00073 \textcolor{keywordtype}{string} bitstream::toString(\textcolor{keywordtype}{char}* c, \textcolor{keywordtype}{int} n)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00074}00074     \textcolor{keywordtype}{string} val;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00075}00075     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<n; i++)}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00076}00076         val+= ((\textcolor{keywordtype}{int})((c[i/8] >> (7-\/i\%8))\&(0x01))==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00077}00077     \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00078}00078 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00080}\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{00080}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{bitstream::padding}}()\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00081}00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/pointer; i++)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00082}00082         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00083}00083     \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00084}00084 \}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00086}00086 \textcolor{comment}{// bitstream::\string~bitstream() \{}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00087}00087 \textcolor{comment}{//  if (writeMode)}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00088}00088 \textcolor{comment}{//      addWhiteSpace();}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00089}00089 \textcolor{comment}{//  close();}}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00090}00090 \textcolor{comment}{// \}}}
+
+\end{DoxyCode}

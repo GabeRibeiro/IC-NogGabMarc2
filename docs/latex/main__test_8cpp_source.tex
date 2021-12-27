@@ -1,0 +1,129 @@
+\hypertarget{main__test_8cpp_source}{}\doxysection{main\+\_\+test.\+cpp}
+\label{main__test_8cpp_source}\index{src/main\_test.cpp@{src/main\_test.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}opencv2/imgproc.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}opencv2/imgcodecs.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}opencv2/highgui.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}../src/Golomb/Golomb.h"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}../src/BitStream/bitstream.h"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00011}00011 \textcolor{preprocessor}{\#include "{}../src/jpeg/ImageCodec.h"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00012}00012 \textcolor{preprocessor}{\#include "{}../src/audio/AudioCodec.h"{}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00015}00015 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00016}00016 \textcolor{keyword}{using namespace }cv;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00018}00018 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00019}00019     \textcolor{comment}{/* teste bitstream}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00020}00020 \textcolor{comment}{    string filename = "{}testfile.bin"{};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00021}00021 \textcolor{comment}{    bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00022}00022 \textcolor{comment}{    bitstream bs((char*) filename.data(), std::ios::binary|std::ios::in);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00023}00023 \textcolor{comment}{    string s[5] = \{"{}01011100"{}, "{}01001"{}, "{}110101"{}, "{}0100111"{}, "{}1100110"{}\};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00024}00024 \textcolor{comment}{    for(int i=0; i<5; i++)\{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00025}00025 \textcolor{comment}{        for(int j=0; j<(int)s[i].size(); j++)\{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00026}00026 \textcolor{comment}{            bss.writeBit( (s[i][j]=='0'? 0 : 1) );}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00027}00027 \textcolor{comment}{        \}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00028}00028 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00029}00029 \textcolor{comment}{    bss.padding();}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00030}00030 \textcolor{comment}{    bss.close();}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00031}00031 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00032}00032 \textcolor{comment}{    char *a;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00033}00033 \textcolor{comment}{    for(int j=0; j<31; j++)\{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00034}00034 \textcolor{comment}{        if(j!=0 \&\& j\%8==0) cout << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00035}00035 \textcolor{comment}{        cout << (int)bs.readBit();}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00036}00036 \textcolor{comment}{        if(j==5)\{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00037}00037 \textcolor{comment}{            cout << "{}\(\backslash\)nread n bit: "{};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00038}00038 \textcolor{comment}{            a = bs.readNBits(10);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00039}00039 \textcolor{comment}{            //cout << "{}size: "{} << sizeof(a)/2;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00040}00040 \textcolor{comment}{            //for(int i=0; i<10; i++) cout << (int)(  (a[i/8] >> (7-\/i\%8) ) \& (0x01 ));}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00041}00041 \textcolor{comment}{            cout << bs.toString(a, 10) << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00042}00042 \textcolor{comment}{            cout << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00043}00043 \textcolor{comment}{            j+=9;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00044}00044 \textcolor{comment}{        \}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00045}00045 \textcolor{comment}{        }}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00046}00046 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00047}00047 \textcolor{comment}{    cout << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00048}00048 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00051}00051     \textcolor{comment}{/* teste rgb yuv}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00052}00052 \textcolor{comment}{    ImageCodec ls;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00053}00053 \textcolor{comment}{    Mat rgb = cv::imread("{}lena.ppm"{});}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00054}00054 \textcolor{comment}{    cv::imshow("{}original rgb"{},rgb);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00055}00055 \textcolor{comment}{    Mat y(rgb.size(), CV\_8UC1);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00056}00056 \textcolor{comment}{    Mat u(rgb.rows/2, rgb.cols/2, CV\_8UC1);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00057}00057 \textcolor{comment}{    Mat v(rgb.rows/2, rgb.cols/2, CV\_8UC1);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00058}00058 \textcolor{comment}{    ls.rgb2yuv(rgb, y, u, v);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00059}00059 \textcolor{comment}{    cv::imshow("{}y"{}, y);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00060}00060 \textcolor{comment}{    cv::imshow("{}u"{}, u);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00061}00061 \textcolor{comment}{    cv::imshow("{}v"{}, v);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00062}00062 \textcolor{comment}{    ls.yuv2rgb(rgb, y, u, v);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00063}00063 \textcolor{comment}{    cv::imshow("{}new rgb"{}, rgb);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00064}00064 \textcolor{comment}{    cv::waitKey(0);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00065}00065 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00067}00067    \textcolor{comment}{/* teste golomb}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00068}00068 \textcolor{comment}{   Golomb g(5);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00069}00069 \textcolor{comment}{   vector<int> v, h;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00070}00070 \textcolor{comment}{   v.push\_back(15);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00071}00071 \textcolor{comment}{   v.push\_back(5);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00072}00072 \textcolor{comment}{   v.push\_back(12);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00073}00073 \textcolor{comment}{   v.push\_back(21);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00074}00074 \textcolor{comment}{   cout << g.binary(4,16) << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00075}00075 \textcolor{comment}{   cout << g.binary(5,16) << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00076}00076 \textcolor{comment}{   for(int i =0; i<(int)v.size(); i++) cout << g.signed\_encode(v[i]) <<endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00077}00077 \textcolor{comment}{   g.write("{}testfile.bin"{}, v);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00078}00078 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00079}00079 \textcolor{comment}{   h = g.read("{}testfile.bin"{});}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00080}00080 \textcolor{comment}{   for(int i =0; i<(int)h.size(); i++) cout << h[i] <<endl; }}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00081}00081 \textcolor{comment}{   */}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00084}00084    \textcolor{comment}{/*teste escrever e ler no ficheiro}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00085}00085 \textcolor{comment}{   Golomb g(5);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00086}00086 \textcolor{comment}{   string filename = "{}testfile.bin"{};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00087}00087 \textcolor{comment}{   bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00088}00088 \textcolor{comment}{   bitstream bs((char*) filename.data(), std::ios::binary|std::ios::in);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00089}00089 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00090}00090 \textcolor{comment}{   vector<int> h = \{5, 3, 2, 8\};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00091}00091 \textcolor{comment}{   g.writeHdr(h, bss);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00092}00092 \textcolor{comment}{   vector<int> v = \{12, 1, 4, 32, 21, 6\};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00093}00093 \textcolor{comment}{   g.write(v, bss);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00094}00094 \textcolor{comment}{   bss.close();}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00095}00095 \textcolor{comment}{   }}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00096}00096 \textcolor{comment}{   vector<int> h\_ = g.readHdr(4, bs);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00097}00097 \textcolor{comment}{   cout << "{}header linha: "{} << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00098}00098 \textcolor{comment}{   for(int i=0; i<(int)h\_.size(); i++) cout << h\_[i] << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00099}00099 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00100}00100 \textcolor{comment}{   vector<int> v\_ = g.read(6, bs);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00101}00101 \textcolor{comment}{   cout << "{}vector: "{} << endl;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00102}00102 \textcolor{comment}{   for(int i=0; i<(int)v\_.size(); i++) cout << v\_[i] << endl; }}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00103}00103 \textcolor{comment}{   bs.close();}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00104}00104 \textcolor{comment}{   */}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00107}00107     \mbox{\hyperlink{classImageCodec}{ImageCodec}} i;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00108}00108     Mat img = cv::imread(\textcolor{stringliteral}{"{}lena.ppm"{}});}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00109}00109     i.encode(\textcolor{stringliteral}{"{}testfile.bin"{}}, img);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00111}00111     \textcolor{comment}{//l.decode("{}testfile.bin"{}, img);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00112}00112     \textcolor{comment}{//cv::imshow("{}new rgb"{}, img);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00113}00113     \textcolor{comment}{//cv::waitKey(0);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00116}00116     \textcolor{comment}{/*teste audio}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00117}00117 \textcolor{comment}{    AudioCodec aud;}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00118}00118 \textcolor{comment}{    char* wav = "{}sample01.wav"{};}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00119}00119 \textcolor{comment}{    aud.encode(wav);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00120}00120 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00122}00122    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00123}00123 \}}
+
+\end{DoxyCode}

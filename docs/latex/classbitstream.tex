@@ -1,0 +1,361 @@
+\hypertarget{classbitstream}{}\doxysection{bitstream Class Reference}
+\label{classbitstream}\index{bitstream@{bitstream}}
+
+
+This class allows to read and write binary files.  
+
+
+
+
+{\ttfamily \#include $<$bitstream.\+h$>$}
+
+Inheritance diagram for bitstream\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classbitstream}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbitstream_a738f519d094677805cc433f227c2d1c3}{bitstream}} (char $\ast$fname, ios\+\_\+base\+::openmode mode)
+\begin{DoxyCompactList}\small\item\em This class allows to read and write binary files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{write\+Bit}} (uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em This function allows writing a single bit in a byte. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{write\+NBits}} (uint8\+\_\+t value, uint n)
+\begin{DoxyCompactList}\small\item\em This function allows writing multiple bits in n bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}{write\+NBits2}} (uint32\+\_\+t $\ast$value, uint n)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{read\+Bit}} ()
+\begin{DoxyCompactList}\small\item\em This function allows reading a single bit from a byte. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{read\+NBits}} (uint n)
+\begin{DoxyCompactList}\small\item\em This function allows reading multiple bits from one or more bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbitstream_a8f3fc8c111359d987fbdb3a5132400b4}{read\+Bit}} (uint8\+\_\+t $\ast$val)
+\item 
+void \mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}} ()
+\begin{DoxyCompactList}\small\item\em This function allows adding zero\textquotesingle{}s to fill the last byte written. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}{to\+String}} (char $\ast$c, int n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+u\+\_\+char \mbox{\hyperlink{classbitstream_a0af543c7e8fa9905d67ea3ec8d00b76d}{byte}} = 0
+\item 
+int \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}
+\item 
+int \mbox{\hyperlink{classbitstream_ab0a232c81eab06b59285e3a605842c96}{byte\+Count}}
+\item 
+bool \mbox{\hyperlink{classbitstream_ad8795a376173c69417aa03124a105fb9}{write\+Mode}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class allows to read and write binary files. 
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00016}{16}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbitstream_a738f519d094677805cc433f227c2d1c3}\label{classbitstream_a738f519d094677805cc433f227c2d1c3}} 
+\index{bitstream@{bitstream}!bitstream@{bitstream}}
+\index{bitstream@{bitstream}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{bitstream()}{bitstream()}}
+{\footnotesize\ttfamily bitstream\+::bitstream (\begin{DoxyParamCaption}\item[{char $\ast$}]{fname,  }\item[{ios\+\_\+base\+::openmode}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This class allows to read and write binary files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter-\/name} & description \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00023}{23}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023                                                       : fstream(fname, mode) \{}
+\DoxyCodeLine{00024             \textcolor{keywordflow}{if} (mode \& std::ios::out) \{}
+\DoxyCodeLine{00025                 pointer = 7;}
+\DoxyCodeLine{00026                 writeMode = \textcolor{keyword}{true};}
+\DoxyCodeLine{00027             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode \& std::ios::in) \{}
+\DoxyCodeLine{00028                 pointer = -\/1;}
+\DoxyCodeLine{00029                 writeMode = \textcolor{keyword}{false};}
+\DoxyCodeLine{00030             \}}
+\DoxyCodeLine{00031         \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbitstream_aa2d1445ffe50215291edc0000a292cc1}\label{classbitstream_aa2d1445ffe50215291edc0000a292cc1}} 
+\index{bitstream@{bitstream}!padding@{padding}}
+\index{padding@{padding}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{padding()}{padding()}}
+{\footnotesize\ttfamily void bitstream\+::padding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function allows adding zero\textquotesingle{}s to fill the last byte written. 
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080                        \{}
+\DoxyCodeLine{00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/pointer; i++)\{}
+\DoxyCodeLine{00082         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
+\DoxyCodeLine{00083     \}}
+\DoxyCodeLine{00084 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_a5ae811f4593a95963e16395d7f65423f}\label{classbitstream_a5ae811f4593a95963e16395d7f65423f}} 
+\index{bitstream@{bitstream}!readBit@{readBit}}
+\index{readBit@{readBit}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{readBit()}{readBit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t bitstream\+::read\+Bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function allows reading a single bit from a byte. 
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042                           \{}
+\DoxyCodeLine{00043     uint8\_t bit = 0;}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{if}(pointer < 0)\{}
+\DoxyCodeLine{00045         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
+\DoxyCodeLine{00046         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
+\DoxyCodeLine{00047         pointer = 7;}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
+\DoxyCodeLine{00050     bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
+\DoxyCodeLine{00051     pointer-\/-\/;}
+\DoxyCodeLine{00052     \textcolor{keywordflow}{return} bit;}
+\DoxyCodeLine{00053 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_a8f3fc8c111359d987fbdb3a5132400b4}\label{classbitstream_a8f3fc8c111359d987fbdb3a5132400b4}} 
+\index{bitstream@{bitstream}!readBit@{readBit}}
+\index{readBit@{readBit}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{readBit()}{readBit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void bitstream\+::read\+Bit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055                                     \{}
+\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (pointer < 0) \{}
+\DoxyCodeLine{00057         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
+\DoxyCodeLine{00058         pointer = 7;}
+\DoxyCodeLine{00059     \}}
+\DoxyCodeLine{00060     *bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
+\DoxyCodeLine{00061     pointer-\/-\/;}
+\DoxyCodeLine{00062 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_ac07922b2b164b0d4ec9786f979e05651}\label{classbitstream_ac07922b2b164b0d4ec9786f979e05651}} 
+\index{bitstream@{bitstream}!readNBits@{readNBits}}
+\index{readNBits@{readNBits}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{readNBits()}{readNBits()}}
+{\footnotesize\ttfamily char $\ast$ bitstream\+::read\+NBits (\begin{DoxyParamCaption}\item[{uint}]{n }\end{DoxyParamCaption})}
+
+
+
+This function allows reading multiple bits from one or more bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & is the number of bits to read from file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of characters that contains the read bits 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064                                 \{}
+\DoxyCodeLine{00065     \textcolor{keywordtype}{char}* value = (\textcolor{keywordtype}{char}*)malloc((uint) n/8 + 1);}
+\DoxyCodeLine{00066     \textcolor{keywordflow}{for}(uint i=0; i<n; i++)\{}
+\DoxyCodeLine{00067         value[i/8] = value[i/8] << 1 | \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}();}
+\DoxyCodeLine{00068         \textcolor{keywordflow}{if}(i==n-\/1 \&\& n\%8!=0) value[i/8] <<= (8-\/n\%8);}
+\DoxyCodeLine{00069     \}}
+\DoxyCodeLine{00070     \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{00071 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}\label{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}} 
+\index{bitstream@{bitstream}!toString@{toString}}
+\index{toString@{toString}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily string bitstream\+::to\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{c,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073                                         \{}
+\DoxyCodeLine{00074     \textcolor{keywordtype}{string} val;}
+\DoxyCodeLine{00075     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<n; i++)}
+\DoxyCodeLine{00076         val+= ((\textcolor{keywordtype}{int})((c[i/8] >> (7-\/i\%8))\&(0x01))==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00077     \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{00078 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}\label{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}} 
+\index{bitstream@{bitstream}!writeBit@{writeBit}}
+\index{writeBit@{writeBit}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{writeBit()}{writeBit()}}
+{\footnotesize\ttfamily void bitstream\+::write\+Bit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+This function allows writing a single bit in a byte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & is the value to write in a byte \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                      \{}
+\DoxyCodeLine{00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << pointer;}
+\DoxyCodeLine{00012     \textcolor{keywordflow}{if} (pointer > 0)\{}
+\DoxyCodeLine{00013         pointer-\/-\/;}
+\DoxyCodeLine{00014         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015     \}}
+\DoxyCodeLine{00016     write((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
+\DoxyCodeLine{00017     pointer = 7;}
+\DoxyCodeLine{00018     \textcolor{keywordtype}{byte} = 0;}
+\DoxyCodeLine{00019 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_a36e946e458ed555baf5a8a4623a2e707}\label{classbitstream_a36e946e458ed555baf5a8a4623a2e707}} 
+\index{bitstream@{bitstream}!writeNBits@{writeNBits}}
+\index{writeNBits@{writeNBits}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{writeNBits()}{writeNBits()}}
+{\footnotesize\ttfamily void bitstream\+::write\+NBits (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value,  }\item[{uint}]{n }\end{DoxyParamCaption})}
+
+
+
+This function allows writing multiple bits in n bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & is the value to write in a byte \\
+\hline
+{\em n} & is the number of bytes to write the \char`\"{}value\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021                                               \{}
+\DoxyCodeLine{00022     uint bit;}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = n-\/1; i >= 0; i-\/-\/) \{}
+\DoxyCodeLine{00024         bit = (val >> i\%8) \& 0x01;}
+\DoxyCodeLine{00025         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(bit);}
+\DoxyCodeLine{00026     \}}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}\label{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}} 
+\index{bitstream@{bitstream}!writeNBits2@{writeNBits2}}
+\index{writeNBits2@{writeNBits2}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{writeNBits2()}{writeNBits2()}}
+{\footnotesize\ttfamily void bitstream\+::write\+NBits2 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{value,  }\item[{uint}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00030                                                  \{}
+\DoxyCodeLine{00031     \textcolor{keywordflow}{for} (uint i = 0; i < n/32.0; i++) \{}
+\DoxyCodeLine{00032         cout << \textcolor{stringliteral}{"{}aa"{}};}
+\DoxyCodeLine{00033         cout << val[i] << endl;}
+\DoxyCodeLine{00034         \textcolor{keywordflow}{if} (i == n/8)}
+\DoxyCodeLine{00035             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], n\%32); \textcolor{comment}{// escreve o que sobra do resto da divisão inteira por 8 (ultimo byte)}}
+\DoxyCodeLine{00036         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00037             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], 32);       \textcolor{comment}{// escreve as 8 posições do byte}}
+\DoxyCodeLine{00038     \}}
+\DoxyCodeLine{00039 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classbitstream_a0af543c7e8fa9905d67ea3ec8d00b76d}\label{classbitstream_a0af543c7e8fa9905d67ea3ec8d00b76d}} 
+\index{bitstream@{bitstream}!byte@{byte}}
+\index{byte@{byte}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{byte}{byte}}
+{\footnotesize\ttfamily u\+\_\+char bitstream\+::byte = 0}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00066}{66}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+\mbox{\Hypertarget{classbitstream_ab0a232c81eab06b59285e3a605842c96}\label{classbitstream_ab0a232c81eab06b59285e3a605842c96}} 
+\index{bitstream@{bitstream}!byteCount@{byteCount}}
+\index{byteCount@{byteCount}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{byteCount}{byteCount}}
+{\footnotesize\ttfamily int bitstream\+::byte\+Count}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00068}{68}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+\mbox{\Hypertarget{classbitstream_a69277f782c2b76acb4f569e70744e53f}\label{classbitstream_a69277f782c2b76acb4f569e70744e53f}} 
+\index{bitstream@{bitstream}!pointer@{pointer}}
+\index{pointer@{pointer}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{pointer}{pointer}}
+{\footnotesize\ttfamily int bitstream\+::pointer}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00067}{67}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+\mbox{\Hypertarget{classbitstream_ad8795a376173c69417aa03124a105fb9}\label{classbitstream_ad8795a376173c69417aa03124a105fb9}} 
+\index{bitstream@{bitstream}!writeMode@{writeMode}}
+\index{writeMode@{writeMode}!bitstream@{bitstream}}
+\doxysubsubsection{\texorpdfstring{writeMode}{writeMode}}
+{\footnotesize\ttfamily bool bitstream\+::write\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00069}{69}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Bit\+Stream/bitstream.\+h\item 
+src/\+Bit\+Stream/bitstream.\+cpp\end{DoxyCompactItemize}

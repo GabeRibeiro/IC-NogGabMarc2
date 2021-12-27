@@ -1,0 +1,129 @@
+\hypertarget{Golomb_8cpp_source}{}\doxysection{Golomb.\+cpp}
+\label{Golomb_8cpp_source}\index{src/Golomb/Golomb.cpp@{src/Golomb/Golomb.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include <bits/stdc++.h>}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}Golomb.h"{}}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}../BitStream/bitstream.h"{}}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00011}00011 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00015}00015 \textcolor{keywordtype}{string} Golomb::unary(\textcolor{keywordtype}{int} q)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00016}00016     std::string unr(q, \textcolor{charliteral}{'1'});}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00017}00017     \textcolor{keywordflow}{return} unr+\textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00018}00018 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00020}00020 \textcolor{keywordtype}{string} Golomb::binary(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} n)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00021}00021     \textcolor{keywordtype}{int} i, q=x;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00022}00022     \textcolor{keywordtype}{string} b;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00023}00023     \textcolor{keywordflow}{for}(i=0; i<n; i++)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00024}00024         \textcolor{keywordflow}{if}(q == 0) b = \textcolor{stringliteral}{"{}0"{}} + b;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00025}00025         \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00026}00026             b = to\_string(q\%2) + b;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00027}00027             q = q/2;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00028}00028         \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00029}00029     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00030}00030     \textcolor{keywordflow}{return} b;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00031}00031 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00034}00034 \textcolor{keywordtype}{int} Golomb::decimal(\textcolor{keywordtype}{string} a)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00035}00035     \textcolor{keywordtype}{int} i, j=0, res=0;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00036}00036     \textcolor{keywordflow}{for}(i=a.length()-\/1; i>=0; i-\/-\/)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00037}00037         res += (a[j++]-\/48)*pow(2,i);}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00039}00039     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00040}00040 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00042}00042 Golomb::Golomb(\textcolor{keywordtype}{int} m)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00043}00043     this-\/>m = m;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00044}00044     this-\/>b = ceil(log2(m));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00045}00045 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00047}00047 \textcolor{keywordtype}{string} Golomb::encode(\textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} n)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00048}00048     \textcolor{keywordtype}{int} q = n/this-\/>m, r = n-\/q*this-\/>m;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00049}00049     \textcolor{keywordflow}{return} unary(q) + (r < pow(2,this-\/>b)-\/this-\/>m? binary(r,this-\/>b-\/1): binary(r+pow(2,this-\/>b)-\/this-\/>m,this-\/>b));  }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00050}00050 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00053}00053 \textcolor{keywordtype}{int} Golomb::decode(\textcolor{keywordtype}{string} str)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00054}00054     \textcolor{keywordtype}{int} a=0, r, rl;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00055}00055     \textcolor{keywordflow}{while}(str[a]==\textcolor{charliteral}{'1'}) a++;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00056}00056     r = decimal(str.substr(a+1, this-\/>b-\/1));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00057}00057     rl = decimal(str.substr(a+1, this-\/>b));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00058}00058     \textcolor{keywordflow}{return} this-\/>m*a + (r < pow(2,this-\/>b)-\/this-\/>m? r : rl -\/ (pow(2,this-\/>b)-\/this-\/>m));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00059}00059 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00061}00061  \textcolor{keywordtype}{string} Golomb::signed\_encode(\textcolor{keywordtype}{int} n)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00062}00062     \textcolor{keywordflow}{return} encode(n>=0?2*n:-\/2*n-\/1);}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00063}00063 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00065}00065 \textcolor{keywordtype}{int} Golomb::signed\_decode(\textcolor{keywordtype}{string} code)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00066}00066     uint res=decode(code);}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00067}00067     \textcolor{keywordflow}{return} res\%2 ? ((int)res+1)/-\/2 : res/2;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00068}00068 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00070}00070 \textcolor{keywordtype}{void} Golomb::set\_m(\textcolor{keywordtype}{int} m)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00071}00071     this-\/>m = m;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00072}00072     this-\/>b = ceil(log2(m));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00073}00073 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00074}00074 \textcolor{keywordtype}{int} Golomb::get\_m(\textcolor{keywordtype}{void})\{\textcolor{keywordflow}{return} this-\/>m;\}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00076}00076 \textcolor{keywordtype}{void} Golomb::write(vector<int> v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00077}00077     \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00078}00078     \textcolor{keywordtype}{string} golb;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00079}00079     \textcolor{keywordflow}{for}(i=0; i<int(v.size()); i++)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00080}00080         golb = signed\_encode(v[i]);}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00081}00081         \textcolor{keywordflow}{for}(j=0; j<int(golb.size()); j++)}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00082}00082             b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (golb[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00083}00083     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00084}00084     b.\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}}();}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00085}00085 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00086}00086  }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00087}00087 \textcolor{keywordtype}{void} Golomb::writeHdr(vector<int> v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00088}00088     \textcolor{keywordtype}{int} unr = log2(*max\_element(v.begin(), v.end())) +1;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00089}00089     \textcolor{keywordtype}{string} hdr;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00090}00090     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00091}00091         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00092}00092         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00093}00093              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00094}00094     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00095}00095 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00098}00098 vector<int> Golomb::read(\textcolor{keywordtype}{int} elems, \mbox{\hyperlink{classbitstream}{bitstream}} \&bi)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00099}00099     vector<int> rd;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00100}00100     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00101}00101     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<elems; j++)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00102}00102         i = 0;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00103}00103         \textcolor{keywordtype}{string} q(1, bi.\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00104}00104         \textcolor{keywordflow}{while}(q[i++]!=\textcolor{charliteral}{'0'}) q += (bi.\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00105}00105         \textcolor{keywordtype}{string} r = bi.toString(bi.\mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{readNBits}}(this-\/>b-\/1), this-\/>b-\/1);}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00106}00106         \textcolor{keywordtype}{string} rl = (decimal(r)<pow(2,this-\/>b)-\/this-\/>m? \textcolor{stringliteral}{"{}"{}} : (bi.\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}}));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00107}00107         rd.push\_back( signed\_decode(q+r+rl) );}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00108}00108     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00109}00109     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00110}00110 \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00112}00112 \textcolor{comment}{//type -\/> DEFINE nº de elems no hdr}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00113}00113 vector<int> Golomb::readHdr(\textcolor{keywordtype}{int} type, \mbox{\hyperlink{classbitstream}{bitstream}} \&bi)\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00114}00114     vector<int> rd;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00115}00115     \textcolor{keywordtype}{int} bin=0;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00116}00116     \textcolor{keywordtype}{string} u(1, bi.\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00117}00117     \textcolor{keywordflow}{while}(u[bin]!=\textcolor{charliteral}{'0'})\{}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00118}00118         u += (bi.\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00119}00119         bin++;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00120}00120     \}}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00121}00121     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<type; i++) rd.push\_back(decimal(bi.toString(bi.\mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{readNBits}}(bin), bin)));}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00122}00122     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00123}00123 \}}
+
+\end{DoxyCode}
