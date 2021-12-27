@@ -92,9 +92,8 @@ main_EXTERNAL_OBJECTS =
 ../bin/main: CMakeFiles/main.dir/build.make
 ../bin/main: libbitstream.a
 ../bin/main: libgolomb.a
-../bin/main: liblossless_img.a
-../bin/main: libgolomb.a
-../bin/main: libbitstream.a
+../bin/main: libimg.a
+../bin/main: libaudio.a
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.3.2.0
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.3.2.0
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.3.2.0
@@ -136,6 +135,8 @@ main_EXTERNAL_OBJECTS =
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.3.2.0
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.3.2.0
 ../bin/main: /usr/lib/x86_64-linux-gnu/libopencv_core.so.3.2.0
+../bin/main: libgolomb.a
+../bin/main: libbitstream.a
 ../bin/main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)

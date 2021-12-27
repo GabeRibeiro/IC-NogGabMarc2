@@ -1,0 +1,2 @@
+/usr/bin/ar qc libaudio.a  CMakeFiles/audio.dir/src/audio/AudioCodec.cpp.o
+/usr/bin/ranlib libaudio.a

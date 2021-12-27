@@ -8,14 +8,15 @@
 #include "opencv2/highgui.hpp"
 #include "../src/Golomb/Golomb.h"
 #include "../src/BitStream/bitstream.h"
-#include "../src/jpeg/Lossless.h"
-//#include "../jpeg/Lossy.h"
+#include "../src/jpeg/ImageCodec.h"
+#include "../src/audio/AudioCodec.h"
+
 
 using namespace std;
 using namespace cv;
 
 int main(void){
-    /*
+    /* teste bitstream
     string filename = "testfile.bin";
     bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);
     bitstream bs((char*) filename.data(), std::ios::binary|std::ios::in);
@@ -47,8 +48,8 @@ int main(void){
     */
 
 
-    /*
-    Lossless ls;
+    /* teste rgb yuv
+    ImageCodec ls;
     Mat rgb = cv::imread("lena.ppm");
     cv::imshow("original rgb",rgb);
     Mat y(rgb.size(), CV_8UC1);
@@ -63,7 +64,7 @@ int main(void){
     cv::waitKey(0);
     */
 
-   /*
+   /* teste golomb
    Golomb g(5);
    vector<int> v, h;
    v.push_back(15);
@@ -79,16 +80,8 @@ int main(void){
    for(int i =0; i<(int)h.size(); i++) cout << h[i] <<endl; 
    */
 
-   /*
-    Lossless l;
-    Mat img = cv::imread("lena.ppm");
-    l.encode("testfile.bin", img);
-    //l.decode("testfile.bin", img);
-    //cv::imshow("new rgb", img);
-    //cv::waitKey(0);
-    */
 
-   
+   /*teste escrever e ler no ficheiro
    Golomb g(5);
    string filename = "testfile.bin";
    bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);
@@ -107,7 +100,24 @@ int main(void){
    vector<int> v_ = g.read(6, bs);
    cout << "vector: " << endl;
    for(int i=0; i<(int)v_.size(); i++) cout << v_[i] << endl; 
-
    bs.close();
+   */
+
+
+    ImageCodec i;
+    Mat img = cv::imread("lena.ppm");
+    i.encode("testfile.bin", img);
+
+    //l.decode("testfile.bin", img);
+    //cv::imshow("new rgb", img);
+    //cv::waitKey(0);
+
+
+    /*teste audio
+    AudioCodec aud;
+    char* wav = "sample01.wav";
+    aud.encode(wav);
+    */
+
    return 0;
 }

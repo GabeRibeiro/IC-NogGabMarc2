@@ -117,10 +117,7 @@ vector<int> Golomb::readHdr(int type, bitstream &bi){
     while(u[bin]!='0'){
         u += (bi.readBit()==0? "0":"1");
         bin++;
-    } 
-    cout << "int bin  " << bin << endl;
-    for(int i=0; i<type; i++){
-        rd.push_back( decimal( bi.toString( bi.readNBits(bin ), bin ) ) );
-    } 
+    }
+    for(int i=0; i<type; i++) rd.push_back(decimal(bi.toString(bi.readNBits(bin), bin)));
     return rd;
 }

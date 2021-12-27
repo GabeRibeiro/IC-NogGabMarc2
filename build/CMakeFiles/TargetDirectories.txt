@@ -1,6 +1,7 @@
 /home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/rebuild_cache.dir
-/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/edit_cache.dir
-/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/main.dir
-/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/lossless_img.dir
-/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/bitstream.dir
 /home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/golomb.dir
+/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/bitstream.dir
+/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/img.dir
+/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/main.dir
+/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/audio.dir
+/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/edit_cache.dir

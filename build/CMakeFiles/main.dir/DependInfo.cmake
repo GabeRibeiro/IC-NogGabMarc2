@@ -17,7 +17,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/bitstream.dir/DependInfo.cmake"
   "/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/golomb.dir/DependInfo.cmake"
-  "/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/lossless_img.dir/DependInfo.cmake"
+  "/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/img.dir/DependInfo.cmake"
+  "/home/marcoramos/Desktop/IC-NogGabMarc2/build/CMakeFiles/audio.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

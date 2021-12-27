@@ -111,30 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named golomb
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main
-.PHONY : main
+golomb: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 golomb
+.PHONY : golomb
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
-
-#=============================================================================
-# Target rules for targets named lossless_img
-
-# Build rule for target.
-lossless_img: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lossless_img
-.PHONY : lossless_img
-
-# fast build rule for target.
-lossless_img/fast:
-	$(MAKE) -f CMakeFiles/lossless_img.dir/build.make CMakeFiles/lossless_img.dir/build
-.PHONY : lossless_img/fast
+golomb/fast:
+	$(MAKE) -f CMakeFiles/golomb.dir/build.make CMakeFiles/golomb.dir/build
+.PHONY : golomb/fast
 
 #=============================================================================
 # Target rules for targets named bitstream
@@ -150,17 +137,43 @@ bitstream/fast:
 .PHONY : bitstream/fast
 
 #=============================================================================
-# Target rules for targets named golomb
+# Target rules for targets named img
 
 # Build rule for target.
-golomb: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 golomb
-.PHONY : golomb
+img: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 img
+.PHONY : img
 
 # fast build rule for target.
-golomb/fast:
-	$(MAKE) -f CMakeFiles/golomb.dir/build.make CMakeFiles/golomb.dir/build
-.PHONY : golomb/fast
+img/fast:
+	$(MAKE) -f CMakeFiles/img.dir/build.make CMakeFiles/img.dir/build
+.PHONY : img/fast
+
+#=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
+
+#=============================================================================
+# Target rules for targets named audio
+
+# Build rule for target.
+audio: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 audio
+.PHONY : audio
+
+# fast build rule for target.
+audio/fast:
+	$(MAKE) -f CMakeFiles/audio.dir/build.make CMakeFiles/audio.dir/build
+.PHONY : audio/fast
 
 src/BitStream/bitstream.o: src/BitStream/bitstream.cpp.o
 
@@ -216,32 +229,59 @@ src/Golomb/Golomb.cpp.s:
 	$(MAKE) -f CMakeFiles/golomb.dir/build.make CMakeFiles/golomb.dir/src/Golomb/Golomb.cpp.s
 .PHONY : src/Golomb/Golomb.cpp.s
 
-src/jpeg/Lossless.o: src/jpeg/Lossless.cpp.o
+src/audio/AudioCodec.o: src/audio/AudioCodec.cpp.o
 
-.PHONY : src/jpeg/Lossless.o
+.PHONY : src/audio/AudioCodec.o
 
 # target to build an object file
-src/jpeg/Lossless.cpp.o:
-	$(MAKE) -f CMakeFiles/lossless_img.dir/build.make CMakeFiles/lossless_img.dir/src/jpeg/Lossless.cpp.o
-.PHONY : src/jpeg/Lossless.cpp.o
+src/audio/AudioCodec.cpp.o:
+	$(MAKE) -f CMakeFiles/audio.dir/build.make CMakeFiles/audio.dir/src/audio/AudioCodec.cpp.o
+.PHONY : src/audio/AudioCodec.cpp.o
 
-src/jpeg/Lossless.i: src/jpeg/Lossless.cpp.i
+src/audio/AudioCodec.i: src/audio/AudioCodec.cpp.i
 
-.PHONY : src/jpeg/Lossless.i
+.PHONY : src/audio/AudioCodec.i
 
 # target to preprocess a source file
-src/jpeg/Lossless.cpp.i:
-	$(MAKE) -f CMakeFiles/lossless_img.dir/build.make CMakeFiles/lossless_img.dir/src/jpeg/Lossless.cpp.i
-.PHONY : src/jpeg/Lossless.cpp.i
+src/audio/AudioCodec.cpp.i:
+	$(MAKE) -f CMakeFiles/audio.dir/build.make CMakeFiles/audio.dir/src/audio/AudioCodec.cpp.i
+.PHONY : src/audio/AudioCodec.cpp.i
 
-src/jpeg/Lossless.s: src/jpeg/Lossless.cpp.s
+src/audio/AudioCodec.s: src/audio/AudioCodec.cpp.s
 
-.PHONY : src/jpeg/Lossless.s
+.PHONY : src/audio/AudioCodec.s
 
 # target to generate assembly for a file
-src/jpeg/Lossless.cpp.s:
-	$(MAKE) -f CMakeFiles/lossless_img.dir/build.make CMakeFiles/lossless_img.dir/src/jpeg/Lossless.cpp.s
-.PHONY : src/jpeg/Lossless.cpp.s
+src/audio/AudioCodec.cpp.s:
+	$(MAKE) -f CMakeFiles/audio.dir/build.make CMakeFiles/audio.dir/src/audio/AudioCodec.cpp.s
+.PHONY : src/audio/AudioCodec.cpp.s
+
+src/jpeg/ImageCodec.o: src/jpeg/ImageCodec.cpp.o
+
+.PHONY : src/jpeg/ImageCodec.o
+
+# target to build an object file
+src/jpeg/ImageCodec.cpp.o:
+	$(MAKE) -f CMakeFiles/img.dir/build.make CMakeFiles/img.dir/src/jpeg/ImageCodec.cpp.o
+.PHONY : src/jpeg/ImageCodec.cpp.o
+
+src/jpeg/ImageCodec.i: src/jpeg/ImageCodec.cpp.i
+
+.PHONY : src/jpeg/ImageCodec.i
+
+# target to preprocess a source file
+src/jpeg/ImageCodec.cpp.i:
+	$(MAKE) -f CMakeFiles/img.dir/build.make CMakeFiles/img.dir/src/jpeg/ImageCodec.cpp.i
+.PHONY : src/jpeg/ImageCodec.cpp.i
+
+src/jpeg/ImageCodec.s: src/jpeg/ImageCodec.cpp.s
+
+.PHONY : src/jpeg/ImageCodec.s
+
+# target to generate assembly for a file
+src/jpeg/ImageCodec.cpp.s:
+	$(MAKE) -f CMakeFiles/img.dir/build.make CMakeFiles/img.dir/src/jpeg/ImageCodec.cpp.s
+.PHONY : src/jpeg/ImageCodec.cpp.s
 
 src/main_test.o: src/main_test.cpp.o
 
@@ -277,20 +317,24 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... main"
-	@echo "... lossless_img"
-	@echo "... bitstream"
 	@echo "... golomb"
+	@echo "... bitstream"
+	@echo "... img"
+	@echo "... main"
+	@echo "... audio"
+	@echo "... edit_cache"
 	@echo "... src/BitStream/bitstream.o"
 	@echo "... src/BitStream/bitstream.i"
 	@echo "... src/BitStream/bitstream.s"
 	@echo "... src/Golomb/Golomb.o"
 	@echo "... src/Golomb/Golomb.i"
 	@echo "... src/Golomb/Golomb.s"
-	@echo "... src/jpeg/Lossless.o"
-	@echo "... src/jpeg/Lossless.i"
-	@echo "... src/jpeg/Lossless.s"
+	@echo "... src/audio/AudioCodec.o"
+	@echo "... src/audio/AudioCodec.i"
+	@echo "... src/audio/AudioCodec.s"
+	@echo "... src/jpeg/ImageCodec.o"
+	@echo "... src/jpeg/ImageCodec.i"
+	@echo "... src/jpeg/ImageCodec.s"
 	@echo "... src/main_test.o"
 	@echo "... src/main_test.i"
 	@echo "... src/main_test.s"

@@ -1,2 +1,0 @@
-/usr/bin/ar qc liblossless_img.a  CMakeFiles/lossless_img.dir/src/jpeg/Lossless.cpp.o
-/usr/bin/ranlib liblossless_img.a

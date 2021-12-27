@@ -3,6 +3,7 @@
 
 CMakeFiles/main.dir/src/main_test.cpp.o: ../src/BitStream/bitstream.h
 CMakeFiles/main.dir/src/main_test.cpp.o: ../src/Golomb/Golomb.h
-CMakeFiles/main.dir/src/main_test.cpp.o: ../src/jpeg/Lossless.h
+CMakeFiles/main.dir/src/main_test.cpp.o: ../src/audio/AudioCodec.h
+CMakeFiles/main.dir/src/main_test.cpp.o: ../src/jpeg/ImageCodec.h
 CMakeFiles/main.dir/src/main_test.cpp.o: ../src/main_test.cpp
 
