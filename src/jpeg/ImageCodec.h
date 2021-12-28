@@ -22,7 +22,7 @@ using namespace cv;
  */
 class ImageCodec{
     public:
-        int function = 0;
+        int function=0, shift=0;
         /**
          * Dados 3 canais  faz a conversão para RGB
          */
@@ -51,6 +51,8 @@ class ImageCodec{
         void predictive_decoding(Mat& yuv, vector<int> yuv_);
     //public:
         
+        void set_shift(int s);
+
         void set_function(int f);
 
         void encode(string fname, Mat& img);

@@ -15,6 +15,7 @@
 using namespace std;
 using namespace cv;
 
+
 int ImageCodec::linear_jpeg_mode1(int a){return a;}
 int ImageCodec::linear_jpeg_mode2(int b){return b;}
 int ImageCodec::linear_jpeg_mode3(int c){return c;}
@@ -30,6 +31,10 @@ int ImageCodec::non_linear_jpegls(int a, int b, int c){
 
 void ImageCodec::set_function(int f){
     if(f>=0 && f<=7) this->function = f;
+}
+
+void ImageCodec::set_shift(int s){
+    this->shift = s;
 }
 
 void ImageCodec::yuv2rgb(Mat& rgb, Mat& y, Mat& u, Mat& v){
@@ -66,18 +71,16 @@ void ImageCodec::rgb2yuv(Mat& rgb, Mat& y, Mat& u, Mat& v){
     }
 }
 
-
-
-
 vector<int> ImageCodec::predictive_coding(Mat& yuv){
-    int rw=yuv.rows, cl=yuv.cols, x, px,a,b,c;
+    int rw=yuv.rows, cl=yuv.cols, x, px,a,b,c, rsd;
     vector<int> r;
+    cout<< "Encoding "<< endl;
     for(int i=0; i<rw; i++){
         for(int j=0; j<cl; j++){
             x = yuv.at<uchar>(i, j);
             a = j==0? 0 : yuv.at<uchar>(i, j-1);
             b = i==0? 0 : yuv.at<uchar>(i-1, j);
-            c = j==0? 0 : yuv.at<uchar>(i-1, j-1);
+            c = j==0 || i==0? 0 : yuv.at<uchar>(i-1, j-1);
 
             switch(this->function){
                 case 0: px = non_linear_jpegls(a,b,c); break;
@@ -89,12 +92,13 @@ vector<int> ImageCodec::predictive_coding(Mat& yuv){
                 case 6: px = linear_jpeg_mode6(a,b,c); break;
                 case 7: px = linear_jpeg_mode7(a,b); break;
             }
-            r.push_back(x-px);
+            rsd = ((x-px) >> shift) << shift;
+            r.push_back(rsd);
+            yuv.at<uchar>(i, j) = rsd + px;
         }
     }
     return r;
 }
-
 
 void ImageCodec::encode(string fname, Mat& rgb){
     Mat y(rgb.size(), CV_8UC1);
@@ -118,39 +122,34 @@ void ImageCodec::encode(string fname, Mat& rgb){
     [](int x) { return  x>=0? x * 2 : -2*x-1; });
     double mean=accumulate(map.begin(), map.end(), 0);
     mean/= 3*rgb.rows*rgb.cols/2 ;
-    cout << "Mean = " << mean << ", m = "<< ceil(-1/(log2(mean/(mean+1)))) << endl;
-    
     Golomb gb(  ceil(-1/log2(mean/(mean+1)))  );
     bitstream bss((char*) fname.data(), std::ios::binary|std::ios::out);
 
-    cout << "M = " << gb.get_m() << endl;
     vector<int> header;
     header.push_back(gb.get_m()); //m de golomb
     header.push_back(rgb.rows); //n rows
     header.push_back(rgb.cols); //n de cols
     header.push_back(function); //predict function usada
+    cout << "write header" << endl;
     gb.writeHdr(header, bss);
-    
+
+    cout << "Write yuv" << endl;
     gb.write(y_, bss);
     gb.write(u_, bss);
     gb.write(v_, bss);
-    
+    bss.padding();
     bss.close();
 }
 
-
-
-
-
-
 void ImageCodec::predictive_decoding(Mat& yuv, vector<int> yuv_){
-    int i, j, rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;
-    for(i=0; i<rw; i++){
-        for(j=0; j<cl; j++){
+    int rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;
+    cout<< " Decoding "<< endl;
+    for(int i=0; i<rw; i++){
+        for(int j=0; j<cl; j++){
             r = yuv_[i*cl+j];
-            a = j==0? 0 : yuv_[i*cl+(j-1)];
-            b = i==0? 0 : yuv_[(i-1)*cl+j];
-            c = j==0? 0 : yuv_[(i-1)*cl+(j-1)];
+            a = j==0? 0 : yuv.at<uchar>(i, j-1);
+            b = i==0? 0 : yuv.at<uchar>(i-1, j);
+            c = j==0 || i==0? 0 : yuv.at<uchar>(i-1, j-1);
 
             switch(this->function){
                 case 0: px = non_linear_jpegls(a,b,c); break;
@@ -162,30 +161,39 @@ void ImageCodec::predictive_decoding(Mat& yuv, vector<int> yuv_){
                 case 6: px = linear_jpeg_mode6(a,b,c); break;
                 case 7: px = linear_jpeg_mode7(a,b); break;
             }
-            yuv_[i*cl+j] = px;
-            yuv.at<Vec3b>(i, j)[0] = px + r;
+            yuv.at<uchar>(i, j) = px+r;
         }
     }
 }
 
-/*void Lossless::decode(string fname, Mat&rgb){
-    golomb = new Golomb(10, fname);
-    vector<int> hdr = golomb->readHdr(3);
-    int rows = hdr[0], cols = hdr[1];
-    set_function(hdr[2]);
+void ImageCodec::decode(string fname, Mat&rgb){
+    bitstream bss((char*) fname.data(), std::ios::binary|std::ios::in);
+    Golomb gb(11);
+    vector<int> hdr = gb.readHdr(4, bss);
+    gb.set_m(hdr[0]);
+    int rows = hdr[1], cols = hdr[2];
+    set_function(hdr[3]);
+    cout << "Read header" << endl;
 
-    vector<int> g_rd = golomb->read(3*rows*cols/2);
-    
-    Mat y(rows, cols, CV_8UC1);
-    Mat u(rows/2, cols/2, CV_8UC1);
-    Mat v(rows/2, cols/2, CV_8UC1);
+    vector<int> g_rd = gb.read(3*rows*cols/2, bss);
+
+    Mat y = Mat::zeros(rows, cols, CV_8UC1);
+    Mat u = Mat::zeros(rows/2, cols/2, CV_8UC1);
+    Mat v = Mat::zeros(rows/2, cols/2, CV_8UC1);
+
+    cout << "Read yuv" << endl;
     vector<int> y_(&g_rd[0], &g_rd[rows*cols-1]);
-    vector<int> u_(&g_rd[rows*cols], &g_rd[5*rows*cols+rows/4-1]);
-    vector<int> v_(&g_rd[5*rows*cols+rows/4], &g_rd[3*rows*cols/2-1]);
+    vector<int> u_(&g_rd[rows*cols], &g_rd[5*rows*cols/4-1]);
+    vector<int> v_(&g_rd[5*rows*cols/4], &g_rd[3*rows*cols/2-1]);
 
     predictive_decoding(y, y_);
     predictive_decoding(u, u_);
     predictive_decoding(v, v_);
+
+    cv::imshow("new y", y);
+    cv::imshow("new u", u);
+    cv::imshow("new v", v);
     yuv2rgb(rgb, y, u, v);
+
+    bss.close();
 }
-*/

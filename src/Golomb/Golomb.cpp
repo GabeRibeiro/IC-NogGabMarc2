@@ -81,7 +81,6 @@ void Golomb::write(vector<int> v, bitstream &b){
         for(j=0; j<int(golb.size()); j++)
             b.writeBit(  (golb[j]=='0'? 0 : 1)   );
     }
-    b.padding();
 }
  
 void Golomb::writeHdr(vector<int> v, bitstream &b){

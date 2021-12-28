@@ -6,10 +6,13 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
-#include "../src/Golomb/Golomb.h"
-#include "../src/BitStream/bitstream.h"
+//#include "../src/Golomb/Golomb.h"
+//#include "../src/BitStream/bitstream.h"
 #include "../src/jpeg/ImageCodec.h"
-#include "../src/audio/AudioCodec.h"
+//#include "../src/audio/AudioCodec.h"
+#include "../src/audio/AudioCodec.cpp"
+#include "../src/Golomb/Golomb.cpp"
+#include "../src/BitStream/bitstream.cpp"
 
 
 using namespace std;
@@ -81,7 +84,8 @@ int main(void){
    */
 
 
-   /*teste escrever e ler no ficheiro
+   //teste escrever e ler no ficheiro
+   /*
    Golomb g(5);
    string filename = "testfile.bin";
    bitstream bss((char*) filename.data(), std::ios::binary|std::ios::out);
@@ -89,35 +93,85 @@ int main(void){
 
    vector<int> h = {5, 3, 2, 8};
    g.writeHdr(h, bss);
-   vector<int> v = {12, 1, 4, 32, 21, 6};
-   g.write(v, bss);
+   vector<int> v1 = {12, 1, 4};
+   vector<int> v2 = {32, 21, 6};
+   g.write(v1, bss);
+   g.write(v2, bss);
+   bss.padding();
    bss.close();
    
-   vector<int> h_ = g.readHdr(4, bs);
+
+   Golomb gb(10);
+   vector<int> h_ = gb.readHdr(4, bs);
    cout << "header linha: " << endl;
    for(int i=0; i<(int)h_.size(); i++) cout << h_[i] << endl;
-
-   vector<int> v_ = g.read(6, bs);
+   gb.set_m(h_[0]);
+   vector<int> v_ = gb.read(6, bs);
    cout << "vector: " << endl;
    for(int i=0; i<(int)v_.size(); i++) cout << v_[i] << endl; 
    bs.close();
    */
 
-
+    /*
+    //teste img encode e decode
     ImageCodec i;
+    i.set_shift(0);
     Mat img = cv::imread("lena.ppm");
     i.encode("testfile.bin", img);
-
-    //l.decode("testfile.bin", img);
-    //cv::imshow("new rgb", img);
-    //cv::waitKey(0);
-
-
-    /*teste audio
-    AudioCodec aud;
-    char* wav = "sample01.wav";
-    aud.encode(wav);
+    i.decode("testfile.bin", img);
+    cv::imshow("new rgb", img);
+    cv::waitKey(0);
     */
+
+   /*
+    //teste audio library
+    char const* wav = "sample01.wav";
+    SNDFILE *snd;
+    SF_INFO sfinfo;
+    memset (&sfinfo, 0, sizeof (sfinfo));
+
+    if(!(snd = sf_open(wav, SFM_READ, &sfinfo)))
+        throw runtime_error("Error opening sound file.");
+
+    int cnt, cls[sfinfo.channels];
+    vector<int> vcnl[sfinfo.channels];
+    while((cnt = (int) sf_readf_int(snd, cls, 1))>0){
+        for(int i=0; i<sfinfo.channels; i++)
+            vcnl[i].push_back(cls[i]);
+    }
+
+    cout << "audio file info\n" << "channels  " << sfinfo.channels << endl;
+    cout << "sample rate  " << sfinfo.samplerate << endl;
+    cout << "nº de samples  " << sfinfo.frames << endl;
+    cout << "size channel " << (int)vcnl[0].size() << endl;
+    cout << "formato  " << sfinfo.format << endl;
+
+
+    char const* wav2 = "smp1.wav";
+    SNDFILE * outfile = sf_open(wav2, SFM_WRITE, &sfinfo);
+
+    vector<int> wrt;
+    for(int i=0; i<(int)vcnl[0].size(); i++){
+        for(int j=0; j<sfinfo.channels; j++)
+            wrt.push_back(vcnl[j][i]);
+    }
+        
+    sf_count_t count = sf_write_int(outfile, &wrt[0], (int)vcnl[0].size()) ;
+    sf_write_sync(outfile);
+    sf_close(outfile);
+    */
+
+    
+    //teste audio encode e decode
+    AudioCodec aud;
+    char const* wav = "sample01.wav";
+    char const* wav2 = "new_smp01.wav";
+    aud.encode("testfile.bin", wav);
+    aud.decode("testfile.bin", wav2);
+
+    
+
+
 
    return 0;
 }

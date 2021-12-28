@@ -9,17 +9,23 @@
 
 class AudioCodec{
     public:
-        /// indica a ordem do temporal do predictor
-        int order = 1;
+        
+        int order = 1, shift =0;
 
         vector<int> predictive_coding(vector<int> aud);
 
-        void predictive_decoding(vector<int> prc);
+        vector<int> predictive_decoding(vector<int> rsd);
+
+        void entropy(vector<int> aud);
     //public:
 
-        void encode(const char* fname);
+        void set_order(int o);
 
-        void decode(const char* fname);
+        void set_shift(int s);
+
+        void encode(string fname, char const* wav);
+
+        void decode(string fname, char const* wav);
 };
 
 
