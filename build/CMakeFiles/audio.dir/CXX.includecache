@@ -47,15 +47,13 @@ iostream
 -
 fstream
 -
-bitset
--
-cassert
--
 cmath
 -
-math.h
--
 vector
+-
+algorithm
+-
+numeric
 -
 
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/audio/AudioCodec.h

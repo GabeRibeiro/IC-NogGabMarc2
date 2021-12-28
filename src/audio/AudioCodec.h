@@ -12,11 +12,11 @@ class AudioCodec{
         
         int order = 1, shift =0;
 
-        vector<int> predictive_coding(vector<int> aud);
+        vector<short> predictive_coding(vector<short> aud);
 
-        vector<int> predictive_decoding(vector<int> rsd);
+        vector<short> predictive_decoding(vector<short> rsd);
 
-        void entropy(vector<int> aud);
+        double entropy(vector<int> vec);
     //public:
 
         void set_order(int o);

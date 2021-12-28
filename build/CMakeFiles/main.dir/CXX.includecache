@@ -81,12 +81,12 @@ opencv2/imgcodecs.hpp
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/opencv2/imgcodecs.hpp
 opencv2/highgui.hpp
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/opencv2/highgui.hpp
+../src/audio/AudioCodec.h
+/home/marcoramos/Desktop/IC-NogGabMarc2/src/audio/AudioCodec.h
 ../src/Golomb/Golomb.h
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/Golomb/Golomb.h
 ../src/BitStream/bitstream.h
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/BitStream/bitstream.h
 ../src/jpeg/ImageCodec.h
 /home/marcoramos/Desktop/IC-NogGabMarc2/src/jpeg/ImageCodec.h
-../src/audio/AudioCodec.h
-/home/marcoramos/Desktop/IC-NogGabMarc2/src/audio/AudioCodec.h
 
