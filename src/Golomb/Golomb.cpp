@@ -93,7 +93,6 @@ void Golomb::writeHdr(vector<int> v, bitstream &b){
     }
 }
 
-
 vector<int> Golomb::read(int elems, bitstream &bi){
     vector<int> rd;
     int i;

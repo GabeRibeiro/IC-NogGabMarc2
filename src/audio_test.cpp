@@ -57,7 +57,7 @@ int main(void){
     char const* wav = "sample01.wav";
     char const* wav2 = "new_smp01.wav";
     aud.encode("testfile.bin", wav);
-    //aud.decode("testfile.bin", wav2);
+    aud.decode("testfile.bin", wav2);
 
 
 

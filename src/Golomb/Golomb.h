@@ -29,6 +29,7 @@ class Golomb{
         void write(vector<int> v, bitstream &b);
         vector<int> read(int elems, bitstream &b);
         void writeHdr( vector<int> v, bitstream &b);
+        void writeHdr( vector<short> v, bitstream &b);
         vector<int> readHdr(int type, bitstream &b);
 
 };

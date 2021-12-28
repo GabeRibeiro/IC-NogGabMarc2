@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -37,9 +38,8 @@ double AudioCodec::entropy(vector<int> vec){
     return -entropy_ch; 
 }
 
-vector<short> AudioCodec::predictive_coding(vector<short> aud){
-    cout << "Encoding" << endl;
-    vector<short> rsd, prdt;
+vector<int> AudioCodec::predictive_coding(vector<int> aud){
+    vector<int> rsd, prdt;
     int px, x1=0, x2=0, x3=0, r;
     for(int i =0; i<(int)aud.size(); i++){
         switch(order){
@@ -67,7 +67,7 @@ void AudioCodec::encode(string fname, char const* wav){
         throw runtime_error("Error opening sound file.");
 
     short cnt, cls[sfinfo.channels];
-    vector<short> vcnl[sfinfo.channels], rcnl[sfinfo.channels];
+    vector<int> vcnl[sfinfo.channels], rcnl[sfinfo.channels];
 
     while((cnt = (int) sf_readf_short(snd, cls, 1))>0){
         for(int i=0; i<sfinfo.channels; i++)
@@ -80,11 +80,11 @@ void AudioCodec::encode(string fname, char const* wav){
     vector<int> map;
     for(int i=0; i<sfinfo.channels; i++)
         transform(rcnl[i].begin(), rcnl[i].end(), back_inserter(map),  
-        [](int x) { return  x>=0? x * 2 : -2*x-1; });  
+        [](int x) { return  abs(x); });  
     double mean=accumulate(map.begin(), map.end(), 0);
-    Golomb gb(  ceil(-1/log2(mean/(mean+1)))  );
-    
-    cout << "Golomb m: " << gb.get_m() << endl;
+    mean/= sfinfo.channels*sfinfo.frames;
+
+    Golomb gb(  ceil(-1/log2(mean/(mean+1))) );
 
     bitstream bss((char*) fname.data(), std::ios::binary|std::ios::out);
     
@@ -95,11 +95,8 @@ void AudioCodec::encode(string fname, char const* wav){
     hdr.push_back(sfinfo.format);       //formato
     hdr.push_back(sfinfo.samplerate);   //samplerate
     hdr.push_back(order);               //ordem
-    cout << "writing header" << endl;
     gb.writeHdr(hdr, bss);
 
-
-    cout << "writing wav" << endl;
     for(int i=0; i<sfinfo.channels; i++)
         gb.write(rcnl[i], bss);
     bss.padding();
@@ -107,8 +104,7 @@ void AudioCodec::encode(string fname, char const* wav){
     sf_close(snd);
 }
 
-vector<short> AudioCodec::predictive_decoding(vector<short> rsd){
-    cout << "Decoding" << endl;
+vector<int> AudioCodec::predictive_decoding(vector<int> rsd){
     int px, x1=0, x2=0, x3=0;
     vector<int> v;
     for(int i =0; i<(int)rsd.size(); i++){
@@ -128,15 +124,18 @@ vector<short> AudioCodec::predictive_decoding(vector<short> rsd){
 void AudioCodec::decode(string fname, char const* wav){
     bitstream bss((char*) fname.data(), std::ios::binary|std::ios::in);
     Golomb gb(10);
-    cout << "Reading header" << endl;
+    
     vector<int> hdr = gb.readHdr(6, bss);
+
     gb.set_m(hdr[0]);
     order = hdr[5];
 
-    SF_INFO sfinfo ;
+    SF_INFO sfinfo;
     sfinfo.channels = hdr[1];
     sfinfo.format = hdr[3];
     sfinfo.samplerate = hdr[4];
+    cout << "format :  "<< sfinfo.format <<endl;
+
 
     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];
     for(int i=0; i<hdr[1]; i++){
@@ -144,16 +143,14 @@ void AudioCodec::decode(string fname, char const* wav){
         vcnl[i] = predictive_decoding(rcnl[i]);
     }
 
-    
-    vector<int> wrt;
+    vector<short> wrt;
     for(int i=0; i<(int)vcnl[0].size(); i++){
         for(int j=0; j<sfinfo.channels; j++)
-            wrt.push_back(vcnl[j][i]);
+            wrt.push_back((short)vcnl[j][i]);
     }
 
-    cout << "Reading wav" << endl;
     SNDFILE * outfile = sf_open(wav, SFM_WRITE, &sfinfo);
-    sf_count_t count = sf_write_int(outfile, &wrt[0], (int)vcnl[0].size()) ;
+    sf_count_t count = sf_write_short(outfile, &wrt[0], hdr[1]*hdr[2]);
     sf_write_sync(outfile);
     sf_close(outfile);
 }
