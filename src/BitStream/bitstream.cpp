@@ -27,17 +27,6 @@ void bitstream::writeNBits(uint8_t val, uint n) {
 }
 
 
-void bitstream::writeNBits2(uint32_t* val, uint n) {
-	for (uint i = 0; i < n/32.0; i++) {
-		cout << "aa";
-		cout << val[i] << endl;
-		if (i == n/8)
-			writeNBits(val[i], n%32);	// escreve o que sobra do resto da divisão inteira por 8 (ultimo byte)
-		else
-			writeNBits(val[i], 32);		// escreve as 8 posições do byte
-	}
-}
-
 
 uint8_t bitstream::readBit(){
 	uint8_t bit = 0;
