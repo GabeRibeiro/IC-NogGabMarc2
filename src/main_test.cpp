@@ -109,16 +109,55 @@ int main(void){
    bs.close();
    */
 
-    
+    /*
     //teste img encode e decode
     ImageCodec i;
-    i.set_shift(4);
+    i.set_shift(7);
     Mat img = cv::imread("lena.ppm");
     i.encode("testfile.bin", img);
     i.decode("testfile.bin", img);
     cv::imshow("new rgb", img);
     cv::waitKey(0);
+    */
+
+    ImageCodec img;
+    Mat mat;
+    string filename, rgb;
+    int i;
+    char yn;
+
+    cout << "Pretende codificar um ficheiro imagem?[y/n]" << endl;
+    cin >> yn;
+    if(yn == 'y'){
+        cout << "Nome do ficheiro imagem a ler: " << endl;
+        cin >> rgb;
+        mat = cv::imread(rgb);
+        cout << "Nome do ficheiro binario a escrever: " << endl;
+        cin >> filename;
+        cout << "Qual predict function usar: [0 a 7]" << endl;
+        cin >> i;
+        img.set_function(i);
+        cout << "Nivel de quantização : [0 a 7]" << endl;
+        cin >> i;
+        img.set_shift(i);
+        img.encode(filename, mat);
+        cout << "Fim de processo de codificaçao." << endl;
+    }
     
+    cout << "Pretende descodificar um ficheiro audio?[y/n]" << endl;
+    cin >> yn;
+    if(yn == 'y'){
+        cout << "Nome do ficheiro binario a ler: " << endl;
+        cin >> filename;
+        cout << "Nome do ficheiro audio a escrever: " << endl;
+        cin >> rgb;
+        mat = cv::imread(rgb);
+        img.decode(filename, mat);
+        cv::imshow("new rgb", mat);
+        cv::imwrite(filename, mat);
+        cv::waitKey(0);
+        cout << "Fim de processo de descodificaçao." << endl;
+    }
 
    return 0;
 }

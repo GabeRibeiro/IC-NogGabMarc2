@@ -181,6 +181,7 @@ void ImageCodec::decode(string fname, Mat&rgb){
     Mat u = Mat::zeros(rows/2, cols/2, CV_8UC1);
     Mat v = Mat::zeros(rows/2, cols/2, CV_8UC1);
 
+
     cout << "Read yuv" << endl;
     vector<int> y_(&g_rd[0], &g_rd[rows*cols-1]);
     vector<int> u_(&g_rd[rows*cols], &g_rd[5*rows*cols/4-1]);

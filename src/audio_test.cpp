@@ -13,20 +13,42 @@ using namespace std;
 
 int main(void){
 
-    /*
+    
     //teste audio encode e decode
+
     AudioCodec aud;
-    char const* wav = "sample01.wav";
-    char const* wav2 = "new_smp01.wav";
-    aud.encode("testfile.bin", wav);
-    aud.decode("testfile.bin", wav2);
-    */
+    char* wav;
+    string filename;
+    int i;
+    char yn;
 
-   /*
-   //teste gabi
-
-   */
-
+    cout << "Pretende codificar um ficheiro audio?[y/n]" << endl;
+    cin >> yn;
+    if(yn == 'y'){
+        cout << "Nome do ficheiro audio a ler: " << endl;
+        cin >> wav;
+        cout << "Nome do ficheiro binario a escrever: " << endl;
+        cin >> filename;
+        cout << "Qual ordem do predict function: [1 a 3]" << endl;
+        cin >> i;
+        aud.set_order(i);
+        cout << "Nivel de quantização : [0 a 15]" << endl;
+        cin >> i;
+        aud.set_shift(i);
+        aud.encode(filename, wav);
+        cout << "Fim de processo de codificaçao." << endl;
+    }
+    
+    cout << "Pretende descodificar um ficheiro audio?[y/n]" << endl;
+    cin >> yn;
+    if(yn == 'y'){
+        cout << "Nome do ficheiro binario a ler: " << endl;
+        cin >> filename;
+        cout << "Nome do ficheiro audio a escrever: " << endl;
+        cin >> wav;
+        aud.decode(filename, wav);
+        cout << "Fim de processo de descodificaçao." << endl;
+    }
 
    return 0;
 }

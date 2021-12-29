@@ -73,14 +73,14 @@ class Golomb{
         */
         vector<int> read(int elems, bitstream &b);
         /**
-            * @brief Function to write Header in binary
-            * @param v is an array of integers containing ... 
+            * @brief Function to write Header in binary, fist number written is in unary and indicate de number of bits per binary number
+            * @param v is an array of integers containing header fields 
             * @param b is a bitstream address
         */
         void writeHdr( vector<int> v, bitstream &b);
         /**
             * @brief Function to read Header 
-            * @param type is an integer that defines the type (specify content ...)
+            * @param type is an integer that defines the number of header fields
             * @param b is a bitstream address
             * @returns integer vector containing the Header information
         */
