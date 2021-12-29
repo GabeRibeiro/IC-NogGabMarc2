@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <unordered_map>
 #include <cmath>
 #include "ImageCodec.h"
 #include "opencv2/imgproc.hpp"
@@ -27,6 +28,23 @@ int ImageCodec::non_linear_jpegls(int a, int b, int c){
     if(c >= max(a,b)) return min(a,b);
     else if(c <= min(a,b) ) return max(a,b);
     return a+b-c;
+}
+
+double entropy(vector<int> vec){
+    unordered_map<int, double> ch;
+    double entropy_ch=0, prob;
+    int total = vec.size(), value;
+
+    for(int i : vec){    
+        value = i;
+        ch[i]++;
+    }
+
+    for(auto it:ch) {
+        prob = double (it.second / double(total));
+        entropy_ch += prob * log2(prob);
+    }
+    return -entropy_ch; 
 }
 
 void ImageCodec::set_function(int f){

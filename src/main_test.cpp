@@ -120,6 +120,8 @@ int main(void){
     cv::waitKey(0);
     */
 
+
+    /*
     ImageCodec img;
     Mat mat;
     string filename, rgb;
@@ -158,6 +160,26 @@ int main(void){
         cv::waitKey(0);
         cout << "Fim de processo de descodificaçao." << endl;
     }
+    */
+
+    ImageCodec img;
+    string filename;
+    Mat rgb0 = imread("lena.ppm");
+    Mat rgb1 = imread("baboon.ppm");
+    int i;
+    for(int p=0; p<7; p+=2){
+        for(int l=1; l<7; l++){
+            filename = "img" + to_string(l) + to_string(p) ;
+            img.set_function(l);
+            img.set_shift(p);
+            cout << filename << "lena.bin" << endl;
+            img.encode(filename + "lena.bin", rgb0);
+            
+            cout << filename << "babu.bin" << endl;
+            img.encode(filename+ "babu.bin", rgb1);
+        }
+    }
+   
 
    return 0;
 }
