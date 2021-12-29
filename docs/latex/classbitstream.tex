@@ -2,7 +2,7 @@
 \label{classbitstream}\index{bitstream@{bitstream}}
 
 
-This class allows to read and write binary files.  
+This class allows reading and writing in binary files.  
 
 
 
@@ -40,17 +40,17 @@ string \mbox{\hyperlink{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}{to\+St
 \begin{DoxyCompactItemize}
 \item 
 u\+\_\+char \mbox{\hyperlink{classbitstream_a0af543c7e8fa9905d67ea3ec8d00b76d}{byte}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em This variable initializes a byte. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}
-\item 
+\begin{DoxyCompactList}\small\item\em This variable initializes a pointer. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classbitstream_ab0a232c81eab06b59285e3a605842c96}{byte\+Count}}
 \item 
 bool \mbox{\hyperlink{classbitstream_ad8795a376173c69417aa03124a105fb9}{write\+Mode}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This variable decides whether its a read or write mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-This class allows to read and write binary files. 
+This class allows reading and writing in binary files. 
 
 Definition at line \mbox{\hyperlink{bitstream_8h_source_l00016}{16}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
 
@@ -80,11 +80,11 @@ Definition at line \mbox{\hyperlink{bitstream_8h_source_l00023}{23}} of file \mb
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00023                                                       : fstream(fname, mode) \{}
 \DoxyCodeLine{00024             \textcolor{keywordflow}{if} (mode \& std::ios::out) \{}
-\DoxyCodeLine{00025                 pointer = 7;}
-\DoxyCodeLine{00026                 writeMode = \textcolor{keyword}{true};}
+\DoxyCodeLine{00025                 \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
+\DoxyCodeLine{00026                 \mbox{\hyperlink{classbitstream_ad8795a376173c69417aa03124a105fb9}{writeMode}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{00027             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mode \& std::ios::in) \{}
-\DoxyCodeLine{00028                 pointer = -\/1;}
-\DoxyCodeLine{00029                 writeMode = \textcolor{keyword}{false};}
+\DoxyCodeLine{00028                 \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = -\/1;}
+\DoxyCodeLine{00029                 \mbox{\hyperlink{classbitstream_ad8795a376173c69417aa03124a105fb9}{writeMode}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{00030             \}}
 \DoxyCodeLine{00031         \};}
 
@@ -109,7 +109,7 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00080}{80}} of file \
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00080                        \{}
-\DoxyCodeLine{00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/pointer; i++)\{}
+\DoxyCodeLine{00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}; i++)\{}
 \DoxyCodeLine{00082         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
 \DoxyCodeLine{00083     \}}
 \DoxyCodeLine{00084 \}}
@@ -133,14 +133,14 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00042}{42}} of file \
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00042                           \{}
 \DoxyCodeLine{00043     uint8\_t bit = 0;}
-\DoxyCodeLine{00044     \textcolor{keywordflow}{if}(pointer < 0)\{}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0)\{}
 \DoxyCodeLine{00045         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
 \DoxyCodeLine{00046         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
-\DoxyCodeLine{00047         pointer = 7;}
+\DoxyCodeLine{00047         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{00048     \}}
 \DoxyCodeLine{00049     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
-\DoxyCodeLine{00050     bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
-\DoxyCodeLine{00051     pointer-\/-\/;}
+\DoxyCodeLine{00050     bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{00051     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{00052     \textcolor{keywordflow}{return} bit;}
 \DoxyCodeLine{00053 \}}
 
@@ -158,12 +158,12 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00055}{55}} of file \
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00055                                     \{}
-\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (pointer < 0) \{}
+\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0) \{}
 \DoxyCodeLine{00057         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
-\DoxyCodeLine{00058         pointer = 7;}
+\DoxyCodeLine{00058         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{00059     \}}
-\DoxyCodeLine{00060     *bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
-\DoxyCodeLine{00061     pointer-\/-\/;}
+\DoxyCodeLine{00060     *bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{00061     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{00062 \}}
 
 \end{DoxyCode}
@@ -243,13 +243,13 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00010}{10}} of file \
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00010                                      \{}
-\DoxyCodeLine{00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << pointer;}
-\DoxyCodeLine{00012     \textcolor{keywordflow}{if} (pointer > 0)\{}
-\DoxyCodeLine{00013         pointer-\/-\/;}
+\DoxyCodeLine{00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}};}
+\DoxyCodeLine{00012     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} > 0)\{}
+\DoxyCodeLine{00013         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{00014         \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00015     \}}
 \DoxyCodeLine{00016     write((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
-\DoxyCodeLine{00017     pointer = 7;}
+\DoxyCodeLine{00017     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{00018     \textcolor{keywordtype}{byte} = 0;}
 \DoxyCodeLine{00019 \}}
 
@@ -321,7 +321,11 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00030}{30}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8h_source_l00066}{66}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+This variable initializes a byte. 
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00069}{69}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
 
 \mbox{\Hypertarget{classbitstream_ab0a232c81eab06b59285e3a605842c96}\label{classbitstream_ab0a232c81eab06b59285e3a605842c96}} 
 \index{bitstream@{bitstream}!byteCount@{byteCount}}
@@ -331,7 +335,7 @@ Definition at line \mbox{\hyperlink{bitstream_8h_source_l00066}{66}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8h_source_l00068}{68}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00074}{74}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
 
 \mbox{\Hypertarget{classbitstream_a69277f782c2b76acb4f569e70744e53f}\label{classbitstream_a69277f782c2b76acb4f569e70744e53f}} 
 \index{bitstream@{bitstream}!pointer@{pointer}}
@@ -341,7 +345,11 @@ Definition at line \mbox{\hyperlink{bitstream_8h_source_l00068}{68}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8h_source_l00067}{67}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+This variable initializes a pointer. 
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00073}{73}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
 
 \mbox{\Hypertarget{classbitstream_ad8795a376173c69417aa03124a105fb9}\label{classbitstream_ad8795a376173c69417aa03124a105fb9}} 
 \index{bitstream@{bitstream}!writeMode@{writeMode}}
@@ -351,7 +359,11 @@ Definition at line \mbox{\hyperlink{bitstream_8h_source_l00067}{67}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8h_source_l00069}{69}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
+This variable decides whether its a read or write mode. 
+
+
+
+Definition at line \mbox{\hyperlink{bitstream_8h_source_l00078}{78}} of file \mbox{\hyperlink{bitstream_8h_source}{bitstream.\+h}}.
 
 
 

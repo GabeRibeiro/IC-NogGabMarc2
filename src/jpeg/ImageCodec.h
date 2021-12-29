@@ -17,9 +17,8 @@ using namespace std;
 using namespace cv;
 
 /**
- * @file Lossless.cpp
- * Class for lossless image codec
- */
+   * @brief Class for lossless image codec
+*/
 class ImageCodec{
     public:
         int function=0, shift=0;
