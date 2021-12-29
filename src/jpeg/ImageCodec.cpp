@@ -30,7 +30,7 @@ int ImageCodec::non_linear_jpegls(int a, int b, int c){
     return a+b-c;
 }
 
-double entropy(vector<int> vec){
+double ImageCodec::entropy(vector<int> vec){
     unordered_map<int, double> ch;
     double entropy_ch=0, prob;
     int total = vec.size(), value;
@@ -130,6 +130,8 @@ void ImageCodec::encode(string fname, Mat& rgb){
     vector<int> y_ = predictive_coding(y);
     vector<int> u_ = predictive_coding(u);
     vector<int> v_ = predictive_coding(v);
+
+    
     
     vector<int> map;
     transform(y_.begin(), y_.end(), back_inserter(map),  

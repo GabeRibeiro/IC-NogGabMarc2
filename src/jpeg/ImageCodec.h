@@ -109,6 +109,14 @@ class ImageCodec{
             * @param yuv_ integer vector containing residuals
         */
         void predictive_decoding(Mat& yuv, vector<int> yuv_);
+
+        /**
+            * @brief Function to calculate entropy
+            * @param vec integer vector containing channel values
+            * @return entropy value
+        */
+        double entropy(vector<int> vec);
+
     //public:
         
         void set_shift(int s);

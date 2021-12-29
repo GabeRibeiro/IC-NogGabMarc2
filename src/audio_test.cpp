@@ -12,7 +12,6 @@
 using namespace std;
 
 int main(void){
-    //teste audio encode e decode
 
     AudioCodec aud;
     char const* wav[3] = {"sample01.wav" , "sample02.wav", "sample03.wav"};
@@ -20,20 +19,6 @@ int main(void){
     int i, w;
     char yn;
 
-    for(int p=0; p<9; p+=3){
-        for(int l=1; l<4; l++){
-            filename = "smp" + to_string(l) + to_string(p) ;
-            aud.set_order(l);
-            aud.set_shift(p);
-            cout << filename << "s1.bin" << endl;
-            aud.encode(filename + "s1.bin", wav[0]);
-            
-            cout << filename << "s2.bin" << endl;
-            aud.encode(filename+ "s2.bin", wav[1]);
-        }
-    }
-
-    /*
     cout << "Pretende codificar um ficheiro audio?[y/n]" << endl;
     cin >> yn;
     if(yn == 'y'){
@@ -60,6 +45,6 @@ int main(void){
         aud.decode(filename, res);
         cout << "Fim de processo de descodificaçao." << endl;
     }
-    */
+
    return 0;
 }
