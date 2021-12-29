@@ -109,16 +109,16 @@ int main(void){
    bs.close();
    */
 
-    /*
+    
     //teste img encode e decode
     ImageCodec i;
-    i.set_shift(0);
+    i.set_shift(4);
     Mat img = cv::imread("lena.ppm");
     i.encode("testfile.bin", img);
     i.decode("testfile.bin", img);
     cv::imshow("new rgb", img);
     cv::waitKey(0);
-    */
+    
 
    return 0;
 }
