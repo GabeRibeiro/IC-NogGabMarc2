@@ -82,14 +82,14 @@ void Golomb::write(vector<int> v, bitstream &b){
             b.writeBit(  (golb[j]=='0'? 0 : 1)   );
     }
 }
- 
+
 void Golomb::writeHdr(vector<int> v, bitstream &b){
     int unr = log2(*max_element(v.begin(), v.end())) +1;
     string hdr;
     for(int i=0; i<=(int)v.size(); i++){
         hdr = (i? binary(v[i-1], unr): unary(unr));
         for(int j=0; j<int(hdr.size()); j++)
-             b.writeBit(  (hdr[j]=='0'? 0 : 1)   );  
+             b.writeBit(  (hdr[j]=='0'? 0 : 1)   );
     }
 }
 

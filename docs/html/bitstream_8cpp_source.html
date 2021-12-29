@@ -99,13 +99,13 @@ $(function() {
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>std;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">   10</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">bitstream::writeBit</a>(uint8_t value){</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">byte</span> |= (value &amp; 0x01) &lt;&lt; pointer;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">if</span> (pointer &gt; 0){</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        pointer--;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">byte</span> |= (value &amp; 0x01) &lt;&lt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &gt; 0){</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    }</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    write((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    pointer = 7;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">byte</span> = 0;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
@@ -132,24 +132,24 @@ $(function() {
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classbitstream.html#a5ae811f4593a95963e16395d7f65423f">   42</a></span>uint8_t <a class="code hl_function" href="classbitstream.html#a5ae811f4593a95963e16395d7f65423f">bitstream::readBit</a>(){</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    uint8_t bit = 0;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span>(pointer &lt; 0){</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &lt; 0){</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        read((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">//cout &lt;&lt; &quot;value readfile: &quot; &lt;&lt; byte &lt;&lt; endl;</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        pointer = 7;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">//cout &lt;&lt; &quot;bit read: &quot; &lt;&lt; ((byte &gt;&gt; pointer) &amp; 0x01) &lt;&lt; endl;</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    bit = ((<span class="keywordtype">byte</span> &gt;&gt; pointer) &amp; 0x01);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    pointer--;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    bit = ((<span class="keywordtype">byte</span> &gt;&gt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>) &amp; 0x01);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> bit;</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="classbitstream.html#a5ae811f4593a95963e16395d7f65423f">bitstream::readBit</a>(uint8_t* bit) {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span> (pointer &lt; 0) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &lt; 0) {</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        read((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1); </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        pointer = 7;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    *bit = ((<span class="keywordtype">byte</span> &gt;&gt; pointer) &amp; 0x01);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    pointer--;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    *bit = ((<span class="keywordtype">byte</span> &gt;&gt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>) &amp; 0x01);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classbitstream.html#ac07922b2b164b0d4ec9786f979e05651">   64</a></span><span class="keywordtype">char</span>* <a class="code hl_function" href="classbitstream.html#ac07922b2b164b0d4ec9786f979e05651">bitstream::readNBits</a>(uint n){</div>
@@ -169,7 +169,7 @@ $(function() {
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classbitstream.html#aa2d1445ffe50215291edc0000a292cc1">   80</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classbitstream.html#aa2d1445ffe50215291edc0000a292cc1">bitstream::padding</a>(){</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 7-pointer; i++){</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 7-<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>; i++){</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_function" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">writeBit</a>(0);</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
@@ -181,6 +181,7 @@ $(function() {
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">// }</span></div>
 <div class="ttc" id="aclassbitstream_html_a36e946e458ed555baf5a8a4623a2e707"><div class="ttname"><a href="classbitstream.html#a36e946e458ed555baf5a8a4623a2e707">bitstream::writeNBits</a></div><div class="ttdeci">void writeNBits(uint8_t value, uint n)</div><div class="ttdoc">This function allows writing multiple bits in n bytes.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8cpp_source.html#l00021">bitstream.cpp:21</a></div></div>
 <div class="ttc" id="aclassbitstream_html_a5ae811f4593a95963e16395d7f65423f"><div class="ttname"><a href="classbitstream.html#a5ae811f4593a95963e16395d7f65423f">bitstream::readBit</a></div><div class="ttdeci">uint8_t readBit()</div><div class="ttdoc">This function allows reading a single bit from a byte.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8cpp_source.html#l00042">bitstream.cpp:42</a></div></div>
+<div class="ttc" id="aclassbitstream_html_a69277f782c2b76acb4f569e70744e53f"><div class="ttname"><a href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">bitstream::pointer</a></div><div class="ttdeci">int pointer</div><div class="ttdoc">This variable initializes a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8h_source.html#l00073">bitstream.h:73</a></div></div>
 <div class="ttc" id="aclassbitstream_html_a85276bd2ad5ac2c8046315e95e12fcfa"><div class="ttname"><a href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">bitstream::writeBit</a></div><div class="ttdeci">void writeBit(uint8_t value)</div><div class="ttdoc">This function allows writing a single bit in a byte.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8cpp_source.html#l00010">bitstream.cpp:10</a></div></div>
 <div class="ttc" id="aclassbitstream_html_aa2d1445ffe50215291edc0000a292cc1"><div class="ttname"><a href="classbitstream.html#aa2d1445ffe50215291edc0000a292cc1">bitstream::padding</a></div><div class="ttdeci">void padding()</div><div class="ttdoc">This function allows adding zero's to fill the last byte written.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8cpp_source.html#l00080">bitstream.cpp:80</a></div></div>
 <div class="ttc" id="aclassbitstream_html_ac07922b2b164b0d4ec9786f979e05651"><div class="ttname"><a href="classbitstream.html#ac07922b2b164b0d4ec9786f979e05651">bitstream::readNBits</a></div><div class="ttdeci">char * readNBits(uint n)</div><div class="ttdoc">This function allows reading multiple bits from one or more bytes.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8cpp_source.html#l00064">bitstream.cpp:64</a></div></div>

@@ -20,40 +20,42 @@
 \DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00016}00016 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00017}00017 \textcolor{keyword}{using namespace }cv;}
 \DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00018}00018 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00023}\mbox{\hyperlink{classImageCodec}{00023}} \textcolor{keyword}{class }\mbox{\hyperlink{classImageCodec}{ImageCodec}}\{}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00024}00024     \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00025}00025         \textcolor{keywordtype}{int} function = 0;}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00029}00029         \textcolor{keywordtype}{void} \mbox{\hyperlink{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}{yuv2rgb}}(Mat\& rgb, Mat\& y, Mat\& u, Mat\& v);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00031}00031         \textcolor{keywordtype}{void} \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}}(Mat\& rgb, Mat\& y, Mat\& u, Mat\& v);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00032}00032 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00033}00033         \textcolor{keywordtype}{int} non\_linear\_jpegls(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00035}00035         \textcolor{keywordtype}{int} linear\_jpeg\_mode1(\textcolor{keywordtype}{int} a);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00036}00036 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00037}00037         \textcolor{keywordtype}{int} linear\_jpeg\_mode2(\textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00038}00038 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00039}00039         \textcolor{keywordtype}{int} linear\_jpeg\_mode3(\textcolor{keywordtype}{int} c);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00041}00041         \textcolor{keywordtype}{int} linear\_jpeg\_mode4(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00043}00043         \textcolor{keywordtype}{int} linear\_jpeg\_mode5(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00044}00044 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00045}00045         \textcolor{keywordtype}{int} linear\_jpeg\_mode6(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00046}00046 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00047}00047         \textcolor{keywordtype}{int} linear\_jpeg\_mode7(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00048}00048 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00049}00049         vector<int> predictive\_coding(Mat\& yuv);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00050}00050 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00051}00051         \textcolor{keywordtype}{void} predictive\_decoding(Mat\& yuv, vector<int> yuv\_);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00052}00052     \textcolor{comment}{//public:}}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00053}00053         }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00054}00054         \textcolor{keywordtype}{void} set\_function(\textcolor{keywordtype}{int} f);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00055}00055 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00056}00056         \textcolor{keywordtype}{void} encode(\textcolor{keywordtype}{string} fname, Mat\& img);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00058}00058         \textcolor{keywordtype}{void} decode(\textcolor{keywordtype}{string} fname, Mat\& img);}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00059}00059 \};}
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00060}00060 }
-\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00061}00061 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00022}\mbox{\hyperlink{classImageCodec}{00022}} \textcolor{keyword}{class }\mbox{\hyperlink{classImageCodec}{ImageCodec}}\{}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00023}00023     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00024}00024         \textcolor{keywordtype}{int} function=0, shift=0;}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00028}00028         \textcolor{keywordtype}{void} \mbox{\hyperlink{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}{yuv2rgb}}(Mat\& rgb, Mat\& y, Mat\& u, Mat\& v);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00030}00030         \textcolor{keywordtype}{void} \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}}(Mat\& rgb, Mat\& y, Mat\& u, Mat\& v);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00032}00032         \textcolor{keywordtype}{int} non\_linear\_jpegls(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00034}00034         \textcolor{keywordtype}{int} linear\_jpeg\_mode1(\textcolor{keywordtype}{int} a);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00036}00036         \textcolor{keywordtype}{int} linear\_jpeg\_mode2(\textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00038}00038         \textcolor{keywordtype}{int} linear\_jpeg\_mode3(\textcolor{keywordtype}{int} c);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00040}00040         \textcolor{keywordtype}{int} linear\_jpeg\_mode4(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00042}00042         \textcolor{keywordtype}{int} linear\_jpeg\_mode5(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00044}00044         \textcolor{keywordtype}{int} linear\_jpeg\_mode6(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} c);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00046}00046         \textcolor{keywordtype}{int} linear\_jpeg\_mode7(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00048}00048         vector<int> predictive\_coding(Mat\& yuv);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00050}00050         \textcolor{keywordtype}{void} predictive\_decoding(Mat\& yuv, vector<int> yuv\_);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00051}00051     \textcolor{comment}{//public:}}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00052}00052         }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00053}00053         \textcolor{keywordtype}{void} set\_shift(\textcolor{keywordtype}{int} s);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00055}00055         \textcolor{keywordtype}{void} set\_function(\textcolor{keywordtype}{int} f);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00057}00057         \textcolor{keywordtype}{void} encode(\textcolor{keywordtype}{string} fname, Mat\& img);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00059}00059         \textcolor{keywordtype}{void} decode(\textcolor{keywordtype}{string} fname, Mat\& img);}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00060}00060 \};}
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{ImageCodec_8h_source_l00062}00062 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

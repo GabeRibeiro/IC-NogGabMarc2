@@ -12,13 +12,13 @@
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00008}00008 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00009}00009 }
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00010}\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{00010}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{bitstream::writeBit}}(uint8\_t value)\{}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00011}00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << pointer;}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00012}00012     \textcolor{keywordflow}{if} (pointer > 0)\{}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00013}00013         pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00011}00011     \textcolor{keywordtype}{byte} |= (value \& 0x01) << \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}};}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00012}00012     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} > 0)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00013}00013         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00014}00014         \textcolor{keywordflow}{return};}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00015}00015     \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00016}00016     write((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00017}00017     pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00017}00017     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00018}00018     \textcolor{keywordtype}{byte} = 0;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00019}00019 \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00020}00020 }
@@ -45,24 +45,24 @@
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00041}00041 }
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00042}\mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{00042}} uint8\_t \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{bitstream::readBit}}()\{}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00043}00043     uint8\_t bit = 0;}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00044}00044     \textcolor{keywordflow}{if}(pointer < 0)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00044}00044     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0)\{}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00045}00045         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00046}00046         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00047}00047         pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00047}00047         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00048}00048     \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00049}00049     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00050}00050     bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00051}00051     pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00050}00050     bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00051}00051     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00052}00052     \textcolor{keywordflow}{return} bit;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00053}00053 \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00054}00054 }
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00055}00055 \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{bitstream::readBit}}(uint8\_t* bit) \{}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00056}00056     \textcolor{keywordflow}{if} (pointer < 0) \{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00056}00056     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0) \{}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00057}00057         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00058}00058         pointer = 7;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00058}00058         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00059}00059     \}}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00060}00060     *bit = ((\textcolor{keywordtype}{byte} >> pointer) \& 0x01);}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00061}00061     pointer-\/-\/;}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00060}00060     *bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00061}00061     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00062}00062 \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00063}00063 }
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00064}\mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{00064}} \textcolor{keywordtype}{char}* \mbox{\hyperlink{classbitstream_ac07922b2b164b0d4ec9786f979e05651}{bitstream::readNBits}}(uint n)\{}
@@ -82,7 +82,7 @@
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00078}00078 \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00079}00079 }
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00080}\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{00080}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{bitstream::padding}}()\{}
-\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00081}00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/pointer; i++)\{}
+\DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00081}00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}; i++)\{}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00082}00082         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00083}00083     \}}
 \DoxyCodeLine{\Hypertarget{bitstream_8cpp_source_l00084}00084 \}}

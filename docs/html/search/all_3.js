@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ic_2dnoggabmarc2_0',['IC-NogGabMarc2',['../md_README.html',1,'']]],
-  ['imagecodec_1',['ImageCodec',['../classImageCodec.html',1,'']]]
+  ['encode_0',['encode',['../classGolomb.html#adcdf86488fb9ebe1e02a8f20ccacd6c5',1,'Golomb']]]
 ];

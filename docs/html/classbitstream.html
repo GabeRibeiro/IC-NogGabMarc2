@@ -90,7 +90,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This class allows to read and write binary files.  
+<p>This class allows reading and writing in binary files.  
  <a href="classbitstream.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="bitstream_8h_source.html">bitstream.h</a>&gt;</code></p>
@@ -131,16 +131,19 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0af543c7e8fa9905d67ea3ec8d00b76d"><td class="memItemLeft" align="right" valign="top">u_char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbitstream.html#a0af543c7e8fa9905d67ea3ec8d00b76d">byte</a> = 0</td></tr>
+<tr class="memdesc:a0af543c7e8fa9905d67ea3ec8d00b76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This variable initializes a byte.  <a href="classbitstream.html#a0af543c7e8fa9905d67ea3ec8d00b76d">More...</a><br /></td></tr>
 <tr class="separator:a0af543c7e8fa9905d67ea3ec8d00b76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69277f782c2b76acb4f569e70744e53f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a></td></tr>
+<tr class="memdesc:a69277f782c2b76acb4f569e70744e53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This variable initializes a pointer.  <a href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">More...</a><br /></td></tr>
 <tr class="separator:a69277f782c2b76acb4f569e70744e53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0a232c81eab06b59285e3a605842c96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbitstream.html#ab0a232c81eab06b59285e3a605842c96">byteCount</a></td></tr>
 <tr class="separator:ab0a232c81eab06b59285e3a605842c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8795a376173c69417aa03124a105fb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbitstream.html#ad8795a376173c69417aa03124a105fb9">writeMode</a></td></tr>
+<tr class="memdesc:ad8795a376173c69417aa03124a105fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This variable decides whether its a read or write mode.  <a href="classbitstream.html#ad8795a376173c69417aa03124a105fb9">More...</a><br /></td></tr>
 <tr class="separator:ad8795a376173c69417aa03124a105fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This class allows to read and write binary files. </p>
+<div class="textblock"><p >This class allows reading and writing in binary files. </p>
 
 <p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00016">16</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -189,13 +192,15 @@ Public Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00023">23</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   23</span>                                                      : fstream(fname, mode) {</div>
 <div class="line"><span class="lineno">   24</span>            <span class="keywordflow">if</span> (mode &amp; std::ios::out) {</div>
-<div class="line"><span class="lineno">   25</span>                pointer = 7;</div>
-<div class="line"><span class="lineno">   26</span>                writeMode = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   25</span>                <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
+<div class="line"><span class="lineno">   26</span>                <a class="code hl_variable" href="classbitstream.html#ad8795a376173c69417aa03124a105fb9">writeMode</a> = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   27</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mode &amp; std::ios::in) {</div>
-<div class="line"><span class="lineno">   28</span>                pointer = -1;</div>
-<div class="line"><span class="lineno">   29</span>                writeMode = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   28</span>                <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = -1;</div>
+<div class="line"><span class="lineno">   29</span>                <a class="code hl_variable" href="classbitstream.html#ad8795a376173c69417aa03124a105fb9">writeMode</a> = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   30</span>            }</div>
 <div class="line"><span class="lineno">   31</span>        };</div>
+<div class="ttc" id="aclassbitstream_html_a69277f782c2b76acb4f569e70744e53f"><div class="ttname"><a href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">bitstream::pointer</a></div><div class="ttdeci">int pointer</div><div class="ttdoc">This variable initializes a pointer.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8h_source.html#l00073">bitstream.h:73</a></div></div>
+<div class="ttc" id="aclassbitstream_html_ad8795a376173c69417aa03124a105fb9"><div class="ttname"><a href="classbitstream.html#ad8795a376173c69417aa03124a105fb9">bitstream::writeMode</a></div><div class="ttdeci">bool writeMode</div><div class="ttdoc">This variable decides whether its a read or write mode.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8h_source.html#l00078">bitstream.h:78</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -219,7 +224,7 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitstream_8cpp_source.html#l00080">80</a> of file <a class="el" href="bitstream_8cpp_source.html">bitstream.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   80</span>                       {</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 7-pointer; i++){</div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 7-<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>; i++){</div>
 <div class="line"><span class="lineno">   82</span>        <a class="code hl_function" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">writeBit</a>(0);</div>
 <div class="line"><span class="lineno">   83</span>    }</div>
 <div class="line"><span class="lineno">   84</span>}</div>
@@ -247,14 +252,14 @@ Public Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="bitstream_8cpp_source.html#l00042">42</a> of file <a class="el" href="bitstream_8cpp_source.html">bitstream.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   42</span>                          {</div>
 <div class="line"><span class="lineno">   43</span>    uint8_t bit = 0;</div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span>(pointer &lt; 0){</div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &lt; 0){</div>
 <div class="line"><span class="lineno">   45</span>        read((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1);</div>
 <div class="line"><span class="lineno">   46</span>        <span class="comment">//cout &lt;&lt; &quot;value readfile: &quot; &lt;&lt; byte &lt;&lt; endl;</span></div>
-<div class="line"><span class="lineno">   47</span>        pointer = 7;</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><span class="lineno">   48</span>    }</div>
 <div class="line"><span class="lineno">   49</span>    <span class="comment">//cout &lt;&lt; &quot;bit read: &quot; &lt;&lt; ((byte &gt;&gt; pointer) &amp; 0x01) &lt;&lt; endl;</span></div>
-<div class="line"><span class="lineno">   50</span>    bit = ((<span class="keywordtype">byte</span> &gt;&gt; pointer) &amp; 0x01);</div>
-<div class="line"><span class="lineno">   51</span>    pointer--;</div>
+<div class="line"><span class="lineno">   50</span>    bit = ((<span class="keywordtype">byte</span> &gt;&gt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>) &amp; 0x01);</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><span class="lineno">   52</span>    <span class="keywordflow">return</span> bit;</div>
 <div class="line"><span class="lineno">   53</span>}</div>
 </div><!-- fragment -->
@@ -278,12 +283,12 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitstream_8cpp_source.html#l00055">55</a> of file <a class="el" href="bitstream_8cpp_source.html">bitstream.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   55</span>                                    {</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span> (pointer &lt; 0) {</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &lt; 0) {</div>
 <div class="line"><span class="lineno">   57</span>        read((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1); </div>
-<div class="line"><span class="lineno">   58</span>        pointer = 7;</div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><span class="lineno">   59</span>    }</div>
-<div class="line"><span class="lineno">   60</span>    *bit = ((<span class="keywordtype">byte</span> &gt;&gt; pointer) &amp; 0x01);</div>
-<div class="line"><span class="lineno">   61</span>    pointer--;</div>
+<div class="line"><span class="lineno">   60</span>    *bit = ((<span class="keywordtype">byte</span> &gt;&gt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>) &amp; 0x01);</div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><span class="lineno">   62</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -388,13 +393,13 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="bitstream_8cpp_source.html#l00010">10</a> of file <a class="el" href="bitstream_8cpp_source.html">bitstream.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   10</span>                                     {</div>
-<div class="line"><span class="lineno">   11</span>    <span class="keywordtype">byte</span> |= (value &amp; 0x01) &lt;&lt; pointer;</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">if</span> (pointer &gt; 0){</div>
-<div class="line"><span class="lineno">   13</span>        pointer--;</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keywordtype">byte</span> |= (value &amp; 0x01) &lt;&lt; <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>;</div>
+<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> &gt; 0){</div>
+<div class="line"><span class="lineno">   13</span>        <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a>--;</div>
 <div class="line"><span class="lineno">   14</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   15</span>    }</div>
 <div class="line"><span class="lineno">   16</span>    write((<span class="keywordtype">char</span>*)&amp;<span class="keywordtype">byte</span>, 1);</div>
-<div class="line"><span class="lineno">   17</span>    pointer = 7;</div>
+<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="classbitstream.html#a69277f782c2b76acb4f569e70744e53f">pointer</a> = 7;</div>
 <div class="line"><span class="lineno">   18</span>    <span class="keywordtype">byte</span> = 0;</div>
 <div class="line"><span class="lineno">   19</span>}</div>
 </div><!-- fragment -->
@@ -500,7 +505,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00066">66</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
+<p>This variable initializes a byte. </p>
+
+<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00069">69</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 
 </div>
 </div>
@@ -516,7 +523,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00068">68</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00074">74</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 
 </div>
 </div>
@@ -532,7 +539,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00067">67</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
+<p>This variable initializes a pointer. </p>
+
+<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00073">73</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +557,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00069">69</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
+<p>This variable decides whether its a read or write mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="bitstream_8h_source.html#l00078">78</a> of file <a class="el" href="bitstream_8h_source.html">bitstream.h</a>.</p>
 
 </div>
 </div>

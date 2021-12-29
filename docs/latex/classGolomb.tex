@@ -10,27 +10,30 @@ string \mbox{\hyperlink{classGolomb_ac8162bf8c14d9d2bbcc371e0f681f60a}{binary}} 
 int \mbox{\hyperlink{classGolomb_ad1342ceca6abfe4d96b0ad3dad7cce9e}{decimal}} (string a)
 \item 
 \mbox{\hyperlink{classGolomb_a7a7cb8ac22578329b6fa763b995a6fc0}{Golomb}} (int m)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor of Class \mbox{\hyperlink{classGolomb}{Golomb}}. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classGolomb_adcdf86488fb9ebe1e02a8f20ccacd6c5}{encode}} (signed int n)
-\item 
+\begin{DoxyCompactList}\small\item\em The encode function allows encoding a number with the golomb coding algorithm. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classGolomb_a600681461f50c4060a32288051f457f1}{decode}} (string str)
-\item 
+\begin{DoxyCompactList}\small\item\em The decode function allows decoding the golomb code. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{classGolomb_a06ffc31d93b7af00496098619cc8ed3f}{signed\+\_\+encode}} (int n)
-\item 
+\begin{DoxyCompactList}\small\item\em The encode function allows encoding a signed number with the golomb coding algorithm. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classGolomb_a9afc415902c61640941b4132c0a351c4}{signed\+\_\+decode}} (string code)
-\item 
+\begin{DoxyCompactList}\small\item\em The decode function allows decoding the golomb code. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGolomb_aca687704fe682eba7f8ad5fa005c4480}{set\+\_\+m}} (int m)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to set m value. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classGolomb_a99a8c475e7bc010832599fc957b3ca3f}{get\+\_\+m}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to get m value. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}{write}} (vector$<$ int $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to write in a vector v using bitstream. \end{DoxyCompactList}\item 
 vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}} (int elems, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to read \textquotesingle{}elems\textquotesingle{} bits using bitstream. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{write\+Hdr}} (vector$<$ int $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
+\begin{DoxyCompactList}\small\item\em Function to write Header in binary. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGolomb_a596a33859f6b4d78233789d22e9f657b}\label{classGolomb_a596a33859f6b4d78233789d22e9f657b}} 
+void {\bfseries write\+Hdr} (vector$<$ short $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
 \item 
 vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a209d83e20ec1a316544c365b2d5492f1}{read\+Hdr}} (int type, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function to read Header. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -54,6 +57,15 @@ Definition at line \mbox{\hyperlink{Golomb_8h_source_l00014}{14}} of file \mbox{
 \doxysubsubsection{\texorpdfstring{Golomb()}{Golomb()}}
 {\footnotesize\ttfamily Golomb\+::\+Golomb (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
 
+
+
+Constructor of Class \mbox{\hyperlink{classGolomb}{Golomb}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
@@ -124,6 +136,18 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00034}{34}} of file \mbo
 
 
 
+The decode function allows decoding the golomb code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & containing the golomb code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number decoded from the golomb code 
+\end{DoxyReturn}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
@@ -145,6 +169,18 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00053}{53}} of file \mbo
 
 
 
+The encode function allows encoding a number with the golomb coding algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & is the number to encode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string containing the golomb code 
+\end{DoxyReturn}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
@@ -163,6 +199,13 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00047}{47}} of file \mbo
 
 
 
+Function to get m value. 
+
+\begin{DoxyReturn}{Returns}
+value of m 
+\end{DoxyReturn}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
@@ -178,23 +221,37 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00074}{74}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+Function to read \textquotesingle{}elems\textquotesingle{} bits using bitstream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elems} & is the number of bits to read \\
+\hline
+{\em b} & is a bitstream address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer vector containing read values 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00098                                                 \{}
-\DoxyCodeLine{00099     vector<int> rd;}
-\DoxyCodeLine{00100     \textcolor{keywordtype}{int} i;}
-\DoxyCodeLine{00101     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<elems; j++)\{}
-\DoxyCodeLine{00102         i = 0;}
-\DoxyCodeLine{00103         \textcolor{keywordtype}{string} q(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
-\DoxyCodeLine{00104         \textcolor{keywordflow}{while}(q[i++]!=\textcolor{charliteral}{'0'}) q += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
-\DoxyCodeLine{00105         \textcolor{keywordtype}{string} r = bi.toString(bi.readNBits(this-\/>b-\/1), this-\/>b-\/1);}
-\DoxyCodeLine{00106         \textcolor{keywordtype}{string} rl = (decimal(r)<pow(2,this-\/>b)-\/this-\/>m? \textcolor{stringliteral}{"{}"{}} : (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}}));}
-\DoxyCodeLine{00107         rd.push\_back( signed\_decode(q+r+rl) );}
-\DoxyCodeLine{00108     \}}
-\DoxyCodeLine{00109     \textcolor{keywordflow}{return} rd;}
-\DoxyCodeLine{00110 \}}
+\DoxyCodeLine{00096                                                 \{}
+\DoxyCodeLine{00097     vector<int> rd;}
+\DoxyCodeLine{00098     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{00099     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<elems; j++)\{}
+\DoxyCodeLine{00100         i = 0;}
+\DoxyCodeLine{00101         \textcolor{keywordtype}{string} q(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{00102         \textcolor{keywordflow}{while}(q[i++]!=\textcolor{charliteral}{'0'}) q += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00103         \textcolor{keywordtype}{string} r = bi.toString(bi.readNBits(this-\/>b-\/1), this-\/>b-\/1);}
+\DoxyCodeLine{00104         \textcolor{keywordtype}{string} rl = (decimal(r)<pow(2,this-\/>b)-\/this-\/>m? \textcolor{stringliteral}{"{}"{}} : (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}}));}
+\DoxyCodeLine{00105         rd.push\_back( \mbox{\hyperlink{classGolomb_a9afc415902c61640941b4132c0a351c4}{signed\_decode}}(q+r+rl) );}
+\DoxyCodeLine{00106     \}}
+\DoxyCodeLine{00107     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{00108 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classGolomb_a209d83e20ec1a316544c365b2d5492f1}\label{classGolomb_a209d83e20ec1a316544c365b2d5492f1}} 
@@ -205,21 +262,35 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00098}{98}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+Function to read Header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & is an integer that defines the type (specify content ...) \\
+\hline
+{\em b} & is a bitstream address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer vector containing the Header information 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00113                                                   \{}
-\DoxyCodeLine{00114     vector<int> rd;}
-\DoxyCodeLine{00115     \textcolor{keywordtype}{int} bin=0;}
-\DoxyCodeLine{00116     \textcolor{keywordtype}{string} u(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
-\DoxyCodeLine{00117     \textcolor{keywordflow}{while}(u[bin]!=\textcolor{charliteral}{'0'})\{}
-\DoxyCodeLine{00118         u += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
-\DoxyCodeLine{00119         bin++;}
-\DoxyCodeLine{00120     \}}
-\DoxyCodeLine{00121     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<type; i++) rd.push\_back(decimal(bi.toString(bi.readNBits(bin), bin)));}
-\DoxyCodeLine{00122     \textcolor{keywordflow}{return} rd;}
-\DoxyCodeLine{00123 \}}
+\DoxyCodeLine{00111                                                   \{}
+\DoxyCodeLine{00112     vector<int> rd;}
+\DoxyCodeLine{00113     \textcolor{keywordtype}{int} bin=0;}
+\DoxyCodeLine{00114     \textcolor{keywordtype}{string} u(1, bi.readBit()==0? \textcolor{charliteral}{'0'}:\textcolor{charliteral}{'1'} );}
+\DoxyCodeLine{00115     \textcolor{keywordflow}{while}(u[bin]!=\textcolor{charliteral}{'0'})\{}
+\DoxyCodeLine{00116         u += (bi.readBit()==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00117         bin++;}
+\DoxyCodeLine{00118     \}}
+\DoxyCodeLine{00119     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<type; i++) rd.push\_back(decimal(bi.toString(bi.readNBits(bin), bin)));}
+\DoxyCodeLine{00120     \textcolor{keywordflow}{return} rd;}
+\DoxyCodeLine{00121 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classGolomb_aca687704fe682eba7f8ad5fa005c4480}\label{classGolomb_aca687704fe682eba7f8ad5fa005c4480}} 
@@ -228,6 +299,15 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00113}{113}} of file \mb
 \doxysubsubsection{\texorpdfstring{set\_m()}{set\_m()}}
 {\footnotesize\ttfamily void Golomb\+::set\+\_\+m (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
 
+
+
+Function to set m value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
@@ -248,12 +328,24 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00070}{70}} of file \mbo
 
 
 
+The decode function allows decoding the golomb code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & containing the golomb code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+signed number decoded from the golomb code 
+\end{DoxyReturn}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00065                                     \{}
-\DoxyCodeLine{00066     uint res=decode(code);}
+\DoxyCodeLine{00066     uint res=\mbox{\hyperlink{classGolomb_a600681461f50c4060a32288051f457f1}{decode}}(code);}
 \DoxyCodeLine{00067     \textcolor{keywordflow}{return} res\%2 ? ((int)res+1)/-\/2 : res/2;}
 \DoxyCodeLine{00068 \}}
 
@@ -266,12 +358,24 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00065}{65}} of file \mbo
 
 
 
+The encode function allows encoding a signed number with the golomb coding algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & is the number to encode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string containing the golomb code 
+\end{DoxyReturn}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00061                                   \{}
-\DoxyCodeLine{00062     \textcolor{keywordflow}{return} encode(n>=0?2*n:-\/2*n-\/1);}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{return} \mbox{\hyperlink{classGolomb_adcdf86488fb9ebe1e02a8f20ccacd6c5}{encode}}(n>=0?2*n:-\/2*n-\/1);}
 \DoxyCodeLine{00063 \}}
 
 \end{DoxyCode}
@@ -301,6 +405,17 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00015}{15}} of file \mbo
 
 
 
+Function to write in a vector v using bitstream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is an integer vector \\
+\hline
+{\em b} & is a bitstream address \\
+\hline
+\end{DoxyParams}
+
+
 Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
@@ -309,12 +424,11 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00076}{76}} of file \mbo
 \DoxyCodeLine{00077     \textcolor{keywordtype}{int} i, j;}
 \DoxyCodeLine{00078     \textcolor{keywordtype}{string} golb;}
 \DoxyCodeLine{00079     \textcolor{keywordflow}{for}(i=0; i<int(v.size()); i++)\{}
-\DoxyCodeLine{00080         golb = signed\_encode(v[i]);}
+\DoxyCodeLine{00080         golb = \mbox{\hyperlink{classGolomb_a06ffc31d93b7af00496098619cc8ed3f}{signed\_encode}}(v[i]);}
 \DoxyCodeLine{00081         \textcolor{keywordflow}{for}(j=0; j<int(golb.size()); j++)}
 \DoxyCodeLine{00082             b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (golb[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
 \DoxyCodeLine{00083     \}}
-\DoxyCodeLine{00084     b.\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}}();}
-\DoxyCodeLine{00085 \}}
+\DoxyCodeLine{00084 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classGolomb_a224d8632ec0d0275a5e74312423041b1}\label{classGolomb_a224d8632ec0d0275a5e74312423041b1}} 
@@ -325,19 +439,30 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00076}{76}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
+Function to write Header in binary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is an array of integers containing ... \\
+\hline
+{\em b} & is a bitstream address \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{Golomb_8cpp_source}{Golomb.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00087                                                 \{}
-\DoxyCodeLine{00088     \textcolor{keywordtype}{int} unr = log2(*max\_element(v.begin(), v.end())) +1;}
-\DoxyCodeLine{00089     \textcolor{keywordtype}{string} hdr;}
-\DoxyCodeLine{00090     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
-\DoxyCodeLine{00091         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
-\DoxyCodeLine{00092         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
-\DoxyCodeLine{00093              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
-\DoxyCodeLine{00094     \}}
-\DoxyCodeLine{00095 \}}
+\DoxyCodeLine{00086                                                 \{}
+\DoxyCodeLine{00087     \textcolor{keywordtype}{int} unr = log2(*max\_element(v.begin(), v.end())) +1;}
+\DoxyCodeLine{00088     \textcolor{keywordtype}{string} hdr;}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
+\DoxyCodeLine{00090         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
+\DoxyCodeLine{00091         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
+\DoxyCodeLine{00092              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
+\DoxyCodeLine{00093     \}}
+\DoxyCodeLine{00094 \}}
 
 \end{DoxyCode}
 

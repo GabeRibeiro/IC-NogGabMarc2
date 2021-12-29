@@ -11,7 +11,7 @@ using namespace std;
 using std::fstream;
 
 /**
-    * @brief This class allows to read and write binary files
+    * @brief This class allows reading and writing in binary files
 */
 class bitstream : public fstream {
     public:
@@ -63,9 +63,18 @@ class bitstream : public fstream {
         string toString(char* c, int n);
 
     //private:
+        /**
+            * @brief This variable initializes a byte
+        */
         u_char byte = 0;
+        /**
+            * @brief This variable initializes a pointer
+        */
         int pointer;
         int byteCount;
+        /**
+            * @brief This variable decides whether its a read or write mode
+        */
         bool writeMode;
 };
 #endif

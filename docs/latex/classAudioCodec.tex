@@ -5,17 +5,25 @@
 \item 
 vector$<$ int $>$ \mbox{\hyperlink{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}{predictive\+\_\+coding}} (vector$<$ int $>$ aud)
 \item 
-void \mbox{\hyperlink{classAudioCodec_a5c62db45724f71468d260036ae9d6fdb}{predictive\+\_\+decoding}} (vector$<$ int $>$ prc)
+vector$<$ int $>$ \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\+\_\+decoding}} (vector$<$ int $>$ rsd)
 \item 
-void \mbox{\hyperlink{classAudioCodec_a2d2262f9f7130d2732233c0b0f2ee8f2}{encode}} (const char $\ast$fname)
+double \mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{entropy}} (vector$<$ int $>$ vec)
 \item 
-void \mbox{\hyperlink{classAudioCodec_a3c531fd901c38e743310cff62aaad75f}{decode}} (const char $\ast$fname)
+void \mbox{\hyperlink{classAudioCodec_aab86dbd84f95484986f0802a6844708d}{set\+\_\+order}} (int o)
+\item 
+void \mbox{\hyperlink{classAudioCodec_ae31d89fa085b5e0bbd192071d5d01fd2}{set\+\_\+shift}} (int s)
+\item 
+void \mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{encode}} (string fname, char const $\ast$wav)
+\item 
+void \mbox{\hyperlink{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}{decode}} (string fname, char const $\ast$wav)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{classAudioCodec_a3bc15018d256cbf4d6d7b4421bc522ff}{order}} = 1
-\begin{DoxyCompactList}\small\item\em indica a ordem do temporal do predictor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classAudioCodec_ad3102eeb18cd84b666353a33d6b5fe92}{shift}} =0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -26,73 +34,140 @@ Definition at line \mbox{\hyperlink{AudioCodec_8h_source_l00010}{10}} of file \m
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classAudioCodec_a3c531fd901c38e743310cff62aaad75f}\label{classAudioCodec_a3c531fd901c38e743310cff62aaad75f}} 
+\mbox{\Hypertarget{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}\label{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}} 
 \index{AudioCodec@{AudioCodec}!decode@{decode}}
 \index{decode@{decode}!AudioCodec@{AudioCodec}}
 \doxysubsubsection{\texorpdfstring{decode()}{decode()}}
-{\footnotesize\ttfamily void Audio\+Codec\+::decode (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fname }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Audio\+Codec\+::decode (\begin{DoxyParamCaption}\item[{string}]{fname,  }\item[{char const $\ast$}]{wav }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00071                                         \{}
-\DoxyCodeLine{00072     \textcolor{comment}{/*}}
-\DoxyCodeLine{00073 \textcolor{comment}{    bitstream b(); }}
-\DoxyCodeLine{00074 \textcolor{comment}{    Golomg glb(10); }}
-\DoxyCodeLine{00075 \textcolor{comment}{    vector<int> hdr = glb.read }}
-\DoxyCodeLine{00076 \textcolor{comment}{}}
-\DoxyCodeLine{00077 \textcolor{comment}{    */}}
-\DoxyCodeLine{00078 \}}
+\DoxyCodeLine{00124                                                     \{}
+\DoxyCodeLine{00125     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::in);}
+\DoxyCodeLine{00126     \mbox{\hyperlink{classGolomb}{Golomb}} gb(10);}
+\DoxyCodeLine{00127     }
+\DoxyCodeLine{00128     vector<int> hdr = gb.readHdr(6, bss);}
+\DoxyCodeLine{00129 }
+\DoxyCodeLine{00130     gb.set\_m(hdr[0]);}
+\DoxyCodeLine{00131     order = hdr[5];}
+\DoxyCodeLine{00132 }
+\DoxyCodeLine{00133     SF\_INFO sfinfo;}
+\DoxyCodeLine{00134     sfinfo.channels = hdr[1];}
+\DoxyCodeLine{00135     sfinfo.format = hdr[3];}
+\DoxyCodeLine{00136     sfinfo.samplerate = hdr[4];}
+\DoxyCodeLine{00137     cout << \textcolor{stringliteral}{"{}format :  "{}}<< sfinfo.format <<endl;}
+\DoxyCodeLine{00138 }
+\DoxyCodeLine{00139 }
+\DoxyCodeLine{00140     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
+\DoxyCodeLine{00141     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
+\DoxyCodeLine{00142         rcnl[i] = gb.read(hdr[2], bss);}
+\DoxyCodeLine{00143         vcnl[i] = predictive\_decoding(rcnl[i]);}
+\DoxyCodeLine{00144     \}}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146     vector<short> wrt;}
+\DoxyCodeLine{00147     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
+\DoxyCodeLine{00148         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
+\DoxyCodeLine{00149             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
+\DoxyCodeLine{00150     \}}
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
+\DoxyCodeLine{00153     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
+\DoxyCodeLine{00154     sf\_write\_sync(outfile);}
+\DoxyCodeLine{00155     sf\_close(outfile);}
+\DoxyCodeLine{00156 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classAudioCodec_a2d2262f9f7130d2732233c0b0f2ee8f2}\label{classAudioCodec_a2d2262f9f7130d2732233c0b0f2ee8f2}} 
+\mbox{\Hypertarget{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}\label{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}} 
 \index{AudioCodec@{AudioCodec}!encode@{encode}}
 \index{encode@{encode}!AudioCodec@{AudioCodec}}
 \doxysubsubsection{\texorpdfstring{encode()}{encode()}}
-{\footnotesize\ttfamily void Audio\+Codec\+::encode (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fname }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Audio\+Codec\+::encode (\begin{DoxyParamCaption}\item[{string}]{fname,  }\item[{char const $\ast$}]{wav }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00033                                         \{}
-\DoxyCodeLine{00034     SNDFILE *snd;}
-\DoxyCodeLine{00035     SF\_INFO info;}
-\DoxyCodeLine{00036     memset (\&info, 0, \textcolor{keyword}{sizeof} (info));}
-\DoxyCodeLine{00037 }
-\DoxyCodeLine{00038     \textcolor{keywordflow}{if}(!(snd = sf\_open(fname, SFM\_READ, \&info)))}
-\DoxyCodeLine{00039         \textcolor{keywordflow}{throw} runtime\_error(\textcolor{stringliteral}{"{}Error opening sound file."{}});}
-\DoxyCodeLine{00040     \textcolor{keywordtype}{int} cnt, cls[info.channels];}
-\DoxyCodeLine{00041     vector<int> vcnl[info.channels], rcnl[info.channels];}
-\DoxyCodeLine{00042     \textcolor{keywordflow}{while}((cnt = (\textcolor{keywordtype}{int}) sf\_readf\_int(snd, cls, 1))>0)\{}
-\DoxyCodeLine{00043         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<info.channels; i++)}
-\DoxyCodeLine{00044             vcnl[i].push\_back(cls[i]);}
-\DoxyCodeLine{00045     \}}
-\DoxyCodeLine{00046 }
-\DoxyCodeLine{00047     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<info.channels; i++)}
-\DoxyCodeLine{00048         rcnl[i] = predictive\_coding(vcnl[i]);}
-\DoxyCodeLine{00049 }
-\DoxyCodeLine{00050     \textcolor{comment}{/*}}
-\DoxyCodeLine{00051 \textcolor{comment}{    bitstream b(); }}
-\DoxyCodeLine{00052 \textcolor{comment}{    Golomg glb(); }}
-\DoxyCodeLine{00053 \textcolor{comment}{    vector<int> hdr; }}
-\DoxyCodeLine{00054 \textcolor{comment}{    hdr.push\_back(glb.get\_m()); //m de golomb }}
-\DoxyCodeLine{00055 \textcolor{comment}{    hdr.push\_back();    //numero de canais }}
-\DoxyCodeLine{00056 \textcolor{comment}{    hdr.push\_back();    //numero de samples }}
-\DoxyCodeLine{00057 \textcolor{comment}{    hdr.push\_back(); }}
-\DoxyCodeLine{00058 \textcolor{comment}{    glb.writeHdr(hdr. b); }}
-\DoxyCodeLine{00059 \textcolor{comment}{}}
-\DoxyCodeLine{00060 \textcolor{comment}{    for(int i=0; i<info.channels; i++) }}
-\DoxyCodeLine{00061 \textcolor{comment}{        glb.write(rcnl[i], b); }}
-\DoxyCodeLine{00062 \textcolor{comment}{    */}}
-\DoxyCodeLine{00063 }
-\DoxyCodeLine{00064     sf\_close(snd);}
-\DoxyCodeLine{00065 \}}
+\DoxyCodeLine{00061                                                     \{}
+\DoxyCodeLine{00062     SNDFILE *snd;}
+\DoxyCodeLine{00063     SF\_INFO sfinfo;}
+\DoxyCodeLine{00064     memset (\&sfinfo, 0, \textcolor{keyword}{sizeof} (sfinfo));}
+\DoxyCodeLine{00065 }
+\DoxyCodeLine{00066     \textcolor{keywordflow}{if}(!(snd = sf\_open(wav, SFM\_READ, \&sfinfo)))}
+\DoxyCodeLine{00067         \textcolor{keywordflow}{throw} runtime\_error(\textcolor{stringliteral}{"{}Error opening sound file."{}});}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069     \textcolor{keywordtype}{short} cnt, cls[sfinfo.channels];}
+\DoxyCodeLine{00070     vector<int> vcnl[sfinfo.channels], rcnl[sfinfo.channels];}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     \textcolor{keywordflow}{while}((cnt = (\textcolor{keywordtype}{int}) sf\_readf\_short(snd, cls, 1))>0)\{}
+\DoxyCodeLine{00073         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{00074             vcnl[i].push\_back(cls[i]);}
+\DoxyCodeLine{00075     \}}
+\DoxyCodeLine{00076 }
+\DoxyCodeLine{00077     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{00078         rcnl[i] = predictive\_coding(vcnl[i]);}
+\DoxyCodeLine{00079     }
+\DoxyCodeLine{00080     vector<int> map;}
+\DoxyCodeLine{00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{00082         transform(rcnl[i].begin(), rcnl[i].end(), back\_inserter(map),  }
+\DoxyCodeLine{00083         [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  abs(x); \});  }
+\DoxyCodeLine{00084     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
+\DoxyCodeLine{00085     mean/= sfinfo.channels*sfinfo.frames;}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1))) );}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
+\DoxyCodeLine{00090     }
+\DoxyCodeLine{00091     vector<int> hdr;}
+\DoxyCodeLine{00092     hdr.push\_back(gb.get\_m());          \textcolor{comment}{//m de golomb}}
+\DoxyCodeLine{00093     hdr.push\_back(sfinfo.channels);     \textcolor{comment}{//numero de canais}}
+\DoxyCodeLine{00094     hdr.push\_back(sfinfo.frames);       \textcolor{comment}{//numero de samples}}
+\DoxyCodeLine{00095     hdr.push\_back(sfinfo.format);       \textcolor{comment}{//formato}}
+\DoxyCodeLine{00096     hdr.push\_back(sfinfo.samplerate);   \textcolor{comment}{//samplerate}}
+\DoxyCodeLine{00097     hdr.push\_back(order);               \textcolor{comment}{//ordem}}
+\DoxyCodeLine{00098     gb.writeHdr(hdr, bss);}
+\DoxyCodeLine{00099 }
+\DoxyCodeLine{00100     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{00101         gb.write(rcnl[i], bss);}
+\DoxyCodeLine{00102     bss.padding();}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104     sf\_close(snd);}
+\DoxyCodeLine{00105 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}\label{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}} 
+\index{AudioCodec@{AudioCodec}!entropy@{entropy}}
+\index{entropy@{entropy}!AudioCodec@{AudioCodec}}
+\doxysubsubsection{\texorpdfstring{entropy()}{entropy()}}
+{\footnotesize\ttfamily double Audio\+Codec\+::entropy (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024                                          \{}
+\DoxyCodeLine{00025     unordered\_map<int, double> ch;}
+\DoxyCodeLine{00026     \textcolor{keywordtype}{double} entropy\_ch=0, prob;}
+\DoxyCodeLine{00027     \textcolor{keywordtype}{int} total = vec.size(), value;}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i : vec)\{    }
+\DoxyCodeLine{00030         value = i;}
+\DoxyCodeLine{00031         ch[i]++;}
+\DoxyCodeLine{00032     \}}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} it:ch) \{}
+\DoxyCodeLine{00035         prob = double (it.second / \textcolor{keywordtype}{double}(total));}
+\DoxyCodeLine{00036         entropy\_ch += prob * log2(prob);}
+\DoxyCodeLine{00037     \}}
+\DoxyCodeLine{00038     \textcolor{keywordflow}{return} -\/entropy\_ch; }
+\DoxyCodeLine{00039 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}\label{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}} 
@@ -103,44 +178,93 @@ Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00033}{33}} of file 
 
 
 
-Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00015                                                         \{}
-\DoxyCodeLine{00016     vector<int> prd;}
-\DoxyCodeLine{00017     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0;}
-\DoxyCodeLine{00018     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)aud.size(); i++)\{}
-\DoxyCodeLine{00019         \textcolor{keywordflow}{switch}(\mbox{\hyperlink{classAudioCodec_a3bc15018d256cbf4d6d7b4421bc522ff}{order}})\{}
-\DoxyCodeLine{00020             \textcolor{keywordflow}{case} 1: px = x1; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00021             \textcolor{keywordflow}{case} 2: px = 2*x1 -\/ x2; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00022             \textcolor{keywordflow}{case} 3: px = 3*x1 -\/ 3*x2 + x3; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00023         \}}
-\DoxyCodeLine{00024 }
-\DoxyCodeLine{00025         prd.push\_back(aud[i]-\/px);}
-\DoxyCodeLine{00026         x3=x2;}
-\DoxyCodeLine{00027         x2=x1;}
-\DoxyCodeLine{00028         x1=aud[i];}
-\DoxyCodeLine{00029     \}}
-\DoxyCodeLine{00030     \textcolor{keywordflow}{return} prd;}
-\DoxyCodeLine{00031 \}}
+\DoxyCodeLine{00041                                                         \{}
+\DoxyCodeLine{00042     vector<int> rsd, prdt;}
+\DoxyCodeLine{00043     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0, r;}
+\DoxyCodeLine{00044     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)aud.size(); i++)\{}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{switch}(order)\{}
+\DoxyCodeLine{00046             \textcolor{keywordflow}{case} 1: px = x1; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00047             \textcolor{keywordflow}{case} 2: px = 2*x1 -\/ x2; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00048             \textcolor{keywordflow}{case} 3: px = 3*x1 -\/ 3*x2 + x3; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00049         \}}
+\DoxyCodeLine{00050         r = ((aud[i]-\/px) >> shift )<< shift;}
+\DoxyCodeLine{00051         prdt.push\_back(px);}
+\DoxyCodeLine{00052         rsd.push\_back(r);}
+\DoxyCodeLine{00053         x3=x2;}
+\DoxyCodeLine{00054         x2=x1;}
+\DoxyCodeLine{00055         aud[i] = r + px;}
+\DoxyCodeLine{00056         x1=aud[i];}
+\DoxyCodeLine{00057     \}}
+\DoxyCodeLine{00058     \textcolor{keywordflow}{return} rsd;}
+\DoxyCodeLine{00059 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classAudioCodec_a5c62db45724f71468d260036ae9d6fdb}\label{classAudioCodec_a5c62db45724f71468d260036ae9d6fdb}} 
+\mbox{\Hypertarget{classAudioCodec_a773debc048244b89d51ec8101636a089}\label{classAudioCodec_a773debc048244b89d51ec8101636a089}} 
 \index{AudioCodec@{AudioCodec}!predictive\_decoding@{predictive\_decoding}}
 \index{predictive\_decoding@{predictive\_decoding}!AudioCodec@{AudioCodec}}
 \doxysubsubsection{\texorpdfstring{predictive\_decoding()}{predictive\_decoding()}}
-{\footnotesize\ttfamily void Audio\+Codec\+::predictive\+\_\+decoding (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{prc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily vector$<$ int $>$ Audio\+Codec\+::predictive\+\_\+decoding (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{rsd }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00067                                                    \{}
-\DoxyCodeLine{00068 }
-\DoxyCodeLine{00069 \}}
+\DoxyCodeLine{00107                                                           \{}
+\DoxyCodeLine{00108     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0;}
+\DoxyCodeLine{00109     vector<int> v;}
+\DoxyCodeLine{00110     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)rsd.size(); i++)\{}
+\DoxyCodeLine{00111         \textcolor{keywordflow}{switch}(order)\{}
+\DoxyCodeLine{00112             \textcolor{keywordflow}{case} 1: px = x1; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00113             \textcolor{keywordflow}{case} 2: px = 2*x1 -\/ x2; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00114             \textcolor{keywordflow}{case} 3: px = 3*x1 -\/ 3*x2 + x3; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00115         \}}
+\DoxyCodeLine{00116         v.push\_back(px+rsd[i]);}
+\DoxyCodeLine{00117         x3=x2;}
+\DoxyCodeLine{00118         x2=x1;}
+\DoxyCodeLine{00119         x1=v[i];}
+\DoxyCodeLine{00120     \}}
+\DoxyCodeLine{00121     \textcolor{keywordflow}{return} v;}
+\DoxyCodeLine{00122 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAudioCodec_aab86dbd84f95484986f0802a6844708d}\label{classAudioCodec_aab86dbd84f95484986f0802a6844708d}} 
+\index{AudioCodec@{AudioCodec}!set\_order@{set\_order}}
+\index{set\_order@{set\_order}!AudioCodec@{AudioCodec}}
+\doxysubsubsection{\texorpdfstring{set\_order()}{set\_order()}}
+{\footnotesize\ttfamily void Audio\+Codec\+::set\+\_\+order (\begin{DoxyParamCaption}\item[{int}]{o }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016                                \{}
+\DoxyCodeLine{00017     this-\/>order = o;}
+\DoxyCodeLine{00018 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAudioCodec_ae31d89fa085b5e0bbd192071d5d01fd2}\label{classAudioCodec_ae31d89fa085b5e0bbd192071d5d01fd2}} 
+\index{AudioCodec@{AudioCodec}!set\_shift@{set\_shift}}
+\index{set\_shift@{set\_shift}!AudioCodec@{AudioCodec}}
+\doxysubsubsection{\texorpdfstring{set\_shift()}{set\_shift()}}
+{\footnotesize\ttfamily void Audio\+Codec\+::set\+\_\+shift (\begin{DoxyParamCaption}\item[{int}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{AudioCodec_8cpp_source}{Audio\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020                                \{}
+\DoxyCodeLine{00021     this-\/>shift = s;}
+\DoxyCodeLine{00022 \}}
 
 \end{DoxyCode}
 
@@ -154,7 +278,13 @@ Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00067}{67}} of file 
 
 
 
-indica a ordem do temporal do predictor 
+Definition at line \mbox{\hyperlink{AudioCodec_8h_source_l00013}{13}} of file \mbox{\hyperlink{AudioCodec_8h_source}{Audio\+Codec.\+h}}.
+
+\mbox{\Hypertarget{classAudioCodec_ad3102eeb18cd84b666353a33d6b5fe92}\label{classAudioCodec_ad3102eeb18cd84b666353a33d6b5fe92}} 
+\index{AudioCodec@{AudioCodec}!shift@{shift}}
+\index{shift@{shift}!AudioCodec@{AudioCodec}}
+\doxysubsubsection{\texorpdfstring{shift}{shift}}
+{\footnotesize\ttfamily int Audio\+Codec\+::shift =0}
 
 
 
