@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['write_0',['write',['../classGolomb.html#afef52a1aedf611c7734dd4afd7e3ec5e',1,'Golomb']]],
-  ['writebit_1',['writeBit',['../classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa',1,'bitstream']]],
-  ['writehdr_2',['writeHdr',['../classGolomb.html#a224d8632ec0d0275a5e74312423041b1',1,'Golomb']]],
-  ['writemode_3',['writeMode',['../classbitstream.html#ad8795a376173c69417aa03124a105fb9',1,'bitstream']]],
-  ['writenbits_4',['writeNBits',['../classbitstream.html#a36e946e458ed555baf5a8a4623a2e707',1,'bitstream']]]
+  ['read_0',['read',['../classGolomb.html#a502c126b67a1d6c4058c175060ac2b91',1,'Golomb']]],
+  ['readbit_1',['readBit',['../classbitstream.html#a5ae811f4593a95963e16395d7f65423f',1,'bitstream']]],
+  ['readhdr_2',['readHdr',['../classGolomb.html#a209d83e20ec1a316544c365b2d5492f1',1,'Golomb']]],
+  ['readnbits_3',['readNBits',['../classbitstream.html#ac07922b2b164b0d4ec9786f979e05651',1,'bitstream']]],
+  ['rgb2yuv_4',['rgb2yuv',['../classImageCodec.html#aeabf0a3767f5bc81020f3b1a308c21ae',1,'ImageCodec']]]
 ];

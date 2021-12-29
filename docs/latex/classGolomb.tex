@@ -28,10 +28,7 @@ void \mbox{\hyperlink{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}{write}} (ve
 vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}} (int elems, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
 \begin{DoxyCompactList}\small\item\em Function to read \textquotesingle{}elems\textquotesingle{} bits using bitstream. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{write\+Hdr}} (vector$<$ int $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
-\begin{DoxyCompactList}\small\item\em Function to write Header in binary. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classGolomb_a596a33859f6b4d78233789d22e9f657b}\label{classGolomb_a596a33859f6b4d78233789d22e9f657b}} 
-void {\bfseries write\+Hdr} (vector$<$ short $>$ v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to write Header in binary, fist number written is in unary and indicate de number of bits per binary number. \end{DoxyCompactList}\item 
 vector$<$ int $>$ \mbox{\hyperlink{classGolomb_a209d83e20ec1a316544c365b2d5492f1}{read\+Hdr}} (int type, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)
 \begin{DoxyCompactList}\small\item\em Function to read Header. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -266,7 +263,7 @@ Function to read Header.
 
 
 \begin{DoxyParams}{Parameters}
-{\em type} & is an integer that defines the type (specify content ...) \\
+{\em type} & is an integer that defines the number of header fields \\
 \hline
 {\em b} & is a bitstream address \\
 \hline
@@ -439,11 +436,11 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00076}{76}} of file \mbo
 
 
 
-Function to write Header in binary. 
+Function to write Header in binary, fist number written is in unary and indicate de number of bits per binary number. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em v} & is an array of integers containing ... \\
+{\em v} & is an array of integers containing header fields \\
 \hline
 {\em b} & is a bitstream address \\
 \hline
@@ -460,7 +457,7 @@ Definition at line \mbox{\hyperlink{Golomb_8cpp_source_l00086}{86}} of file \mbo
 \DoxyCodeLine{00089     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
 \DoxyCodeLine{00090         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
 \DoxyCodeLine{00091         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
-\DoxyCodeLine{00092              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
+\DoxyCodeLine{00092              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
 \DoxyCodeLine{00093     \}}
 \DoxyCodeLine{00094 \}}
 

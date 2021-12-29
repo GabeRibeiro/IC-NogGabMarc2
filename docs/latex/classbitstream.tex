@@ -24,7 +24,8 @@ void \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{write\+B
 \begin{DoxyCompactList}\small\item\em This function allows writing a single bit in a byte. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{write\+NBits}} (uint8\+\_\+t value, uint n)
 \begin{DoxyCompactList}\small\item\em This function allows writing multiple bits in n bytes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}{write\+NBits2}} (uint32\+\_\+t $\ast$value, uint n)
+\mbox{\Hypertarget{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}\label{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}} 
+void {\bfseries write\+NBits2} (uint32\+\_\+t $\ast$value, uint n)
 \item 
 uint8\+\_\+t \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{read\+Bit}} ()
 \begin{DoxyCompactList}\small\item\em This function allows reading a single bit from a byte. \end{DoxyCompactList}\item 
@@ -104,15 +105,15 @@ This function allows adding zero\textquotesingle{}s to fill the last byte writte
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00080                        \{}
-\DoxyCodeLine{00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}; i++)\{}
-\DoxyCodeLine{00082         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
-\DoxyCodeLine{00083     \}}
-\DoxyCodeLine{00084 \}}
+\DoxyCodeLine{00069                        \{}
+\DoxyCodeLine{00070     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < 7-\/\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}; i++)\{}
+\DoxyCodeLine{00071         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(0);}
+\DoxyCodeLine{00072     \}}
+\DoxyCodeLine{00073 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classbitstream_a5ae811f4593a95963e16395d7f65423f}\label{classbitstream_a5ae811f4593a95963e16395d7f65423f}} 
@@ -127,22 +128,22 @@ This function allows reading a single bit from a byte.
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00042                           \{}
-\DoxyCodeLine{00043     uint8\_t bit = 0;}
-\DoxyCodeLine{00044     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0)\{}
-\DoxyCodeLine{00045         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
-\DoxyCodeLine{00046         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
-\DoxyCodeLine{00047         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
-\DoxyCodeLine{00048     \}}
-\DoxyCodeLine{00049     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
-\DoxyCodeLine{00050     bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
-\DoxyCodeLine{00051     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
-\DoxyCodeLine{00052     \textcolor{keywordflow}{return} bit;}
-\DoxyCodeLine{00053 \}}
+\DoxyCodeLine{00031                           \{}
+\DoxyCodeLine{00032     uint8\_t bit = 0;}
+\DoxyCodeLine{00033     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0)\{}
+\DoxyCodeLine{00034         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1);}
+\DoxyCodeLine{00035         \textcolor{comment}{//cout << "{}value readfile: "{} << byte << endl;}}
+\DoxyCodeLine{00036         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
+\DoxyCodeLine{00037     \}}
+\DoxyCodeLine{00038     \textcolor{comment}{//cout << "{}bit read: "{} << ((byte >> pointer) \& 0x01) << endl;}}
+\DoxyCodeLine{00039     bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{00040     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
+\DoxyCodeLine{00041     \textcolor{keywordflow}{return} bit;}
+\DoxyCodeLine{00042 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classbitstream_a8f3fc8c111359d987fbdb3a5132400b4}\label{classbitstream_a8f3fc8c111359d987fbdb3a5132400b4}} 
@@ -153,18 +154,18 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00042}{42}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00055                                     \{}
-\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0) \{}
-\DoxyCodeLine{00057         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
-\DoxyCodeLine{00058         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
-\DoxyCodeLine{00059     \}}
-\DoxyCodeLine{00060     *bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
-\DoxyCodeLine{00061     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
-\DoxyCodeLine{00062 \}}
+\DoxyCodeLine{00044                                     \{}
+\DoxyCodeLine{00045     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} < 0) \{}
+\DoxyCodeLine{00046         read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{byte}, 1); }
+\DoxyCodeLine{00047         \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}} = 7;}
+\DoxyCodeLine{00048     \}}
+\DoxyCodeLine{00049     *bit = ((\textcolor{keywordtype}{byte} >> \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}) \& 0x01);}
+\DoxyCodeLine{00050     \mbox{\hyperlink{classbitstream_a69277f782c2b76acb4f569e70744e53f}{pointer}}-\/-\/;}
+\DoxyCodeLine{00051 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classbitstream_ac07922b2b164b0d4ec9786f979e05651}\label{classbitstream_ac07922b2b164b0d4ec9786f979e05651}} 
@@ -187,18 +188,18 @@ An array of characters that contains the read bits
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00064                                 \{}
-\DoxyCodeLine{00065     \textcolor{keywordtype}{char}* value = (\textcolor{keywordtype}{char}*)malloc((uint) n/8 + 1);}
-\DoxyCodeLine{00066     \textcolor{keywordflow}{for}(uint i=0; i<n; i++)\{}
-\DoxyCodeLine{00067         value[i/8] = value[i/8] << 1 | \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}();}
-\DoxyCodeLine{00068         \textcolor{keywordflow}{if}(i==n-\/1 \&\& n\%8!=0) value[i/8] <<= (8-\/n\%8);}
-\DoxyCodeLine{00069     \}}
-\DoxyCodeLine{00070     \textcolor{keywordflow}{return} value;}
-\DoxyCodeLine{00071 \}}
+\DoxyCodeLine{00053                                 \{}
+\DoxyCodeLine{00054     \textcolor{keywordtype}{char}* value = (\textcolor{keywordtype}{char}*)malloc((uint) n/8 + 1);}
+\DoxyCodeLine{00055     \textcolor{keywordflow}{for}(uint i=0; i<n; i++)\{}
+\DoxyCodeLine{00056         value[i/8] = value[i/8] << 1 | \mbox{\hyperlink{classbitstream_a5ae811f4593a95963e16395d7f65423f}{readBit}}();}
+\DoxyCodeLine{00057         \textcolor{keywordflow}{if}(i==n-\/1 \&\& n\%8!=0) value[i/8] <<= (8-\/n\%8);}
+\DoxyCodeLine{00058     \}}
+\DoxyCodeLine{00059     \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{00060 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}\label{classbitstream_aecc87ef69e589976352d1a64ea91ce4a}} 
@@ -209,16 +210,16 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00064}{64}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
+Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00073                                         \{}
-\DoxyCodeLine{00074     \textcolor{keywordtype}{string} val;}
-\DoxyCodeLine{00075     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<n; i++)}
-\DoxyCodeLine{00076         val+= ((\textcolor{keywordtype}{int})((c[i/8] >> (7-\/i\%8))\&(0x01))==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
-\DoxyCodeLine{00077     \textcolor{keywordflow}{return} val;}
-\DoxyCodeLine{00078 \}}
+\DoxyCodeLine{00062                                         \{}
+\DoxyCodeLine{00063     \textcolor{keywordtype}{string} val;}
+\DoxyCodeLine{00064     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<n; i++)}
+\DoxyCodeLine{00065         val+= ((\textcolor{keywordtype}{int})((c[i/8] >> (7-\/i\%8))\&(0x01))==0? \textcolor{stringliteral}{"{}0"{}}:\textcolor{stringliteral}{"{}1"{}});}
+\DoxyCodeLine{00066     \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{00067 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}\label{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}} 
@@ -284,30 +285,6 @@ Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00021}{21}} of file \
 \DoxyCodeLine{00025         \mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(bit);}
 \DoxyCodeLine{00026     \}}
 \DoxyCodeLine{00027 \}}
-
-\end{DoxyCode}
-\mbox{\Hypertarget{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}\label{classbitstream_a723dce3847cf9ff05cb19d35e8ca78d4}} 
-\index{bitstream@{bitstream}!writeNBits2@{writeNBits2}}
-\index{writeNBits2@{writeNBits2}!bitstream@{bitstream}}
-\doxysubsubsection{\texorpdfstring{writeNBits2()}{writeNBits2()}}
-{\footnotesize\ttfamily void bitstream\+::write\+NBits2 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{value,  }\item[{uint}]{n }\end{DoxyParamCaption})}
-
-
-
-Definition at line \mbox{\hyperlink{bitstream_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{bitstream_8cpp_source}{bitstream.\+cpp}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00030                                                  \{}
-\DoxyCodeLine{00031     \textcolor{keywordflow}{for} (uint i = 0; i < n/32.0; i++) \{}
-\DoxyCodeLine{00032         cout << \textcolor{stringliteral}{"{}aa"{}};}
-\DoxyCodeLine{00033         cout << val[i] << endl;}
-\DoxyCodeLine{00034         \textcolor{keywordflow}{if} (i == n/8)}
-\DoxyCodeLine{00035             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], n\%32); \textcolor{comment}{// escreve o que sobra do resto da divisão inteira por 8 (ultimo byte)}}
-\DoxyCodeLine{00036         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00037             \mbox{\hyperlink{classbitstream_a36e946e458ed555baf5a8a4623a2e707}{writeNBits}}(val[i], 32);       \textcolor{comment}{// escreve as 8 posições do byte}}
-\DoxyCodeLine{00038     \}}
-\DoxyCodeLine{00039 \}}
 
 \end{DoxyCode}
 
