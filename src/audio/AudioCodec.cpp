@@ -140,7 +140,6 @@ void AudioCodec::decode(string fname, char const* wav){
     sfinfo.channels = hdr[1];
     sfinfo.format = hdr[3];
     sfinfo.samplerate = hdr[4];
-    cout << "format :  "<< sfinfo.format <<endl;
 
 
     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];

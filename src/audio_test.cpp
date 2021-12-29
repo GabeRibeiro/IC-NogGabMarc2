@@ -14,7 +14,7 @@ using namespace std;
 int main(void){
 
     AudioCodec aud;
-    char const* wav[3] = {"sample01.wav" , "sample02.wav", "sample03.wav"};
+    char const* wav = "sample01.wav"; //por se tratar de const tem de ser alterado aqui
     string filename;
     int i, w;
     char yn;
@@ -22,8 +22,6 @@ int main(void){
     cout << "Pretende codificar um ficheiro audio?[y/n]" << endl;
     cin >> yn;
     if(yn == 'y'){
-        cout << "Numero do ficheiro audio a ler: [1 a 3]" << endl;
-        cin >> w;
         cout << "Nome do ficheiro binario a escrever: " << endl;
         cin >> filename;
         cout << "Qual ordem do predict function: [1 a 3]" << endl;
@@ -32,7 +30,7 @@ int main(void){
         cout << "Nivel de quantização : [0 a 15]" << endl;
         cin >> i;
         aud.set_shift(i);
-        aud.encode(filename, wav[w]);
+        aud.encode(filename, wav);
         cout << "Fim de processo de codificaçao." << endl;
     }
     

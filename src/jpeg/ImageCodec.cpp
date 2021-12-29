@@ -131,7 +131,7 @@ void ImageCodec::encode(string fname, Mat& rgb){
     vector<int> u_ = predictive_coding(u);
     vector<int> v_ = predictive_coding(v);
 
-    
+
     
     vector<int> map;
     transform(y_.begin(), y_.end(), back_inserter(map),  
@@ -200,6 +200,7 @@ void ImageCodec::decode(string fname, Mat&rgb){
     vector<int> g_rd = gb.read(3*rows*cols/2, bss);
 
     Mat y = Mat::zeros(rows, cols, CV_8UC1);
+    rgb = Mat::zeros(rows, cols, CV_8UC3);
     Mat u = Mat::zeros(rows/2, cols/2, CV_8UC1);
     Mat v = Mat::zeros(rows/2, cols/2, CV_8UC1);
 
@@ -213,6 +214,7 @@ void ImageCodec::decode(string fname, Mat&rgb){
     predictive_decoding(u, u_);
     predictive_decoding(v, v_);
 
+    
     cv::imshow("new y", y);
     cv::imshow("new u", u);
     cv::imshow("new v", v);

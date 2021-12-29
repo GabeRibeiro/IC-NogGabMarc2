@@ -16,12 +16,22 @@ using namespace std;
 using namespace cv;
 
 int main(void){
+    /*
+    ImageCodec i;
+    i.set_shift(0);
+    Mat img = cv::imread("lena.ppm");
+    i.encode("testfile.bin", img);
+    i.decode("testfile.bin", img);
+    cv::imshow("new rgb", img);
+    cv::waitKey(0);*/
+
     
     ImageCodec img;
     Mat mat;
     string filename, rgb;
     int i;
     char yn;
+
 
     cout << "Pretende codificar um ficheiro imagem?[y/n]" << endl;
     cin >> yn;
@@ -46,12 +56,11 @@ int main(void){
     if(yn == 'y'){
         cout << "Nome do ficheiro binario a ler: " << endl;
         cin >> filename;
-        cout << "Nome do ficheiro audio a escrever: " << endl;
+        cout << "Nome do ficheiro imagem a escrever: " << endl;
         cin >> rgb;
-        mat = cv::imread(rgb);
         img.decode(filename, mat);
+        cv::imwrite(rgb, mat);
         cv::imshow("new rgb", mat);
-        cv::imwrite(filename, mat);
         cv::waitKey(0);
         cout << "Fim de processo de descodificaçao." << endl;
     }
