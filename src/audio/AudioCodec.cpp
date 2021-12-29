@@ -74,9 +74,13 @@ void AudioCodec::encode(string fname, char const* wav){
             vcnl[i].push_back(cls[i]);
     }
 
-    for(int i=0; i<sfinfo.channels; i++)
+    for(int i=0; i<sfinfo.channels; i++){
         rcnl[i] = predictive_coding(vcnl[i]);
+        cout << "canal "<< i << ", original = " << entropy(vcnl[i]) << ", residual = " << entropy(rcnl[i]) <<endl;
+    }
+        
     
+
     vector<int> map;
     for(int i=0; i<sfinfo.channels; i++)
         transform(rcnl[i].begin(), rcnl[i].end(), back_inserter(map),  
@@ -95,6 +99,7 @@ void AudioCodec::encode(string fname, char const* wav){
     hdr.push_back(sfinfo.format);       //formato
     hdr.push_back(sfinfo.samplerate);   //samplerate
     hdr.push_back(order);               //ordem
+    hdr.push_back(shift);               //shift
     gb.writeHdr(hdr, bss);
 
     for(int i=0; i<sfinfo.channels; i++)
@@ -125,10 +130,11 @@ void AudioCodec::decode(string fname, char const* wav){
     bitstream bss((char*) fname.data(), std::ios::binary|std::ios::in);
     Golomb gb(10);
     
-    vector<int> hdr = gb.readHdr(6, bss);
+    vector<int> hdr = gb.readHdr(7, bss);
 
     gb.set_m(hdr[0]);
     order = hdr[5];
+    shift = hdr[6];
 
     SF_INFO sfinfo;
     sfinfo.channels = hdr[1];

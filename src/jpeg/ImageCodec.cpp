@@ -130,6 +130,7 @@ void ImageCodec::encode(string fname, Mat& rgb){
     header.push_back(rgb.rows); //n rows
     header.push_back(rgb.cols); //n de cols
     header.push_back(function); //predict function usada
+    header.push_back(shift);    //shift
     cout << "write header" << endl;
     gb.writeHdr(header, bss);
 
@@ -169,10 +170,11 @@ void ImageCodec::predictive_decoding(Mat& yuv, vector<int> yuv_){
 void ImageCodec::decode(string fname, Mat&rgb){
     bitstream bss((char*) fname.data(), std::ios::binary|std::ios::in);
     Golomb gb(11);
-    vector<int> hdr = gb.readHdr(4, bss);
+    vector<int> hdr = gb.readHdr(5, bss);
     gb.set_m(hdr[0]);
     int rows = hdr[1], cols = hdr[2];
     set_function(hdr[3]);
+    shift = hdr[4];
     cout << "Read header" << endl;
 
     vector<int> g_rd = gb.read(3*rows*cols/2, bss);
