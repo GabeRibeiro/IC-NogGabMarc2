@@ -2,7 +2,7 @@
 \label{classImageCodec}\index{ImageCodec@{ImageCodec}}
 
 
-Class for lossless \mbox{\hyperlink{classImageCodec}{Image\+Codec}}.  
+Class for lossless and lossy \mbox{\hyperlink{classImageCodec}{Image\+Codec}}.  
 
 
 
@@ -36,6 +36,8 @@ vector$<$ int $>$ \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a
 \begin{DoxyCompactList}\small\item\em Applies predictive functions to encode 1 channel YUV. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\+\_\+decoding}} (Mat \&yuv, vector$<$ int $>$ yuv\+\_\+)
 \begin{DoxyCompactList}\small\item\em Applies predictive functions to decode 1 channel YUV. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classImageCodec_af274996899bc141ad4be37af2d1cec22}{entropy}} (vector$<$ int $>$ vec)
+\begin{DoxyCompactList}\small\item\em Function to calculate entropy. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classImageCodec_aaea7cd685c91263ee13eadb112ea5a07}{set\+\_\+shift}} (int s)
 \item 
 void \mbox{\hyperlink{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}{set\+\_\+function}} (int f)
@@ -54,7 +56,7 @@ int \mbox{\hyperlink{classImageCodec_adde0414d60b3e42a9afeed64a41f0cb9}{shift}} 
 
 
 \doxysubsection{Detailed Description}
-Class for lossless \mbox{\hyperlink{classImageCodec}{Image\+Codec}}. 
+Class for lossless and lossy \mbox{\hyperlink{classImageCodec}{Image\+Codec}}. 
 
 Definition at line \mbox{\hyperlink{ImageCodec_8h_source_l00022}{22}} of file \mbox{\hyperlink{ImageCodec_8h_source}{Image\+Codec.\+h}}.
 
@@ -80,43 +82,45 @@ Decodes an image stored in a binary file.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00170}{170}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00190}{190}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00170                                             \{}
-\DoxyCodeLine{00171     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::in);}
-\DoxyCodeLine{00172     \mbox{\hyperlink{classGolomb}{Golomb}} gb(11);}
-\DoxyCodeLine{00173     vector<int> hdr = gb.readHdr(5, bss);}
-\DoxyCodeLine{00174     gb.set\_m(hdr[0]);}
-\DoxyCodeLine{00175     \textcolor{keywordtype}{int} rows = hdr[1], cols = hdr[2];}
-\DoxyCodeLine{00176     set\_function(hdr[3]);}
-\DoxyCodeLine{00177     shift = hdr[4];}
-\DoxyCodeLine{00178     cout << \textcolor{stringliteral}{"{}Read header"{}} << endl;}
-\DoxyCodeLine{00179 }
-\DoxyCodeLine{00180     vector<int> g\_rd = gb.read(3*rows*cols/2, bss);}
-\DoxyCodeLine{00181 }
-\DoxyCodeLine{00182     Mat y = Mat::zeros(rows, cols, CV\_8UC1);}
-\DoxyCodeLine{00183     Mat u = Mat::zeros(rows/2, cols/2, CV\_8UC1);}
-\DoxyCodeLine{00184     Mat v = Mat::zeros(rows/2, cols/2, CV\_8UC1);}
-\DoxyCodeLine{00185 }
-\DoxyCodeLine{00186 }
-\DoxyCodeLine{00187     cout << \textcolor{stringliteral}{"{}Read yuv"{}} << endl;}
-\DoxyCodeLine{00188     vector<int> y\_(\&g\_rd[0], \&g\_rd[rows*cols-\/1]);}
-\DoxyCodeLine{00189     vector<int> u\_(\&g\_rd[rows*cols], \&g\_rd[5*rows*cols/4-\/1]);}
-\DoxyCodeLine{00190     vector<int> v\_(\&g\_rd[5*rows*cols/4], \&g\_rd[3*rows*cols/2-\/1]);}
-\DoxyCodeLine{00191 }
-\DoxyCodeLine{00192     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(y, y\_);}
-\DoxyCodeLine{00193     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(u, u\_);}
-\DoxyCodeLine{00194     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(v, v\_);}
-\DoxyCodeLine{00195 }
-\DoxyCodeLine{00196     cv::imshow(\textcolor{stringliteral}{"{}new y"{}}, y);}
-\DoxyCodeLine{00197     cv::imshow(\textcolor{stringliteral}{"{}new u"{}}, u);}
-\DoxyCodeLine{00198     cv::imshow(\textcolor{stringliteral}{"{}new v"{}}, v);}
-\DoxyCodeLine{00199     \mbox{\hyperlink{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}{yuv2rgb}}(rgb, y, u, v);}
-\DoxyCodeLine{00200 }
-\DoxyCodeLine{00201     bss.close();}
-\DoxyCodeLine{00202 \}}
+\DoxyCodeLine{00190                                             \{}
+\DoxyCodeLine{00191     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::in);}
+\DoxyCodeLine{00192     \mbox{\hyperlink{classGolomb}{Golomb}} gb(11);}
+\DoxyCodeLine{00193     vector<int> hdr = gb.readHdr(5, bss);}
+\DoxyCodeLine{00194     gb.set\_m(hdr[0]);}
+\DoxyCodeLine{00195     \textcolor{keywordtype}{int} rows = hdr[1], cols = hdr[2];}
+\DoxyCodeLine{00196     set\_function(hdr[3]);}
+\DoxyCodeLine{00197     shift = hdr[4];}
+\DoxyCodeLine{00198     cout << \textcolor{stringliteral}{"{}Read header"{}} << endl;}
+\DoxyCodeLine{00199 }
+\DoxyCodeLine{00200     vector<int> g\_rd = gb.read(3*rows*cols/2, bss);}
+\DoxyCodeLine{00201 }
+\DoxyCodeLine{00202     Mat y = Mat::zeros(rows, cols, CV\_8UC1);}
+\DoxyCodeLine{00203     rgb = Mat::zeros(rows, cols, CV\_8UC3);}
+\DoxyCodeLine{00204     Mat u = Mat::zeros(rows/2, cols/2, CV\_8UC1);}
+\DoxyCodeLine{00205     Mat v = Mat::zeros(rows/2, cols/2, CV\_8UC1);}
+\DoxyCodeLine{00206 }
+\DoxyCodeLine{00207 }
+\DoxyCodeLine{00208     cout << \textcolor{stringliteral}{"{}Read yuv"{}} << endl;}
+\DoxyCodeLine{00209     vector<int> y\_(\&g\_rd[0], \&g\_rd[rows*cols-\/1]);}
+\DoxyCodeLine{00210     vector<int> u\_(\&g\_rd[rows*cols], \&g\_rd[5*rows*cols/4-\/1]);}
+\DoxyCodeLine{00211     vector<int> v\_(\&g\_rd[5*rows*cols/4], \&g\_rd[3*rows*cols/2-\/1]);}
+\DoxyCodeLine{00212 }
+\DoxyCodeLine{00213     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(y, y\_);}
+\DoxyCodeLine{00214     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(u, u\_);}
+\DoxyCodeLine{00215     \mbox{\hyperlink{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}{predictive\_decoding}}(v, v\_);}
+\DoxyCodeLine{00216 }
+\DoxyCodeLine{00217     }
+\DoxyCodeLine{00218     cv::imshow(\textcolor{stringliteral}{"{}new y"{}}, y);}
+\DoxyCodeLine{00219     cv::imshow(\textcolor{stringliteral}{"{}new u"{}}, u);}
+\DoxyCodeLine{00220     cv::imshow(\textcolor{stringliteral}{"{}new v"{}}, v);}
+\DoxyCodeLine{00221     \mbox{\hyperlink{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}{yuv2rgb}}(rgb, y, u, v);}
+\DoxyCodeLine{00222 }
+\DoxyCodeLine{00223     bss.close();}
+\DoxyCodeLine{00224 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}\label{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}} 
@@ -138,51 +142,95 @@ Encodes an image and stores in a binary file.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00121}{121}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00103                                              \{}
-\DoxyCodeLine{00104     Mat y(rgb.size(), CV\_8UC1);}
-\DoxyCodeLine{00105     Mat u(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
-\DoxyCodeLine{00106     Mat v(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
-\DoxyCodeLine{00107     \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}}(rgb, y, u, v);}
-\DoxyCodeLine{00108     cv::imshow(\textcolor{stringliteral}{"{}y"{}}, y);}
-\DoxyCodeLine{00109     cv::imshow(\textcolor{stringliteral}{"{}u"{}}, u);}
-\DoxyCodeLine{00110     cv::imshow(\textcolor{stringliteral}{"{}v"{}}, v);}
-\DoxyCodeLine{00111     }
-\DoxyCodeLine{00112     vector<int> y\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(y);}
-\DoxyCodeLine{00113     vector<int> u\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(u);}
-\DoxyCodeLine{00114     vector<int> v\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(v);}
-\DoxyCodeLine{00115     }
-\DoxyCodeLine{00116     vector<int> map;}
-\DoxyCodeLine{00117     transform(y\_.begin(), y\_.end(), back\_inserter(map),  }
-\DoxyCodeLine{00118     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});  }
-\DoxyCodeLine{00119     transform(u\_.begin(), u\_.end(), back\_inserter(map),  }
-\DoxyCodeLine{00120     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
-\DoxyCodeLine{00121     transform(v\_.begin(), v\_.end(), back\_inserter(map),  }
-\DoxyCodeLine{00122     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
-\DoxyCodeLine{00123     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
-\DoxyCodeLine{00124     mean/= 3*rgb.rows*rgb.cols/2 ;}
-\DoxyCodeLine{00125     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1)))  );}
-\DoxyCodeLine{00126     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
-\DoxyCodeLine{00127 }
-\DoxyCodeLine{00128     vector<int> header;}
-\DoxyCodeLine{00129     header.push\_back(gb.get\_m()); \textcolor{comment}{//m de golomb}}
-\DoxyCodeLine{00130     header.push\_back(rgb.rows); \textcolor{comment}{//n rows}}
-\DoxyCodeLine{00131     header.push\_back(rgb.cols); \textcolor{comment}{//n de cols}}
-\DoxyCodeLine{00132     header.push\_back(function); \textcolor{comment}{//predict function usada}}
-\DoxyCodeLine{00133     header.push\_back(shift);    \textcolor{comment}{//shift}}
-\DoxyCodeLine{00134     cout << \textcolor{stringliteral}{"{}write header"{}} << endl;}
-\DoxyCodeLine{00135     gb.writeHdr(header, bss);}
-\DoxyCodeLine{00136 }
-\DoxyCodeLine{00137     cout << \textcolor{stringliteral}{"{}Write yuv"{}} << endl;}
-\DoxyCodeLine{00138     gb.write(y\_, bss);}
-\DoxyCodeLine{00139     gb.write(u\_, bss);}
-\DoxyCodeLine{00140     gb.write(v\_, bss);}
-\DoxyCodeLine{00141     bss.padding();}
-\DoxyCodeLine{00142     bss.close();}
-\DoxyCodeLine{00143 \}}
+\DoxyCodeLine{00121                                              \{}
+\DoxyCodeLine{00122     Mat y(rgb.size(), CV\_8UC1);}
+\DoxyCodeLine{00123     Mat u(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
+\DoxyCodeLine{00124     Mat v(rgb.rows/2, rgb.cols/2, CV\_8UC1);}
+\DoxyCodeLine{00125     \mbox{\hyperlink{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}{rgb2yuv}}(rgb, y, u, v);}
+\DoxyCodeLine{00126     cv::imshow(\textcolor{stringliteral}{"{}y"{}}, y);}
+\DoxyCodeLine{00127     cv::imshow(\textcolor{stringliteral}{"{}u"{}}, u);}
+\DoxyCodeLine{00128     cv::imshow(\textcolor{stringliteral}{"{}v"{}}, v);}
+\DoxyCodeLine{00129     }
+\DoxyCodeLine{00130     vector<int> y\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(y);}
+\DoxyCodeLine{00131     vector<int> u\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(u);}
+\DoxyCodeLine{00132     vector<int> v\_ = \mbox{\hyperlink{classImageCodec_ab25d13565847b2dddb785e35a34a144a}{predictive\_coding}}(v);}
+\DoxyCodeLine{00133 }
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135     }
+\DoxyCodeLine{00136     vector<int> map;}
+\DoxyCodeLine{00137     transform(y\_.begin(), y\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00138     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});  }
+\DoxyCodeLine{00139     transform(u\_.begin(), u\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00140     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
+\DoxyCodeLine{00141     transform(v\_.begin(), v\_.end(), back\_inserter(map),  }
+\DoxyCodeLine{00142     [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  x>=0? x * 2 : -\/2*x-\/1; \});}
+\DoxyCodeLine{00143     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
+\DoxyCodeLine{00144     mean/= 3*rgb.rows*rgb.cols/2 ;}
+\DoxyCodeLine{00145     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1)))  );}
+\DoxyCodeLine{00146     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148     vector<int> header;}
+\DoxyCodeLine{00149     header.push\_back(gb.get\_m()); \textcolor{comment}{//m de golomb}}
+\DoxyCodeLine{00150     header.push\_back(rgb.rows); \textcolor{comment}{//n rows}}
+\DoxyCodeLine{00151     header.push\_back(rgb.cols); \textcolor{comment}{//n de cols}}
+\DoxyCodeLine{00152     header.push\_back(function); \textcolor{comment}{//predict function usada}}
+\DoxyCodeLine{00153     header.push\_back(shift);    \textcolor{comment}{//shift}}
+\DoxyCodeLine{00154     cout << \textcolor{stringliteral}{"{}write header"{}} << endl;}
+\DoxyCodeLine{00155     gb.writeHdr(header, bss);}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157     cout << \textcolor{stringliteral}{"{}Write yuv"{}} << endl;}
+\DoxyCodeLine{00158     gb.write(y\_, bss);}
+\DoxyCodeLine{00159     gb.write(u\_, bss);}
+\DoxyCodeLine{00160     gb.write(v\_, bss);}
+\DoxyCodeLine{00161     bss.padding();}
+\DoxyCodeLine{00162     bss.close();}
+\DoxyCodeLine{00163 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classImageCodec_af274996899bc141ad4be37af2d1cec22}\label{classImageCodec_af274996899bc141ad4be37af2d1cec22}} 
+\index{ImageCodec@{ImageCodec}!entropy@{entropy}}
+\index{entropy@{entropy}!ImageCodec@{ImageCodec}}
+\doxysubsubsection{\texorpdfstring{entropy()}{entropy()}}
+{\footnotesize\ttfamily double Image\+Codec\+::entropy (\begin{DoxyParamCaption}\item[{vector$<$ int $>$}]{vec }\end{DoxyParamCaption})}
+
+
+
+Function to calculate entropy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & integer vector containing channel values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+entropy value 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033                                          \{}
+\DoxyCodeLine{00034     unordered\_map<int, double> ch;}
+\DoxyCodeLine{00035     \textcolor{keywordtype}{double} entropy\_ch=0, prob;}
+\DoxyCodeLine{00036     \textcolor{keywordtype}{int} total = vec.size(), value;}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i : vec)\{    }
+\DoxyCodeLine{00039         value = i;}
+\DoxyCodeLine{00040         ch[i]++;}
+\DoxyCodeLine{00041     \}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     \textcolor{keywordflow}{for}(\textcolor{keyword}{auto} it:ch) \{}
+\DoxyCodeLine{00044         prob = double (it.second / \textcolor{keywordtype}{double}(total));}
+\DoxyCodeLine{00045         entropy\_ch += prob * log2(prob);}
+\DoxyCodeLine{00046     \}}
+\DoxyCodeLine{00047     \textcolor{keywordflow}{return} -\/entropy\_ch; }
+\DoxyCodeLine{00048 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}\label{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}} 
@@ -205,11 +253,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00019 \{\textcolor{keywordflow}{return} a;\}}
+\DoxyCodeLine{00020 \{\textcolor{keywordflow}{return} a;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}\label{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}} 
@@ -232,11 +280,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00020 \{\textcolor{keywordflow}{return} b;\}}
+\DoxyCodeLine{00021 \{\textcolor{keywordflow}{return} b;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}\label{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}} 
@@ -259,11 +307,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00021 \{\textcolor{keywordflow}{return} c;\}}
+\DoxyCodeLine{00022 \{\textcolor{keywordflow}{return} c;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a79615da6e84257a938b84cabf338848b}\label{classImageCodec_a79615da6e84257a938b84cabf338848b}} 
@@ -290,11 +338,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022 \{\textcolor{keywordflow}{return} a+b-\/c;\}}
+\DoxyCodeLine{00023 \{\textcolor{keywordflow}{return} a+b-\/c;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a54f87b912c6652528405cfd8f78792a8}\label{classImageCodec_a54f87b912c6652528405cfd8f78792a8}} 
@@ -321,11 +369,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00023 \{\textcolor{keywordflow}{return} a+(b-\/c)/2;\}}
+\DoxyCodeLine{00024 \{\textcolor{keywordflow}{return} a+(b-\/c)/2;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_aeffd813de962daae740980a06781a4eb}\label{classImageCodec_aeffd813de962daae740980a06781a4eb}} 
@@ -352,11 +400,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00024 \{\textcolor{keywordflow}{return} b+(a-\/c)/2;\}}
+\DoxyCodeLine{00025 \{\textcolor{keywordflow}{return} b+(a-\/c)/2;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}\label{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}} 
@@ -381,11 +429,11 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00025 \{\textcolor{keywordflow}{return} (a+b)/2;\}}
+\DoxyCodeLine{00026 \{\textcolor{keywordflow}{return} (a+b)/2;\}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a127e953b9ab923721cc00961878c0f2e}\label{classImageCodec_a127e953b9ab923721cc00961878c0f2e}} 
@@ -412,15 +460,15 @@ predicted value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00026                                                     \{}
-\DoxyCodeLine{00027     \textcolor{keywordflow}{if}(c >= max(a,b)) \textcolor{keywordflow}{return} min(a,b);}
-\DoxyCodeLine{00028     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(c <= min(a,b) ) \textcolor{keywordflow}{return} max(a,b);}
-\DoxyCodeLine{00029     \textcolor{keywordflow}{return} a+b-\/c;}
-\DoxyCodeLine{00030 \}}
+\DoxyCodeLine{00027                                                     \{}
+\DoxyCodeLine{00028     \textcolor{keywordflow}{if}(c >= max(a,b)) \textcolor{keywordflow}{return} min(a,b);}
+\DoxyCodeLine{00029     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(c <= min(a,b) ) \textcolor{keywordflow}{return} max(a,b);}
+\DoxyCodeLine{00030     \textcolor{keywordflow}{return} a+b-\/c;}
+\DoxyCodeLine{00031 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_ab25d13565847b2dddb785e35a34a144a}\label{classImageCodec_ab25d13565847b2dddb785e35a34a144a}} 
@@ -443,38 +491,38 @@ integer vector containing residuals
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00092}{92}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00074                                                  \{}
-\DoxyCodeLine{00075     \textcolor{keywordtype}{int} rw=yuv.rows, cl=yuv.cols, x, px,a,b,c, rsd;}
-\DoxyCodeLine{00076     vector<int> r;}
-\DoxyCodeLine{00077     cout<< \textcolor{stringliteral}{"{}Encoding "{}}<< endl;}
-\DoxyCodeLine{00078     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<rw; i++)\{}
-\DoxyCodeLine{00079         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<cl; j++)\{}
-\DoxyCodeLine{00080             x = yuv.at<uchar>(i, j);}
-\DoxyCodeLine{00081             a = j==0? 0 : yuv.at<uchar>(i, j-\/1);}
-\DoxyCodeLine{00082             b = i==0? 0 : yuv.at<uchar>(i-\/1, j);}
-\DoxyCodeLine{00083             c = j==0 || i==0? 0 : yuv.at<uchar>(i-\/1, j-\/1);}
-\DoxyCodeLine{00084 }
-\DoxyCodeLine{00085             \textcolor{keywordflow}{switch}(this-\/>function)\{}
-\DoxyCodeLine{00086                 \textcolor{keywordflow}{case} 0: px = \mbox{\hyperlink{classImageCodec_a127e953b9ab923721cc00961878c0f2e}{non\_linear\_jpegls}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00087                 \textcolor{keywordflow}{case} 1: px = \mbox{\hyperlink{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}{linear\_jpeg\_mode1}}(a); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00088                 \textcolor{keywordflow}{case} 2: px = \mbox{\hyperlink{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}{linear\_jpeg\_mode2}}(b); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00089                 \textcolor{keywordflow}{case} 3: px = \mbox{\hyperlink{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}{linear\_jpeg\_mode3}}(c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00090                 \textcolor{keywordflow}{case} 4: px = \mbox{\hyperlink{classImageCodec_a79615da6e84257a938b84cabf338848b}{linear\_jpeg\_mode4}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00091                 \textcolor{keywordflow}{case} 5: px = \mbox{\hyperlink{classImageCodec_a54f87b912c6652528405cfd8f78792a8}{linear\_jpeg\_mode5}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00092                 \textcolor{keywordflow}{case} 6: px = \mbox{\hyperlink{classImageCodec_aeffd813de962daae740980a06781a4eb}{linear\_jpeg\_mode6}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00093                 \textcolor{keywordflow}{case} 7: px = \mbox{\hyperlink{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}{linear\_jpeg\_mode7}}(a,b); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00094             \}}
-\DoxyCodeLine{00095             rsd = ((x-\/px) >> shift) << shift;}
-\DoxyCodeLine{00096             r.push\_back(rsd);}
-\DoxyCodeLine{00097             yuv.at<uchar>(i, j) = rsd + px;}
-\DoxyCodeLine{00098         \}}
-\DoxyCodeLine{00099     \}}
-\DoxyCodeLine{00100     \textcolor{keywordflow}{return} r;}
-\DoxyCodeLine{00101 \}}
+\DoxyCodeLine{00092                                                  \{}
+\DoxyCodeLine{00093     \textcolor{keywordtype}{int} rw=yuv.rows, cl=yuv.cols, x, px,a,b,c, rsd;}
+\DoxyCodeLine{00094     vector<int> r;}
+\DoxyCodeLine{00095     cout<< \textcolor{stringliteral}{"{}Encoding "{}}<< endl;}
+\DoxyCodeLine{00096     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<rw; i++)\{}
+\DoxyCodeLine{00097         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<cl; j++)\{}
+\DoxyCodeLine{00098             x = yuv.at<uchar>(i, j);}
+\DoxyCodeLine{00099             a = j==0? 0 : yuv.at<uchar>(i, j-\/1);}
+\DoxyCodeLine{00100             b = i==0? 0 : yuv.at<uchar>(i-\/1, j);}
+\DoxyCodeLine{00101             c = j==0 || i==0? 0 : yuv.at<uchar>(i-\/1, j-\/1);}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103             \textcolor{keywordflow}{switch}(this-\/>function)\{}
+\DoxyCodeLine{00104                 \textcolor{keywordflow}{case} 0: px = \mbox{\hyperlink{classImageCodec_a127e953b9ab923721cc00961878c0f2e}{non\_linear\_jpegls}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00105                 \textcolor{keywordflow}{case} 1: px = \mbox{\hyperlink{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}{linear\_jpeg\_mode1}}(a); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106                 \textcolor{keywordflow}{case} 2: px = \mbox{\hyperlink{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}{linear\_jpeg\_mode2}}(b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00107                 \textcolor{keywordflow}{case} 3: px = \mbox{\hyperlink{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}{linear\_jpeg\_mode3}}(c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108                 \textcolor{keywordflow}{case} 4: px = \mbox{\hyperlink{classImageCodec_a79615da6e84257a938b84cabf338848b}{linear\_jpeg\_mode4}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00109                 \textcolor{keywordflow}{case} 5: px = \mbox{\hyperlink{classImageCodec_a54f87b912c6652528405cfd8f78792a8}{linear\_jpeg\_mode5}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110                 \textcolor{keywordflow}{case} 6: px = \mbox{\hyperlink{classImageCodec_aeffd813de962daae740980a06781a4eb}{linear\_jpeg\_mode6}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00111                 \textcolor{keywordflow}{case} 7: px = \mbox{\hyperlink{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}{linear\_jpeg\_mode7}}(a,b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00112             \}}
+\DoxyCodeLine{00113             rsd = ((x-\/px) >> shift) << shift;}
+\DoxyCodeLine{00114             r.push\_back(rsd);}
+\DoxyCodeLine{00115             yuv.at<uchar>(i, j) = rsd + px;}
+\DoxyCodeLine{00116         \}}
+\DoxyCodeLine{00117     \}}
+\DoxyCodeLine{00118     \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{00119 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}\label{classImageCodec_a5750c21638fce05ccbd351dd1bd96d78}} 
@@ -496,34 +544,34 @@ Applies predictive functions to decode 1 channel YUV.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00145}{145}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00165}{165}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00145                                                               \{}
-\DoxyCodeLine{00146     \textcolor{keywordtype}{int} rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;}
-\DoxyCodeLine{00147     cout<< \textcolor{stringliteral}{"{} Decoding "{}}<< endl;}
-\DoxyCodeLine{00148     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<rw; i++)\{}
-\DoxyCodeLine{00149         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<cl; j++)\{}
-\DoxyCodeLine{00150             r = yuv\_[i*cl+j];}
-\DoxyCodeLine{00151             a = j==0? 0 : yuv.at<uchar>(i, j-\/1);}
-\DoxyCodeLine{00152             b = i==0? 0 : yuv.at<uchar>(i-\/1, j);}
-\DoxyCodeLine{00153             c = j==0 || i==0? 0 : yuv.at<uchar>(i-\/1, j-\/1);}
-\DoxyCodeLine{00154 }
-\DoxyCodeLine{00155             \textcolor{keywordflow}{switch}(this-\/>function)\{}
-\DoxyCodeLine{00156                 \textcolor{keywordflow}{case} 0: px = \mbox{\hyperlink{classImageCodec_a127e953b9ab923721cc00961878c0f2e}{non\_linear\_jpegls}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00157                 \textcolor{keywordflow}{case} 1: px = \mbox{\hyperlink{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}{linear\_jpeg\_mode1}}(a); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00158                 \textcolor{keywordflow}{case} 2: px = \mbox{\hyperlink{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}{linear\_jpeg\_mode2}}(b); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00159                 \textcolor{keywordflow}{case} 3: px = \mbox{\hyperlink{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}{linear\_jpeg\_mode3}}(c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00160                 \textcolor{keywordflow}{case} 4: px = \mbox{\hyperlink{classImageCodec_a79615da6e84257a938b84cabf338848b}{linear\_jpeg\_mode4}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00161                 \textcolor{keywordflow}{case} 5: px = \mbox{\hyperlink{classImageCodec_a54f87b912c6652528405cfd8f78792a8}{linear\_jpeg\_mode5}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00162                 \textcolor{keywordflow}{case} 6: px = \mbox{\hyperlink{classImageCodec_aeffd813de962daae740980a06781a4eb}{linear\_jpeg\_mode6}}(a,b,c); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00163                 \textcolor{keywordflow}{case} 7: px = \mbox{\hyperlink{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}{linear\_jpeg\_mode7}}(a,b); \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00164             \}}
-\DoxyCodeLine{00165             yuv.at<uchar>(i, j) = px+r;}
-\DoxyCodeLine{00166         \}}
-\DoxyCodeLine{00167     \}}
-\DoxyCodeLine{00168 \}}
+\DoxyCodeLine{00165                                                               \{}
+\DoxyCodeLine{00166     \textcolor{keywordtype}{int} rw=yuv.rows, cl=yuv.cols,r,px,a,b,c;}
+\DoxyCodeLine{00167     cout<< \textcolor{stringliteral}{"{} Decoding "{}}<< endl;}
+\DoxyCodeLine{00168     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<rw; i++)\{}
+\DoxyCodeLine{00169         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<cl; j++)\{}
+\DoxyCodeLine{00170             r = yuv\_[i*cl+j];}
+\DoxyCodeLine{00171             a = j==0? 0 : yuv.at<uchar>(i, j-\/1);}
+\DoxyCodeLine{00172             b = i==0? 0 : yuv.at<uchar>(i-\/1, j);}
+\DoxyCodeLine{00173             c = j==0 || i==0? 0 : yuv.at<uchar>(i-\/1, j-\/1);}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175             \textcolor{keywordflow}{switch}(this-\/>function)\{}
+\DoxyCodeLine{00176                 \textcolor{keywordflow}{case} 0: px = \mbox{\hyperlink{classImageCodec_a127e953b9ab923721cc00961878c0f2e}{non\_linear\_jpegls}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177                 \textcolor{keywordflow}{case} 1: px = \mbox{\hyperlink{classImageCodec_a6017a41ddb56bb66202a85e1b3e99e17}{linear\_jpeg\_mode1}}(a); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00178                 \textcolor{keywordflow}{case} 2: px = \mbox{\hyperlink{classImageCodec_a8dd5e8dd4bb5788513ded48f6e16cb6f}{linear\_jpeg\_mode2}}(b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00179                 \textcolor{keywordflow}{case} 3: px = \mbox{\hyperlink{classImageCodec_aedbdc99285a2aa8b91e33596658fc440}{linear\_jpeg\_mode3}}(c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00180                 \textcolor{keywordflow}{case} 4: px = \mbox{\hyperlink{classImageCodec_a79615da6e84257a938b84cabf338848b}{linear\_jpeg\_mode4}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00181                 \textcolor{keywordflow}{case} 5: px = \mbox{\hyperlink{classImageCodec_a54f87b912c6652528405cfd8f78792a8}{linear\_jpeg\_mode5}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00182                 \textcolor{keywordflow}{case} 6: px = \mbox{\hyperlink{classImageCodec_aeffd813de962daae740980a06781a4eb}{linear\_jpeg\_mode6}}(a,b,c); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00183                 \textcolor{keywordflow}{case} 7: px = \mbox{\hyperlink{classImageCodec_a11c1e2cc2521efe6d6cacfb3a4c63247}{linear\_jpeg\_mode7}}(a,b); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00184             \}}
+\DoxyCodeLine{00185             yuv.at<uchar>(i, j) = px+r;}
+\DoxyCodeLine{00186         \}}
+\DoxyCodeLine{00187     \}}
+\DoxyCodeLine{00188 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}\label{classImageCodec_aeabf0a3767f5bc81020f3b1a308c21ae}} 
@@ -549,27 +597,27 @@ Converts RGB to YUV 4\+:2\+:0
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00056                                                         \{}
-\DoxyCodeLine{00057     \textcolor{keywordtype}{int} i,j, rw=rgb.rows, cl=rgb.cols;}
-\DoxyCodeLine{00058     \textcolor{keywordtype}{double} r,g,b;}
-\DoxyCodeLine{00059     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
-\DoxyCodeLine{00060         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
-\DoxyCodeLine{00061             r = rgb.at<Vec3b>(i, j)[0];}
-\DoxyCodeLine{00062             g = rgb.at<Vec3b>(i, j)[1];}
-\DoxyCodeLine{00063             b = rgb.at<Vec3b>(i, j)[2];}
-\DoxyCodeLine{00064 }
-\DoxyCodeLine{00065             y.at<uchar>(i, j) = 0.299*r + 0.587*g + 0.114*b;}
-\DoxyCodeLine{00066             \textcolor{keywordflow}{if}(i\%2==0 \&\& j\%2==0)\{}
-\DoxyCodeLine{00067                 u.at<uchar>(i/2, j/2) = -\/0.147*r -\/ 0.289*g + 0.436*b;}
-\DoxyCodeLine{00068                 v.at<uchar>(i/2, j/2) = 0.615*r -\/ 0.515*g -\/ 0.100*b;}
-\DoxyCodeLine{00069             \}}
-\DoxyCodeLine{00070         \}}
-\DoxyCodeLine{00071     \}}
-\DoxyCodeLine{00072 \}}
+\DoxyCodeLine{00074                                                         \{}
+\DoxyCodeLine{00075     \textcolor{keywordtype}{int} i,j, rw=rgb.rows, cl=rgb.cols;}
+\DoxyCodeLine{00076     \textcolor{keywordtype}{double} r,g,b;}
+\DoxyCodeLine{00077     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
+\DoxyCodeLine{00078         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
+\DoxyCodeLine{00079             r = rgb.at<Vec3b>(i, j)[0];}
+\DoxyCodeLine{00080             g = rgb.at<Vec3b>(i, j)[1];}
+\DoxyCodeLine{00081             b = rgb.at<Vec3b>(i, j)[2];}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083             y.at<uchar>(i, j) = 0.299*r + 0.587*g + 0.114*b;}
+\DoxyCodeLine{00084             \textcolor{keywordflow}{if}(i\%2==0 \&\& j\%2==0)\{}
+\DoxyCodeLine{00085                 u.at<uchar>(i/2, j/2) = -\/0.147*r -\/ 0.289*g + 0.436*b;}
+\DoxyCodeLine{00086                 v.at<uchar>(i/2, j/2) = 0.615*r -\/ 0.515*g -\/ 0.100*b;}
+\DoxyCodeLine{00087             \}}
+\DoxyCodeLine{00088         \}}
+\DoxyCodeLine{00089     \}}
+\DoxyCodeLine{00090 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}\label{classImageCodec_ae176a8bb601fdb52fe4eb3a1664a0c01}} 
@@ -580,13 +628,13 @@ Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00056}{56}} of file 
 
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00032                                   \{}
-\DoxyCodeLine{00033     \textcolor{keywordflow}{if}(f>=0 \&\& f<=7) this-\/>function = f;}
-\DoxyCodeLine{00034 \}}
+\DoxyCodeLine{00050                                   \{}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{if}(f>=0 \&\& f<=7) this-\/>function = f;}
+\DoxyCodeLine{00052 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_aaea7cd685c91263ee13eadb112ea5a07}\label{classImageCodec_aaea7cd685c91263ee13eadb112ea5a07}} 
@@ -597,13 +645,13 @@ Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00032}{32}} of file 
 
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00036                                \{}
-\DoxyCodeLine{00037     this-\/>shift = s;}
-\DoxyCodeLine{00038 \}}
+\DoxyCodeLine{00054                                \{}
+\DoxyCodeLine{00055     this-\/>shift = s;}
+\DoxyCodeLine{00056 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}\label{classImageCodec_a44478e97bd6fe6e8601b006ff02d0641}} 
@@ -629,25 +677,25 @@ Converts YUV 4\+:2\+:0 to RGB.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
+Definition at line \mbox{\hyperlink{ImageCodec_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{ImageCodec_8cpp_source}{Image\+Codec.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00040                                                         \{}
-\DoxyCodeLine{00041     \textcolor{keywordtype}{int} i, j, rw=y.rows, cl=y.cols;}
-\DoxyCodeLine{00042     \textcolor{keywordtype}{double} y\_, u\_, v\_, r, b;}
-\DoxyCodeLine{00043     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
-\DoxyCodeLine{00044         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
-\DoxyCodeLine{00045             y\_ = y.at<uchar>(i, j);}
-\DoxyCodeLine{00046             u\_ = u.at<uchar>(i/2, j/2);}
-\DoxyCodeLine{00047             v\_ = v.at<uchar>(i/2, j/2);}
-\DoxyCodeLine{00048 }
-\DoxyCodeLine{00049             r = rgb.at<Vec3b>(i, j)[0] = v\_/0.877 + y\_;}
-\DoxyCodeLine{00050             b = rgb.at<Vec3b>(i, j)[2] = u\_/0.492 + y\_;}
-\DoxyCodeLine{00051             rgb.at<Vec3b>(i, j)[1] = (y\_ -\/ 0.299*r -\/ 0.114*b)/0.587;}
-\DoxyCodeLine{00052         \}}
-\DoxyCodeLine{00053     \}}
-\DoxyCodeLine{00054 \}}
+\DoxyCodeLine{00058                                                         \{}
+\DoxyCodeLine{00059     \textcolor{keywordtype}{int} i, j, rw=y.rows, cl=y.cols;}
+\DoxyCodeLine{00060     \textcolor{keywordtype}{double} y\_, u\_, v\_, r, b;}
+\DoxyCodeLine{00061     \textcolor{keywordflow}{for}(i=0; i<rw; i++)\{}
+\DoxyCodeLine{00062         \textcolor{keywordflow}{for}(j=0; j<cl; j++)\{}
+\DoxyCodeLine{00063             y\_ = y.at<uchar>(i, j);}
+\DoxyCodeLine{00064             u\_ = u.at<uchar>(i/2, j/2);}
+\DoxyCodeLine{00065             v\_ = v.at<uchar>(i/2, j/2);}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067             r = rgb.at<Vec3b>(i, j)[0] = v\_/0.877 + y\_;}
+\DoxyCodeLine{00068             b = rgb.at<Vec3b>(i, j)[2] = u\_/0.492 + y\_;}
+\DoxyCodeLine{00069             rgb.at<Vec3b>(i, j)[1] = (y\_ -\/ 0.299*r -\/ 0.114*b)/0.587;}
+\DoxyCodeLine{00070         \}}
+\DoxyCodeLine{00071     \}}
+\DoxyCodeLine{00072 \}}
 
 \end{DoxyCode}
 

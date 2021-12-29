@@ -16,56 +16,39 @@
 \DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00012}00012 \textcolor{keyword}{using namespace }std;}
 \DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00013}00013 }
 \DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00014}00014 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void})\{}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00015}00015     \textcolor{comment}{//teste audio encode e decode}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00016}00016 }
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00017}00017     \mbox{\hyperlink{classAudioCodec}{AudioCodec}} aud;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00018}00018     \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav[3] = \{\textcolor{stringliteral}{"{}sample01.wav"{}} , \textcolor{stringliteral}{"{}sample02.wav"{}}, \textcolor{stringliteral}{"{}sample03.wav"{}}\};}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00019}00019     \textcolor{keywordtype}{string} filename;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00020}00020     \textcolor{keywordtype}{int} i, w;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00021}00021     \textcolor{keywordtype}{char} yn;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00022}00022 }
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00023}00023     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} p=0; p<9; p+=3)\{}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00024}00024         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} l=1; l<4; l++)\{}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00025}00025             filename = \textcolor{stringliteral}{"{}smp"{}} + to\_string(l) + to\_string(p) ;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00026}00026             aud.set\_order(l);}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00027}00027             aud.set\_shift(p);}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00028}00028             cout << filename << \textcolor{stringliteral}{"{}s1.bin"{}} << endl;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00029}00029             aud.\mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{encode}}(filename + \textcolor{stringliteral}{"{}s1.bin"{}}, wav[0]);}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00030}00030             }
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00031}00031             cout << filename << \textcolor{stringliteral}{"{}s2.bin"{}} << endl;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00032}00032             aud.\mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{encode}}(filename+ \textcolor{stringliteral}{"{}s2.bin"{}}, wav[1]);}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00033}00033         \}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00034}00034     \}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00035}00035 }
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00036}00036     \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00037}00037 \textcolor{comment}{    cout << "{}Pretende codificar um ficheiro audio?[y/n]"{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00038}00038 \textcolor{comment}{    cin >> yn;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00039}00039 \textcolor{comment}{    if(yn == 'y')\{}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00040}00040 \textcolor{comment}{        cout << "{}Numero do ficheiro audio a ler: [1 a 3]"{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00041}00041 \textcolor{comment}{        cin >> w;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00042}00042 \textcolor{comment}{        cout << "{}Nome do ficheiro binario a escrever: "{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00043}00043 \textcolor{comment}{        cin >> filename;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00044}00044 \textcolor{comment}{        cout << "{}Qual ordem do predict function: [1 a 3]"{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00045}00045 \textcolor{comment}{        cin >> i;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00046}00046 \textcolor{comment}{        aud.set\_order(i);}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00047}00047 \textcolor{comment}{        cout << "{}Nivel de quantização : [0 a 15]"{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00048}00048 \textcolor{comment}{        cin >> i;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00049}00049 \textcolor{comment}{        aud.set\_shift(i);}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00050}00050 \textcolor{comment}{        aud.encode(filename, wav[w]);}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00051}00051 \textcolor{comment}{        cout << "{}Fim de processo de codificaçao."{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00052}00052 \textcolor{comment}{    \}}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00053}00053 \textcolor{comment}{    }}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00054}00054 \textcolor{comment}{    cout << "{}Pretende descodificar um ficheiro audio?[y/n]"{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00055}00055 \textcolor{comment}{    cin >> yn;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00056}00056 \textcolor{comment}{    if(yn == 'y')\{}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00057}00057 \textcolor{comment}{        cout << "{}Nome do ficheiro binario a ler: "{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00058}00058 \textcolor{comment}{        cin >> filename;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00059}00059 \textcolor{comment}{        char const* res = "{}audio.wav"{};}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00060}00060 \textcolor{comment}{        aud.decode(filename, res);}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00061}00061 \textcolor{comment}{        cout << "{}Fim de processo de descodificaçao."{} << endl;}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00062}00062 \textcolor{comment}{    \}}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00063}00063 \textcolor{comment}{    */}}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00064}00064    \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00065}00065 \}}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00016}00016     \mbox{\hyperlink{classAudioCodec}{AudioCodec}} aud;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00017}00017     \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav = \textcolor{stringliteral}{"{}sample01.wav"{}}; \textcolor{comment}{//por se tratar de const tem de ser alterado aqui}}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00018}00018     \textcolor{keywordtype}{string} filename;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00019}00019     \textcolor{keywordtype}{int} i, w;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00020}00020     \textcolor{keywordtype}{char} yn;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00022}00022     cout << \textcolor{stringliteral}{"{}Pretende codificar um ficheiro audio?[y/n]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00023}00023     cin >> yn;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00024}00024     \textcolor{keywordflow}{if}(yn == \textcolor{charliteral}{'y'})\{}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00025}00025         cout << \textcolor{stringliteral}{"{}Nome do ficheiro binario a escrever: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00026}00026         cin >> filename;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00027}00027         cout << \textcolor{stringliteral}{"{}Qual ordem do predict function: [1 a 3]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00028}00028         cin >> i;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00029}00029         aud.set\_order(i);}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00030}00030         cout << \textcolor{stringliteral}{"{}Nivel de quantização : [0 a 15]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00031}00031         cin >> i;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00032}00032         aud.set\_shift(i);}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00033}00033         aud.\mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{encode}}(filename, wav);}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00034}00034         cout << \textcolor{stringliteral}{"{}Fim de processo de codificaçao."{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00036}00036     }
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00037}00037     cout << \textcolor{stringliteral}{"{}Pretende descodificar um ficheiro audio?[y/n]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00038}00038     cin >> yn;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00039}00039     \textcolor{keywordflow}{if}(yn == \textcolor{charliteral}{'y'})\{}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00040}00040         cout << \textcolor{stringliteral}{"{}Nome do ficheiro binario a ler: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00041}00041         cin >> filename;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00042}00042         \textcolor{keywordtype}{char} \textcolor{keyword}{const}* res = \textcolor{stringliteral}{"{}audio.wav"{}};}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00043}00043         aud.\mbox{\hyperlink{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}{decode}}(filename, res);}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00044}00044         cout << \textcolor{stringliteral}{"{}Fim de processo de descodificaçao."{}} << endl;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00047}00047    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{audio__test_8cpp_source_l00048}00048 \}}
 
 \end{DoxyCode}

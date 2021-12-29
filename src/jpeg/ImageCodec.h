@@ -17,7 +17,7 @@ using namespace std;
 using namespace cv;
 
 /**
-   * @brief Class for lossless ImageCodec
+   * @brief Class for lossless and lossy ImageCodec
 */
 class ImageCodec{
     public:

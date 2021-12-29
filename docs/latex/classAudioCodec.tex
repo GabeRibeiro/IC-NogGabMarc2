@@ -80,26 +80,25 @@ Definition at line \mbox{\hyperlink{AudioCodec_8cpp_source_l00129}{129}} of file
 \DoxyCodeLine{00140     sfinfo.channels = hdr[1];}
 \DoxyCodeLine{00141     sfinfo.format = hdr[3];}
 \DoxyCodeLine{00142     sfinfo.samplerate = hdr[4];}
-\DoxyCodeLine{00143     cout << \textcolor{stringliteral}{"{}format :  "{}}<< sfinfo.format <<endl;}
+\DoxyCodeLine{00143 }
 \DoxyCodeLine{00144 }
-\DoxyCodeLine{00145 }
-\DoxyCodeLine{00146     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
-\DoxyCodeLine{00147     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
-\DoxyCodeLine{00148         rcnl[i] = gb.read(hdr[2], bss);}
-\DoxyCodeLine{00149         vcnl[i] = \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(rcnl[i]);}
-\DoxyCodeLine{00150     \}}
-\DoxyCodeLine{00151 }
-\DoxyCodeLine{00152     vector<short> wrt;}
-\DoxyCodeLine{00153     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
-\DoxyCodeLine{00154         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
-\DoxyCodeLine{00155             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
-\DoxyCodeLine{00156     \}}
-\DoxyCodeLine{00157 }
-\DoxyCodeLine{00158     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
-\DoxyCodeLine{00159     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
-\DoxyCodeLine{00160     sf\_write\_sync(outfile);}
-\DoxyCodeLine{00161     sf\_close(outfile);}
-\DoxyCodeLine{00162 \}}
+\DoxyCodeLine{00145     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
+\DoxyCodeLine{00146     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
+\DoxyCodeLine{00147         rcnl[i] = gb.read(hdr[2], bss);}
+\DoxyCodeLine{00148         vcnl[i] = \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(rcnl[i]);}
+\DoxyCodeLine{00149     \}}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151     vector<short> wrt;}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
+\DoxyCodeLine{00153         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
+\DoxyCodeLine{00154             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
+\DoxyCodeLine{00155     \}}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
+\DoxyCodeLine{00158     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
+\DoxyCodeLine{00159     sf\_write\_sync(outfile);}
+\DoxyCodeLine{00160     sf\_close(outfile);}
+\DoxyCodeLine{00161 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}\label{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}} 

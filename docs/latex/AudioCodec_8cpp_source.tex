@@ -144,25 +144,24 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00140}00140     sfinfo.channels = hdr[1];}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00141}00141     sfinfo.format = hdr[3];}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00142}00142     sfinfo.samplerate = hdr[4];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00143}00143     cout << \textcolor{stringliteral}{"{}format :  "{}}<< sfinfo.format <<endl;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00143}00143 }
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00144}00144 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00145}00145 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00146}00146     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00147}00147     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00148}00148         rcnl[i] = gb.\mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}}(hdr[2], bss);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00149}00149         vcnl[i] = \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(rcnl[i]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00150}00150     \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00151}00151 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00152}00152     vector<short> wrt;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00153}00153     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00154}00154         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00155}00155             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00156}00156     \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00157}00157 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00158}00158     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00159}00159     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00160}00160     sf\_write\_sync(outfile);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00161}00161     sf\_close(outfile);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00162}00162 \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00145}00145     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00146}00146     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00147}00147         rcnl[i] = gb.\mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}}(hdr[2], bss);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00148}00148         vcnl[i] = \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(rcnl[i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00149}00149     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00151}00151     vector<short> wrt;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00152}00152     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00153}00153         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00154}00154             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00157}00157     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00158}00158     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00159}00159     sf\_write\_sync(outfile);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00160}00160     sf\_close(outfile);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00161}00161 \}}
 
 \end{DoxyCode}
