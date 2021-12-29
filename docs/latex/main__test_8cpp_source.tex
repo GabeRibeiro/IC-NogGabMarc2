@@ -116,7 +116,7 @@
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00112}00112     \textcolor{comment}{/*}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00113}00113 \textcolor{comment}{    //teste img encode e decode}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00114}00114 \textcolor{comment}{    ImageCodec i;}}
-\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00115}00115 \textcolor{comment}{    i.set\_shift(0);}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00115}00115 \textcolor{comment}{    i.set\_shift(7);}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00116}00116 \textcolor{comment}{    Mat img = cv::imread("{}lena.ppm"{});}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00117}00117 \textcolor{comment}{    i.encode("{}testfile.bin"{}, img);}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00118}00118 \textcolor{comment}{    i.decode("{}testfile.bin"{}, img);}}
@@ -124,7 +124,46 @@
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00120}00120 \textcolor{comment}{    cv::waitKey(0);}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00121}00121 \textcolor{comment}{    */}}
 \DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00122}00122 }
-\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00123}00123    \textcolor{keywordflow}{return} 0;}
-\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00124}00124 \}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00123}00123     \mbox{\hyperlink{classImageCodec}{ImageCodec}} img;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00124}00124     Mat mat;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00125}00125     \textcolor{keywordtype}{string} filename, rgb;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00126}00126     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00127}00127     \textcolor{keywordtype}{char} yn;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00129}00129     cout << \textcolor{stringliteral}{"{}Pretende codificar um ficheiro imagem?[y/n]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00130}00130     cin >> yn;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00131}00131     \textcolor{keywordflow}{if}(yn == \textcolor{charliteral}{'y'})\{}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00132}00132         cout << \textcolor{stringliteral}{"{}Nome do ficheiro imagem a ler: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00133}00133         cin >> rgb;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00134}00134         mat = cv::imread(rgb);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00135}00135         cout << \textcolor{stringliteral}{"{}Nome do ficheiro binario a escrever: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00136}00136         cin >> filename;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00137}00137         cout << \textcolor{stringliteral}{"{}Qual predict function usar: [0 a 7]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00138}00138         cin >> i;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00139}00139         img.set\_function(i);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00140}00140         cout << \textcolor{stringliteral}{"{}Nivel de quantização : [0 a 7]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00141}00141         cin >> i;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00142}00142         img.set\_shift(i);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00143}00143         img.\mbox{\hyperlink{classImageCodec_a90d89bb9874468fc4d675b67bf42260c}{encode}}(filename, mat);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00144}00144         cout << \textcolor{stringliteral}{"{}Fim de processo de codificaçao."{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00145}00145     \}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00146}00146     }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00147}00147     cout << \textcolor{stringliteral}{"{}Pretende descodificar um ficheiro audio?[y/n]"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00148}00148     cin >> yn;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00149}00149     \textcolor{keywordflow}{if}(yn == \textcolor{charliteral}{'y'})\{}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00150}00150         cout << \textcolor{stringliteral}{"{}Nome do ficheiro binario a ler: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00151}00151         cin >> filename;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00152}00152         cout << \textcolor{stringliteral}{"{}Nome do ficheiro audio a escrever: "{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00153}00153         cin >> rgb;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00154}00154         mat = cv::imread(rgb);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00155}00155         img.\mbox{\hyperlink{classImageCodec_aa88e4f566be40a128e74570cf5875abf}{decode}}(filename, mat);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00156}00156         cv::imshow(\textcolor{stringliteral}{"{}new rgb"{}}, mat);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00157}00157         cv::imwrite(filename, mat);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00158}00158         cv::waitKey(0);}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00159}00159         cout << \textcolor{stringliteral}{"{}Fim de processo de descodificaçao."{}} << endl;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00160}00160     \}}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00162}00162    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main__test_8cpp_source_l00163}00163 \}}
 
 \end{DoxyCode}

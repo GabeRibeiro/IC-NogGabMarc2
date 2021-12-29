@@ -86,14 +86,14 @@
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00082}00082             b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (golb[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00083}00083     \}}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00084}00084 \}}
-\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00085}00085  }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00085}00085 }
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00086}\mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{00086}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{Golomb::writeHdr}}(vector<int> v, \mbox{\hyperlink{classbitstream}{bitstream}} \&b)\{}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00087}00087     \textcolor{keywordtype}{int} unr = log2(*max\_element(v.begin(), v.end())) +1;}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00088}00088     \textcolor{keywordtype}{string} hdr;}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00089}00089     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<=(int)v.size(); i++)\{}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00090}00090         hdr = (i? binary(v[i-\/1], unr): unary(unr));}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00091}00091         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<int(hdr.size()); j++)}
-\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00092}00092              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );  }
+\DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00092}00092              b.\mbox{\hyperlink{classbitstream_a85276bd2ad5ac2c8046315e95e12fcfa}{writeBit}}(  (hdr[j]==\textcolor{charliteral}{'0'}? 0 : 1)   );}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00093}00093     \}}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00094}00094 \}}
 \DoxyCodeLine{\Hypertarget{Golomb_8cpp_source_l00095}00095 }

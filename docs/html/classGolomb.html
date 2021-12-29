@@ -126,11 +126,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a502c126b67a1d6c4058c175060ac2b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read 'elems' bits using bitstream.  <a href="classGolomb.html#a502c126b67a1d6c4058c175060ac2b91">More...</a><br /></td></tr>
 <tr class="separator:a502c126b67a1d6c4058c175060ac2b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a224d8632ec0d0275a5e74312423041b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGolomb.html#a224d8632ec0d0275a5e74312423041b1">writeHdr</a> (vector&lt; int &gt; v, <a class="el" href="classbitstream.html">bitstream</a> &amp;b)</td></tr>
-<tr class="memdesc:a224d8632ec0d0275a5e74312423041b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to write Header in binary.  <a href="classGolomb.html#a224d8632ec0d0275a5e74312423041b1">More...</a><br /></td></tr>
+<tr class="memdesc:a224d8632ec0d0275a5e74312423041b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to write Header in binary, fist number written is in unary and indicate de number of bits per binary number.  <a href="classGolomb.html#a224d8632ec0d0275a5e74312423041b1">More...</a><br /></td></tr>
 <tr class="separator:a224d8632ec0d0275a5e74312423041b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a596a33859f6b4d78233789d22e9f657b"><td class="memItemLeft" align="right" valign="top"><a id="a596a33859f6b4d78233789d22e9f657b" name="a596a33859f6b4d78233789d22e9f657b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeHdr</b> (vector&lt; short &gt; v, <a class="el" href="classbitstream.html">bitstream</a> &amp;b)</td></tr>
-<tr class="separator:a596a33859f6b4d78233789d22e9f657b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a209d83e20ec1a316544c365b2d5492f1"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGolomb.html#a209d83e20ec1a316544c365b2d5492f1">readHdr</a> (int type, <a class="el" href="classbitstream.html">bitstream</a> &amp;b)</td></tr>
 <tr class="memdesc:a209d83e20ec1a316544c365b2d5492f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read Header.  <a href="classGolomb.html#a209d83e20ec1a316544c365b2d5492f1">More...</a><br /></td></tr>
 <tr class="separator:a209d83e20ec1a316544c365b2d5492f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -424,7 +421,7 @@ Public Attributes</h2></td></tr>
 <p>Function to read Header. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>is an integer that defines the type (specify content ...) </td></tr>
+    <tr><td class="paramname">type</td><td>is an integer that defines the number of header fields </td></tr>
     <tr><td class="paramname">b</td><td>is a bitstream address </td></tr>
   </table>
   </dd>
@@ -645,10 +642,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to write Header in binary. </p>
+<p>Function to write Header in binary, fist number written is in unary and indicate de number of bits per binary number. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v</td><td>is an array of integers containing ... </td></tr>
+    <tr><td class="paramname">v</td><td>is an array of integers containing header fields </td></tr>
     <tr><td class="paramname">b</td><td>is a bitstream address </td></tr>
   </table>
   </dd>
@@ -661,7 +658,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   89</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;=(int)v.size(); i++){</div>
 <div class="line"><span class="lineno">   90</span>        hdr = (i? binary(v[i-1], unr): unary(unr));</div>
 <div class="line"><span class="lineno">   91</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0; j&lt;int(hdr.size()); j++)</div>
-<div class="line"><span class="lineno">   92</span>             b.<a class="code hl_function" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">writeBit</a>(  (hdr[j]==<span class="charliteral">&#39;0&#39;</span>? 0 : 1)   );  </div>
+<div class="line"><span class="lineno">   92</span>             b.<a class="code hl_function" href="classbitstream.html#a85276bd2ad5ac2c8046315e95e12fcfa">writeBit</a>(  (hdr[j]==<span class="charliteral">&#39;0&#39;</span>? 0 : 1)   );</div>
 <div class="line"><span class="lineno">   93</span>    }</div>
 <div class="line"><span class="lineno">   94</span>}</div>
 </div><!-- fragment -->
