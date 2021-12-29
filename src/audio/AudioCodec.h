@@ -7,6 +7,9 @@
 #include "../BitStream/bitstream.h"
 #include "../Golomb/Golomb.h"
 
+/**
+    * @brief Class AudioCodec allows manipulating audio files
+*/
 class AudioCodec{
     public:
         
