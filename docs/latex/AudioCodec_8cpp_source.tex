@@ -25,7 +25,7 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00021}00021     this-\/>shift = s;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00022}00022 \}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00023}00023 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00024}00024 \textcolor{keywordtype}{double} AudioCodec::entropy(vector<int> vec)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00024}\mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{00024}} \textcolor{keywordtype}{double} \mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{AudioCodec::entropy}}(vector<int> vec)\{}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00025}00025     unordered\_map<int, double> ch;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00026}00026     \textcolor{keywordtype}{double} entropy\_ch=0, prob;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00027}00027     \textcolor{keywordtype}{int} total = vec.size(), value;}
@@ -42,7 +42,7 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00038}00038     \textcolor{keywordflow}{return} -\/entropy\_ch; }
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00039}00039 \}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00041}00041 vector<int> AudioCodec::predictive\_coding(vector<int> aud)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00041}\mbox{\hyperlink{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}{00041}} vector<int> \mbox{\hyperlink{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}{AudioCodec::predictive\_coding}}(vector<int> aud)\{}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00042}00042     vector<int> rsd, prdt;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00043}00043     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0, r;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00044}00044     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)aud.size(); i++)\{}
@@ -62,7 +62,7 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00058}00058     \textcolor{keywordflow}{return} rsd;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00059}00059 \}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00060}00060 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00061}00061 \textcolor{keywordtype}{void} AudioCodec::encode(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00061}\mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{00061}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{AudioCodec::encode}}(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav)\{}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00062}00062     SNDFILE *snd;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00063}00063     SF\_INFO sfinfo;}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00064}00064     memset (\&sfinfo, 0, \textcolor{keyword}{sizeof} (sfinfo));}
@@ -78,85 +78,91 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00074}00074             vcnl[i].push\_back(cls[i]);}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00075}00075     \}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00076}00076 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00077}00077     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00078}00078         rcnl[i] = predictive\_coding(vcnl[i]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00079}00079     }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00080}00080     vector<int> map;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00081}00081     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00082}00082         transform(rcnl[i].begin(), rcnl[i].end(), back\_inserter(map),  }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00083}00083         [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  abs(x); \});  }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00084}00084     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00085}00085     mean/= sfinfo.channels*sfinfo.frames;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00086}00086 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00087}00087     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1))) );}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00088}00088 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00089}00089     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00090}00090     }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00091}00091     vector<int> hdr;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00092}00092     hdr.push\_back(gb.get\_m());          \textcolor{comment}{//m de golomb}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00093}00093     hdr.push\_back(sfinfo.channels);     \textcolor{comment}{//numero de canais}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00094}00094     hdr.push\_back(sfinfo.frames);       \textcolor{comment}{//numero de samples}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00095}00095     hdr.push\_back(sfinfo.format);       \textcolor{comment}{//formato}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00096}00096     hdr.push\_back(sfinfo.samplerate);   \textcolor{comment}{//samplerate}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00097}00097     hdr.push\_back(order);               \textcolor{comment}{//ordem}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00098}00098     gb.writeHdr(hdr, bss);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00099}00099 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00100}00100     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00101}00101         gb.write(rcnl[i], bss);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00102}00102     bss.padding();}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00103}00103 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00104}00104     sf\_close(snd);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00105}00105 \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00106}00106 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00107}00107 vector<int> AudioCodec::predictive\_decoding(vector<int> rsd)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00108}00108     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00109}00109     vector<int> v;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00110}00110     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)rsd.size(); i++)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00111}00111         \textcolor{keywordflow}{switch}(order)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00112}00112             \textcolor{keywordflow}{case} 1: px = x1; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00113}00113             \textcolor{keywordflow}{case} 2: px = 2*x1 -\/ x2; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00114}00114             \textcolor{keywordflow}{case} 3: px = 3*x1 -\/ 3*x2 + x3; \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00115}00115         \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00116}00116         v.push\_back(px+rsd[i]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00117}00117         x3=x2;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00118}00118         x2=x1;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00119}00119         x1=v[i];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00120}00120     \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00121}00121     \textcolor{keywordflow}{return} v;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00122}00122 \}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00123}00123 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00124}00124 \textcolor{keywordtype}{void} AudioCodec::decode(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00125}00125     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::in);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00126}00126     \mbox{\hyperlink{classGolomb}{Golomb}} gb(10);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00127}00127     }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00128}00128     vector<int> hdr = gb.readHdr(6, bss);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00129}00129 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00130}00130     gb.set\_m(hdr[0]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00131}00131     order = hdr[5];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00132}00132 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00133}00133     SF\_INFO sfinfo;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00134}00134     sfinfo.channels = hdr[1];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00135}00135     sfinfo.format = hdr[3];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00136}00136     sfinfo.samplerate = hdr[4];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00137}00137     cout << \textcolor{stringliteral}{"{}format :  "{}}<< sfinfo.format <<endl;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00077}00077     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00078}00078         rcnl[i] = \mbox{\hyperlink{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}{predictive\_coding}}(vcnl[i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00079}00079         cout << \textcolor{stringliteral}{"{}canal "{}}<< i << \textcolor{stringliteral}{"{}, original = "{}} << \mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{entropy}}(vcnl[i]) << \textcolor{stringliteral}{"{}, residual = "{}} << \mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{entropy}}(rcnl[i]) <<endl;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00080}00080     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00081}00081         }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00082}00082     }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00084}00084     vector<int> map;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00085}00085     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00086}00086         transform(rcnl[i].begin(), rcnl[i].end(), back\_inserter(map),  }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00087}00087         [](\textcolor{keywordtype}{int} x) \{ \textcolor{keywordflow}{return}  abs(x); \});  }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00088}00088     \textcolor{keywordtype}{double} mean=accumulate(map.begin(), map.end(), 0);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00089}00089     mean/= sfinfo.channels*sfinfo.frames;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00091}00091     \mbox{\hyperlink{classGolomb}{Golomb}} gb(  ceil(-\/1/log2(mean/(mean+1))) );}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00093}00093     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::out);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00094}00094     }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00095}00095     vector<int> hdr;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00096}00096     hdr.push\_back(gb.\mbox{\hyperlink{classGolomb_a99a8c475e7bc010832599fc957b3ca3f}{get\_m}}());          \textcolor{comment}{//m de golomb}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00097}00097     hdr.push\_back(sfinfo.channels);     \textcolor{comment}{//numero de canais}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00098}00098     hdr.push\_back(sfinfo.frames);       \textcolor{comment}{//numero de samples}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00099}00099     hdr.push\_back(sfinfo.format);       \textcolor{comment}{//formato}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00100}00100     hdr.push\_back(sfinfo.samplerate);   \textcolor{comment}{//samplerate}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00101}00101     hdr.push\_back(order);               \textcolor{comment}{//ordem}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00102}00102     hdr.push\_back(shift);               \textcolor{comment}{//shift}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00103}00103     gb.\mbox{\hyperlink{classGolomb_a224d8632ec0d0275a5e74312423041b1}{writeHdr}}(hdr, bss);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00105}00105     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<sfinfo.channels; i++)}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00106}00106         gb.\mbox{\hyperlink{classGolomb_afef52a1aedf611c7734dd4afd7e3ec5e}{write}}(rcnl[i], bss);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00107}00107     bss.\mbox{\hyperlink{classbitstream_aa2d1445ffe50215291edc0000a292cc1}{padding}}();}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00109}00109     sf\_close(snd);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00110}00110 \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00112}\mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{00112}} vector<int> \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{AudioCodec::predictive\_decoding}}(vector<int> rsd)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00113}00113     \textcolor{keywordtype}{int} px, x1=0, x2=0, x3=0;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00114}00114     vector<int> v;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00115}00115     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i =0; i<(int)rsd.size(); i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00116}00116         \textcolor{keywordflow}{switch}(order)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00117}00117             \textcolor{keywordflow}{case} 1: px = x1; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00118}00118             \textcolor{keywordflow}{case} 2: px = 2*x1 -\/ x2; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00119}00119             \textcolor{keywordflow}{case} 3: px = 3*x1 -\/ 3*x2 + x3; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00120}00120         \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00121}00121         v.push\_back(px+rsd[i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00122}00122         x3=x2;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00123}00123         x2=x1;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00124}00124         x1=v[i];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00125}00125     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00126}00126     \textcolor{keywordflow}{return} v;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00127}00127 \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00129}\mbox{\hyperlink{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}{00129}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}{AudioCodec::decode}}(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00130}00130     \mbox{\hyperlink{classbitstream}{bitstream}} bss((\textcolor{keywordtype}{char}*) fname.data(), std::ios::binary|std::ios::in);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00131}00131     \mbox{\hyperlink{classGolomb}{Golomb}} gb(10);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00132}00132     }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00133}00133     vector<int> hdr = gb.\mbox{\hyperlink{classGolomb_a209d83e20ec1a316544c365b2d5492f1}{readHdr}}(7, bss);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00135}00135     gb.\mbox{\hyperlink{classGolomb_aca687704fe682eba7f8ad5fa005c4480}{set\_m}}(hdr[0]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00136}00136     order = hdr[5];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00137}00137     shift = hdr[6];}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00138}00138 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00139}00139 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00140}00140     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00141}00141     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00142}00142         rcnl[i] = gb.read(hdr[2], bss);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00143}00143         vcnl[i] = predictive\_decoding(rcnl[i]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00144}00144     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00139}00139     SF\_INFO sfinfo;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00140}00140     sfinfo.channels = hdr[1];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00141}00141     sfinfo.format = hdr[3];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00142}00142     sfinfo.samplerate = hdr[4];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00143}00143     cout << \textcolor{stringliteral}{"{}format :  "{}}<< sfinfo.format <<endl;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00144}00144 }
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00145}00145 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00146}00146     vector<short> wrt;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00147}00147     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00148}00148         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00149}00149             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00146}00146     vector<int> rcnl[hdr[1]], vcnl[hdr[1]];}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00147}00147     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<hdr[1]; i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00148}00148         rcnl[i] = gb.\mbox{\hyperlink{classGolomb_a502c126b67a1d6c4058c175060ac2b91}{read}}(hdr[2], bss);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00149}00149         vcnl[i] = \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(rcnl[i]);}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00150}00150     \}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00151}00151 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00152}00152     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00153}00153     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00154}00154     sf\_write\_sync(outfile);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00155}00155     sf\_close(outfile);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00156}00156 \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00152}00152     vector<short> wrt;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00153}00153     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<(int)vcnl[0].size(); i++)\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00154}00154         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<sfinfo.channels; j++)}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00155}00155             wrt.push\_back((\textcolor{keywordtype}{short})vcnl[j][i]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00156}00156     \}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00158}00158     SNDFILE * outfile = sf\_open(wav, SFM\_WRITE, \&sfinfo);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00159}00159     sf\_count\_t count = sf\_write\_short(outfile, \&wrt[0], hdr[1]*hdr[2]);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00160}00160     sf\_write\_sync(outfile);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00161}00161     sf\_close(outfile);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8cpp_source_l00162}00162 \}}
 
 \end{DoxyCode}

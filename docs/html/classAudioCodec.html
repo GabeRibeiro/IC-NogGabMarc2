@@ -93,18 +93,23 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a554c196e4d5b175f5081b73619d2ba3a"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#a554c196e4d5b175f5081b73619d2ba3a">predictive_coding</a> (vector&lt; int &gt; aud)</td></tr>
+<tr class="memdesc:a554c196e4d5b175f5081b73619d2ba3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes an audio file based on predictive functions.  <a href="classAudioCodec.html#a554c196e4d5b175f5081b73619d2ba3a">More...</a><br /></td></tr>
 <tr class="separator:a554c196e4d5b175f5081b73619d2ba3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a773debc048244b89d51ec8101636a089"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#a773debc048244b89d51ec8101636a089">predictive_decoding</a> (vector&lt; int &gt; rsd)</td></tr>
+<tr class="memdesc:a773debc048244b89d51ec8101636a089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes an audio file based on predictive functions.  <a href="classAudioCodec.html#a773debc048244b89d51ec8101636a089">More...</a><br /></td></tr>
 <tr class="separator:a773debc048244b89d51ec8101636a089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff91d5957a9b8962c31e5ff9f1d9fa27"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#aff91d5957a9b8962c31e5ff9f1d9fa27">entropy</a> (vector&lt; int &gt; vec)</td></tr>
+<tr class="memdesc:aff91d5957a9b8962c31e5ff9f1d9fa27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to calculate entropy.  <a href="classAudioCodec.html#aff91d5957a9b8962c31e5ff9f1d9fa27">More...</a><br /></td></tr>
 <tr class="separator:aff91d5957a9b8962c31e5ff9f1d9fa27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab86dbd84f95484986f0802a6844708d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#aab86dbd84f95484986f0802a6844708d">set_order</a> (int o)</td></tr>
 <tr class="separator:aab86dbd84f95484986f0802a6844708d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae31d89fa085b5e0bbd192071d5d01fd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#ae31d89fa085b5e0bbd192071d5d01fd2">set_shift</a> (int s)</td></tr>
 <tr class="separator:ae31d89fa085b5e0bbd192071d5d01fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e04f4fcf6390eacb3085b88e6161f9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#a5e04f4fcf6390eacb3085b88e6161f9f">encode</a> (string fname, char const *wav)</td></tr>
+<tr class="memdesc:a5e04f4fcf6390eacb3085b88e6161f9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes an audio file and stores in a binary file.  <a href="classAudioCodec.html#a5e04f4fcf6390eacb3085b88e6161f9f">More...</a><br /></td></tr>
 <tr class="separator:a5e04f4fcf6390eacb3085b88e6161f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57f95f80c06f9a47e26334e03db0ce17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAudioCodec.html#a57f95f80c06f9a47e26334e03db0ce17">decode</a> (string fname, char const *wav)</td></tr>
+<tr class="memdesc:a57f95f80c06f9a47e26334e03db0ce17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes an audio file stored in a binary file.  <a href="classAudioCodec.html#a57f95f80c06f9a47e26334e03db0ce17">More...</a><br /></td></tr>
 <tr class="separator:a57f95f80c06f9a47e26334e03db0ce17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -144,40 +149,51 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00124">124</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  124</span>                                                    {</div>
-<div class="line"><span class="lineno">  125</span>    <a class="code hl_class" href="classbitstream.html">bitstream</a> bss((<span class="keywordtype">char</span>*) fname.data(), std::ios::binary|std::ios::in);</div>
-<div class="line"><span class="lineno">  126</span>    <a class="code hl_class" href="classGolomb.html">Golomb</a> gb(10);</div>
-<div class="line"><span class="lineno">  127</span>    </div>
-<div class="line"><span class="lineno">  128</span>    vector&lt;int&gt; hdr = gb.readHdr(6, bss);</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>    gb.set_m(hdr[0]);</div>
-<div class="line"><span class="lineno">  131</span>    order = hdr[5];</div>
-<div class="line"><span class="lineno">  132</span> </div>
-<div class="line"><span class="lineno">  133</span>    SF_INFO sfinfo;</div>
-<div class="line"><span class="lineno">  134</span>    sfinfo.channels = hdr[1];</div>
-<div class="line"><span class="lineno">  135</span>    sfinfo.format = hdr[3];</div>
-<div class="line"><span class="lineno">  136</span>    sfinfo.samplerate = hdr[4];</div>
-<div class="line"><span class="lineno">  137</span>    cout &lt;&lt; <span class="stringliteral">&quot;format :  &quot;</span>&lt;&lt; sfinfo.format &lt;&lt;endl;</div>
+<p>Decodes an audio file stored in a binary file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>name of the file containing coded audio file </td></tr>
+    <tr><td class="paramname">wav</td><td>name of the audio file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00129">129</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>                                                    {</div>
+<div class="line"><span class="lineno">  130</span>    <a class="code hl_class" href="classbitstream.html">bitstream</a> bss((<span class="keywordtype">char</span>*) fname.data(), std::ios::binary|std::ios::in);</div>
+<div class="line"><span class="lineno">  131</span>    <a class="code hl_class" href="classGolomb.html">Golomb</a> gb(10);</div>
+<div class="line"><span class="lineno">  132</span>    </div>
+<div class="line"><span class="lineno">  133</span>    vector&lt;int&gt; hdr = gb.readHdr(7, bss);</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>    gb.set_m(hdr[0]);</div>
+<div class="line"><span class="lineno">  136</span>    order = hdr[5];</div>
+<div class="line"><span class="lineno">  137</span>    shift = hdr[6];</div>
 <div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span> </div>
-<div class="line"><span class="lineno">  140</span>    vector&lt;int&gt; rcnl[hdr[1]], vcnl[hdr[1]];</div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;hdr[1]; i++){</div>
-<div class="line"><span class="lineno">  142</span>        rcnl[i] = gb.read(hdr[2], bss);</div>
-<div class="line"><span class="lineno">  143</span>        vcnl[i] = predictive_decoding(rcnl[i]);</div>
-<div class="line"><span class="lineno">  144</span>    }</div>
+<div class="line"><span class="lineno">  139</span>    SF_INFO sfinfo;</div>
+<div class="line"><span class="lineno">  140</span>    sfinfo.channels = hdr[1];</div>
+<div class="line"><span class="lineno">  141</span>    sfinfo.format = hdr[3];</div>
+<div class="line"><span class="lineno">  142</span>    sfinfo.samplerate = hdr[4];</div>
+<div class="line"><span class="lineno">  143</span>    cout &lt;&lt; <span class="stringliteral">&quot;format :  &quot;</span>&lt;&lt; sfinfo.format &lt;&lt;endl;</div>
+<div class="line"><span class="lineno">  144</span> </div>
 <div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>    vector&lt;short&gt; wrt;</div>
-<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;(int)vcnl[0].size(); i++){</div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0; j&lt;sfinfo.channels; j++)</div>
-<div class="line"><span class="lineno">  149</span>            wrt.push_back((<span class="keywordtype">short</span>)vcnl[j][i]);</div>
+<div class="line"><span class="lineno">  146</span>    vector&lt;int&gt; rcnl[hdr[1]], vcnl[hdr[1]];</div>
+<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;hdr[1]; i++){</div>
+<div class="line"><span class="lineno">  148</span>        rcnl[i] = gb.read(hdr[2], bss);</div>
+<div class="line"><span class="lineno">  149</span>        vcnl[i] = <a class="code hl_function" href="classAudioCodec.html#a773debc048244b89d51ec8101636a089">predictive_decoding</a>(rcnl[i]);</div>
 <div class="line"><span class="lineno">  150</span>    }</div>
 <div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>    SNDFILE * outfile = sf_open(wav, SFM_WRITE, &amp;sfinfo);</div>
-<div class="line"><span class="lineno">  153</span>    sf_count_t count = sf_write_short(outfile, &amp;wrt[0], hdr[1]*hdr[2]);</div>
-<div class="line"><span class="lineno">  154</span>    sf_write_sync(outfile);</div>
-<div class="line"><span class="lineno">  155</span>    sf_close(outfile);</div>
-<div class="line"><span class="lineno">  156</span>}</div>
+<div class="line"><span class="lineno">  152</span>    vector&lt;short&gt; wrt;</div>
+<div class="line"><span class="lineno">  153</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;(int)vcnl[0].size(); i++){</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j=0; j&lt;sfinfo.channels; j++)</div>
+<div class="line"><span class="lineno">  155</span>            wrt.push_back((<span class="keywordtype">short</span>)vcnl[j][i]);</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span> </div>
+<div class="line"><span class="lineno">  158</span>    SNDFILE * outfile = sf_open(wav, SFM_WRITE, &amp;sfinfo);</div>
+<div class="line"><span class="lineno">  159</span>    sf_count_t count = sf_write_short(outfile, &amp;wrt[0], hdr[1]*hdr[2]);</div>
+<div class="line"><span class="lineno">  160</span>    sf_write_sync(outfile);</div>
+<div class="line"><span class="lineno">  161</span>    sf_close(outfile);</div>
+<div class="line"><span class="lineno">  162</span>}</div>
+<div class="ttc" id="aclassAudioCodec_html_a773debc048244b89d51ec8101636a089"><div class="ttname"><a href="classAudioCodec.html#a773debc048244b89d51ec8101636a089">AudioCodec::predictive_decoding</a></div><div class="ttdeci">vector&lt; int &gt; predictive_decoding(vector&lt; int &gt; rsd)</div><div class="ttdoc">Decodes an audio file based on predictive functions.</div><div class="ttdef"><b>Definition:</b> <a href="AudioCodec_8cpp_source.html#l00112">AudioCodec.cpp:112</a></div></div>
 <div class="ttc" id="aclassGolomb_html"><div class="ttname"><a href="classGolomb.html">Golomb</a></div><div class="ttdef"><b>Definition:</b> <a href="Golomb_8h_source.html#l00014">Golomb.h:14</a></div></div>
 <div class="ttc" id="aclassbitstream_html"><div class="ttname"><a href="classbitstream.html">bitstream</a></div><div class="ttdoc">This class allows reading and writing in binary files.</div><div class="ttdef"><b>Definition:</b> <a href="bitstream_8h_source.html#l00016">bitstream.h:16</a></div></div>
 </div><!-- fragment -->
@@ -209,6 +225,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Encodes an audio file and stores in a binary file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>name of the file to store coded audio file </td></tr>
+    <tr><td class="paramname">wav</td><td>name of the audio file </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00061">61</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   61</span>                                                    {</div>
 <div class="line"><span class="lineno">   62</span>    SNDFILE *snd;</div>
@@ -226,35 +251,42 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   74</span>            vcnl[i].push_back(cls[i]);</div>
 <div class="line"><span class="lineno">   75</span>    }</div>
 <div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++)</div>
-<div class="line"><span class="lineno">   78</span>        rcnl[i] = predictive_coding(vcnl[i]);</div>
-<div class="line"><span class="lineno">   79</span>    </div>
-<div class="line"><span class="lineno">   80</span>    vector&lt;int&gt; map;</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++)</div>
-<div class="line"><span class="lineno">   82</span>        transform(rcnl[i].begin(), rcnl[i].end(), back_inserter(map),  </div>
-<div class="line"><span class="lineno">   83</span>        [](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span>  abs(x); });  </div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordtype">double</span> mean=accumulate(map.begin(), map.end(), 0);</div>
-<div class="line"><span class="lineno">   85</span>    mean/= sfinfo.channels*sfinfo.frames;</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_class" href="classGolomb.html">Golomb</a> gb(  ceil(-1/log2(mean/(mean+1))) );</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    <a class="code hl_class" href="classbitstream.html">bitstream</a> bss((<span class="keywordtype">char</span>*) fname.data(), std::ios::binary|std::ios::out);</div>
-<div class="line"><span class="lineno">   90</span>    </div>
-<div class="line"><span class="lineno">   91</span>    vector&lt;int&gt; hdr;</div>
-<div class="line"><span class="lineno">   92</span>    hdr.push_back(gb.get_m());          <span class="comment">//m de golomb</span></div>
-<div class="line"><span class="lineno">   93</span>    hdr.push_back(sfinfo.channels);     <span class="comment">//numero de canais</span></div>
-<div class="line"><span class="lineno">   94</span>    hdr.push_back(sfinfo.frames);       <span class="comment">//numero de samples</span></div>
-<div class="line"><span class="lineno">   95</span>    hdr.push_back(sfinfo.format);       <span class="comment">//formato</span></div>
-<div class="line"><span class="lineno">   96</span>    hdr.push_back(sfinfo.samplerate);   <span class="comment">//samplerate</span></div>
-<div class="line"><span class="lineno">   97</span>    hdr.push_back(order);               <span class="comment">//ordem</span></div>
-<div class="line"><span class="lineno">   98</span>    gb.writeHdr(hdr, bss);</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++)</div>
-<div class="line"><span class="lineno">  101</span>        gb.write(rcnl[i], bss);</div>
-<div class="line"><span class="lineno">  102</span>    bss.padding();</div>
-<div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>    sf_close(snd);</div>
-<div class="line"><span class="lineno">  105</span>}</div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++){</div>
+<div class="line"><span class="lineno">   78</span>        rcnl[i] = <a class="code hl_function" href="classAudioCodec.html#a554c196e4d5b175f5081b73619d2ba3a">predictive_coding</a>(vcnl[i]);</div>
+<div class="line"><span class="lineno">   79</span>        cout &lt;&lt; <span class="stringliteral">&quot;canal &quot;</span>&lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;, original = &quot;</span> &lt;&lt; <a class="code hl_function" href="classAudioCodec.html#aff91d5957a9b8962c31e5ff9f1d9fa27">entropy</a>(vcnl[i]) &lt;&lt; <span class="stringliteral">&quot;, residual = &quot;</span> &lt;&lt; <a class="code hl_function" href="classAudioCodec.html#aff91d5957a9b8962c31e5ff9f1d9fa27">entropy</a>(rcnl[i]) &lt;&lt;endl;</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="line"><span class="lineno">   81</span>        </div>
+<div class="line"><span class="lineno">   82</span>    </div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>    vector&lt;int&gt; map;</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++)</div>
+<div class="line"><span class="lineno">   86</span>        transform(rcnl[i].begin(), rcnl[i].end(), back_inserter(map),  </div>
+<div class="line"><span class="lineno">   87</span>        [](<span class="keywordtype">int</span> x) { <span class="keywordflow">return</span>  abs(x); });  </div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordtype">double</span> mean=accumulate(map.begin(), map.end(), 0);</div>
+<div class="line"><span class="lineno">   89</span>    mean/= sfinfo.channels*sfinfo.frames;</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>    <a class="code hl_class" href="classGolomb.html">Golomb</a> gb(  ceil(-1/log2(mean/(mean+1))) );</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    <a class="code hl_class" href="classbitstream.html">bitstream</a> bss((<span class="keywordtype">char</span>*) fname.data(), std::ios::binary|std::ios::out);</div>
+<div class="line"><span class="lineno">   94</span>    </div>
+<div class="line"><span class="lineno">   95</span>    vector&lt;int&gt; hdr;</div>
+<div class="line"><span class="lineno">   96</span>    hdr.push_back(gb.get_m());          <span class="comment">//m de golomb</span></div>
+<div class="line"><span class="lineno">   97</span>    hdr.push_back(sfinfo.channels);     <span class="comment">//numero de canais</span></div>
+<div class="line"><span class="lineno">   98</span>    hdr.push_back(sfinfo.frames);       <span class="comment">//numero de samples</span></div>
+<div class="line"><span class="lineno">   99</span>    hdr.push_back(sfinfo.format);       <span class="comment">//formato</span></div>
+<div class="line"><span class="lineno">  100</span>    hdr.push_back(sfinfo.samplerate);   <span class="comment">//samplerate</span></div>
+<div class="line"><span class="lineno">  101</span>    hdr.push_back(order);               <span class="comment">//ordem</span></div>
+<div class="line"><span class="lineno">  102</span>    hdr.push_back(shift);               <span class="comment">//shift</span></div>
+<div class="line"><span class="lineno">  103</span>    gb.writeHdr(hdr, bss);</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i&lt;sfinfo.channels; i++)</div>
+<div class="line"><span class="lineno">  106</span>        gb.write(rcnl[i], bss);</div>
+<div class="line"><span class="lineno">  107</span>    bss.padding();</div>
+<div class="line"><span class="lineno">  108</span> </div>
+<div class="line"><span class="lineno">  109</span>    sf_close(snd);</div>
+<div class="line"><span class="lineno">  110</span>}</div>
+<div class="ttc" id="aclassAudioCodec_html_a554c196e4d5b175f5081b73619d2ba3a"><div class="ttname"><a href="classAudioCodec.html#a554c196e4d5b175f5081b73619d2ba3a">AudioCodec::predictive_coding</a></div><div class="ttdeci">vector&lt; int &gt; predictive_coding(vector&lt; int &gt; aud)</div><div class="ttdoc">Encodes an audio file based on predictive functions.</div><div class="ttdef"><b>Definition:</b> <a href="AudioCodec_8cpp_source.html#l00041">AudioCodec.cpp:41</a></div></div>
+<div class="ttc" id="aclassAudioCodec_html_aff91d5957a9b8962c31e5ff9f1d9fa27"><div class="ttname"><a href="classAudioCodec.html#aff91d5957a9b8962c31e5ff9f1d9fa27">AudioCodec::entropy</a></div><div class="ttdeci">double entropy(vector&lt; int &gt; vec)</div><div class="ttdoc">Function to calculate entropy.</div><div class="ttdef"><b>Definition:</b> <a href="AudioCodec_8cpp_source.html#l00024">AudioCodec.cpp:24</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -273,6 +305,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Function to calculate entropy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>integer vector containing sample values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>entropy value </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00024">24</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   24</span>                                         {</div>
@@ -309,6 +350,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Encodes an audio file based on predictive functions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aud</td><td>integer vector containing audio file values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer vector with encoded values </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00041">41</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   41</span>                                                        {</div>
@@ -349,23 +399,32 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00107">107</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>                                                          {</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordtype">int</span> px, x1=0, x2=0, x3=0;</div>
-<div class="line"><span class="lineno">  109</span>    vector&lt;int&gt; v;</div>
-<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i =0; i&lt;(int)rsd.size(); i++){</div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">switch</span>(order){</div>
-<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">case</span> 1: px = x1; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">case</span> 2: px = 2*x1 - x2; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  114</span>            <span class="keywordflow">case</span> 3: px = 3*x1 - 3*x2 + x3; <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  115</span>        }</div>
-<div class="line"><span class="lineno">  116</span>        v.push_back(px+rsd[i]);</div>
-<div class="line"><span class="lineno">  117</span>        x3=x2;</div>
-<div class="line"><span class="lineno">  118</span>        x2=x1;</div>
-<div class="line"><span class="lineno">  119</span>        x1=v[i];</div>
-<div class="line"><span class="lineno">  120</span>    }</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">return</span> v;</div>
-<div class="line"><span class="lineno">  122</span>}</div>
+<p>Decodes an audio file based on predictive functions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rsd</td><td>integer vector containing audio file values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>integer vector with decoded values </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="AudioCodec_8cpp_source.html#l00112">112</a> of file <a class="el" href="AudioCodec_8cpp_source.html">AudioCodec.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                          {</div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordtype">int</span> px, x1=0, x2=0, x3=0;</div>
+<div class="line"><span class="lineno">  114</span>    vector&lt;int&gt; v;</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i =0; i&lt;(int)rsd.size(); i++){</div>
+<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">switch</span>(order){</div>
+<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">case</span> 1: px = x1; <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">case</span> 2: px = 2*x1 - x2; <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  119</span>            <span class="keywordflow">case</span> 3: px = 3*x1 - 3*x2 + x3; <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span>        v.push_back(px+rsd[i]);</div>
+<div class="line"><span class="lineno">  122</span>        x3=x2;</div>
+<div class="line"><span class="lineno">  123</span>        x2=x1;</div>
+<div class="line"><span class="lineno">  124</span>        x1=v[i];</div>
+<div class="line"><span class="lineno">  125</span>    }</div>
+<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> v;</div>
+<div class="line"><span class="lineno">  127</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
