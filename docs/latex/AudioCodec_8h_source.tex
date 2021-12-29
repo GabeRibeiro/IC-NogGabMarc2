@@ -11,28 +11,23 @@
 \DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}../BitStream/bitstream.h"{}}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}../Golomb/Golomb.h"{}}}
 \DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00009}00009 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00010}\mbox{\hyperlink{classAudioCodec}{00010}} \textcolor{keyword}{class }\mbox{\hyperlink{classAudioCodec}{AudioCodec}}\{}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00011}00011     \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00012}00012         }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00013}00013         \textcolor{keywordtype}{int} order = 1, shift =0;}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00014}00014 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00015}00015         vector<int> predictive\_coding(vector<int> aud);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00016}00016 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00017}00017         vector<int> predictive\_decoding(vector<int> rsd);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00018}00018 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00019}00019         \textcolor{keywordtype}{double} entropy(vector<int> vec);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00020}00020     \textcolor{comment}{//public:}}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00022}00022         \textcolor{keywordtype}{void} set\_order(\textcolor{keywordtype}{int} o);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00023}00023 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00024}00024         \textcolor{keywordtype}{void} set\_shift(\textcolor{keywordtype}{int} s);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00025}00025 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00026}00026         \textcolor{keywordtype}{void} encode(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00027}00027 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00028}00028         \textcolor{keywordtype}{void} decode(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav);}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00029}00029 \};}
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00030}00030 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00031}00031 }
-\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00032}00032 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00013}\mbox{\hyperlink{classAudioCodec}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{classAudioCodec}{AudioCodec}}\{}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00014}00014     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00015}00015         }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00016}00016         \textcolor{keywordtype}{int} order = 1, shift =0;}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00022}00022         vector<int> \mbox{\hyperlink{classAudioCodec_a554c196e4d5b175f5081b73619d2ba3a}{predictive\_coding}}(vector<int> aud);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00028}00028         vector<int> \mbox{\hyperlink{classAudioCodec_a773debc048244b89d51ec8101636a089}{predictive\_decoding}}(vector<int> rsd);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00034}00034         \textcolor{keywordtype}{double} \mbox{\hyperlink{classAudioCodec_aff91d5957a9b8962c31e5ff9f1d9fa27}{entropy}}(vector<int> vec);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00035}00035     \textcolor{comment}{//public:}}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00037}00037         \textcolor{keywordtype}{void} set\_order(\textcolor{keywordtype}{int} o);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00039}00039         \textcolor{keywordtype}{void} set\_shift(\textcolor{keywordtype}{int} s);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00045}00045         \textcolor{keywordtype}{void} \mbox{\hyperlink{classAudioCodec_a5e04f4fcf6390eacb3085b88e6161f9f}{encode}}(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00051}00051         \textcolor{keywordtype}{void} \mbox{\hyperlink{classAudioCodec_a57f95f80c06f9a47e26334e03db0ce17}{decode}}(\textcolor{keywordtype}{string} fname, \textcolor{keywordtype}{char} \textcolor{keyword}{const}* wav);}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00052}00052 \};}
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{AudioCodec_8h_source_l00055}00055 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -10,7 +10,9 @@
 #include "../BitStream/bitstream.h"
 
 using namespace std;
-
+/**
+    * @brief Golomb class to encode and decode using Golomb algorithm
+*/
 class Golomb{
     public:
         int m, b;
